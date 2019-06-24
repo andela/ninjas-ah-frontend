@@ -22,6 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "cover": "npm test -- --coverage",
+    "coveralls": "cat coverage/lcov.info | coveralls",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "coveralls": "^3.0.4",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
