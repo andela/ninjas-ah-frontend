@@ -1,0 +1,14 @@
+version: '2'
+plugins:
+  rubocop:
+    enabled: true
+  eslint:
+    enabled: true
+exclude_patterns:
+  - '**/node_modules/'
+  - 'script/'
+  - '**/spec/'
+  - '**/tests/'
+  - '**/__tests__/'
+  - '**/vendor/'
+  - '**/*.d.ts'
