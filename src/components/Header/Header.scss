@@ -1,0 +1,11 @@
+@import '../../assets/css/pixels';
+@import '../../assets/css/colors';
+@import '../../assets/css/shadow';
+.fixheader {
+  top: 0;
+  position: fixed;
+  @extend .white, .shadow-1;
+}
+.grabSearch {
+  margin-top: 10px;
+}
