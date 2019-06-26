@@ -1,9 +1,10 @@
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import initialState from '../store/initialState';
+import apiMiddleware from '../middlewares/apiMiddleware';
 
-export const middleware = [thunk];
-export const mockStore = configureMockStore(middleware);
-const store = mockStore(initialState);
+export { initialState };
+export const middlewares = [thunk, apiMiddleware];
+export const mockStore = configureMockStore(middlewares);
 
-export default store;
+export default mockStore(initialState);

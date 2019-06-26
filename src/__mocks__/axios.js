@@ -20,7 +20,7 @@ export const rejectedRequest = {
 
 export default {
   get: jest.fn(() => Promise.resolve({ ...resolvedRequest })),
-  post: jest.fn(() => Promise.resolve({ ...resolvedRequest, status: 201 })),
+  post: jest.fn(() => Promise.resolve({ ...resolvedRequest })),
   put: jest.fn(() => Promise.resolve({ ...resolvedRequest })),
   delete: jest.fn(() => Promise.resolve({ ...resolvedRequest })),
   patch: jest.fn(() => Promise.resolve({ ...resolvedRequest })),

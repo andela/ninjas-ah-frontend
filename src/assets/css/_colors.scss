@@ -7,7 +7,7 @@ $secondary: #1843b8;
 $danger: #d64c4c;
 $success: #1c8a4a;
 $info: #1cbdee;
-$light-grey: #e6e6e6;
+$light-grey: #ccc;
 $yellow: #f9d342;
 /* background anim colors */
 $anim-palette-1: #ffb426;
@@ -15,6 +15,7 @@ $anim-palette-2: #0e152e;
 $anim-palette-3: #420d3b;
 $anim-palette-4: #1a1549;
 $anim-palette-5: #bd243e;
+$twitter-color: #50abf1;
 
 /* colors */
 .black {
@@ -26,6 +27,11 @@ $anim-palette-5: #bd243e;
 .yellow {
   background: $yellow;
 }
+
+.twitter-color {
+  background: $twitter-color;
+}
+
 .text-yellow {
   color: $yellow;
 }

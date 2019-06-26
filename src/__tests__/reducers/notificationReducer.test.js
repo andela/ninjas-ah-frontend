@@ -1,7 +1,7 @@
 import notification from '../../__mocks__/notification';
 import reducers from '../../reducers';
 import initialState from '../../store/initialStates/notification';
-import { notificationActionTypes } from '../../action-types';
+import { notificationActionTypes } from '../../actions-types';
 
 describe('Notification reducer', () => {
   test('CREATE_ONE', () => {

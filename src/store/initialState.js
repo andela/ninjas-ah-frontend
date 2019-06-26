@@ -1,3 +1,4 @@
 const notification = require('./initialStates/notification');
+const user = require('./initialStates/userInitialState');
 
-module.exports = { notificationReducer: notification };
+module.exports = { user, notificationReducer: notification };

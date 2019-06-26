@@ -1,0 +1,60 @@
+@import '../../../assets/css/pixels.scss';
+@import '../../../assets/css/colors.scss';
+@import '../../../assets/css/shadow.scss';
+@import '../../../assets/css/radius.scss';
+@import '../../../assets/css/padding.scss';
+
+@media screen and (max-width: 768px) {
+  .Alert {
+    margin-left: 9% !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Alert {
+    margin-left: 25.4% !important;
+  }
+}
+
+.Alert {
+  margin: auto;
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  margin-bottom: 30px !important;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  @extend .shadow-2, .text-white, .large-padding, .radius-1;
+  p {
+    padding-right: 10%;
+    margin: 2px;
+  }
+}
+
+.Alert {
+  @-webkit-keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0;
+    }
+
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0;
+    }
+
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+}

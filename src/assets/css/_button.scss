@@ -1,7 +1,7 @@
 @import './_pixels.scss';
 /* button */
 .button {
-  padding: $small $xlarge;
+  padding: $small $large;
   margin-right: ($xsmall / 3);
   border: none;
   outline: none;
@@ -10,4 +10,8 @@
 }
 .button:disabled {
   background: $light;
+}
+.button-disabled {
+  opacity: 0.6;
+  cursor: default;
 }
