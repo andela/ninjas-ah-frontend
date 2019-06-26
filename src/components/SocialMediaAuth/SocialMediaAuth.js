@@ -44,9 +44,6 @@ export class SocialMediaAuth extends Component {
 
     return (
       <div className="container">
-        <Link to="/">
-          <Img imgSrc={logo} width="300px" imgClass="center image" />
-        </Link>
         <div className="center-align">
           {Object.keys(errors).length ? (
             <div className="large-padding">
@@ -60,7 +57,10 @@ export class SocialMediaAuth extends Component {
           ) : (
             ''
           )}
-
+          <Link to="/">
+            <Img imgSrc={logo} width="300px" imgClass="center image" />
+          </Link>
+          <br />
           {loading ? (
             <BeatLoader
               css={css`

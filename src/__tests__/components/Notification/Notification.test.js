@@ -34,7 +34,7 @@ describe('Notification test', () => {
           <Notification store={store} {...props} />
         </MemoryRouter>
       </Provider>);
-    wrapper.find('button').simulate('click');
-    expect(wrapper.find('button').length).toBe(1);
+    wrapper.find('button[id="save"]').simulate('click');
+    expect(wrapper.find('button[id="save"]').length).toBe(1);
   });
 });

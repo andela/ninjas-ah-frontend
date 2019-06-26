@@ -1,0 +1,22 @@
+@import '../../../assets/css/pixels';
+@import '../../../assets/css/colors';
+
+.ProfileEdit {
+  display: inline-block;
+  .modal-content {
+    border: 0px;
+    padding-left: 15px !important;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: initial;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .ProfileEdit {
+    .modal-content {
+      width: 90%;
+    }
+  }
+}

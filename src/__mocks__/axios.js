@@ -10,7 +10,7 @@ export const resolvedRequest = {
 
 export const rejectedRequest = {
   response: {
-    data: { errors: 'errors' },
+    data: { errors: { message: 'errors' } },
     status: 500,
     statusText: 'ERROR',
     headers: {},

@@ -1,0 +1,49 @@
+@import '../../../../assets/css/pixels';
+@import '../../../../assets/css/colors';
+@import '../../../../assets/css/shadow';
+@import '../../../../assets/css/padding';
+
+.ProfileEditForm {
+  display: inline-block;
+  .Form {
+    @extend .white;
+    margin-left: 5px !important;
+    margin-top: 5px !important;
+    input,
+    textarea {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      padding-left: 15px !important;
+      width: 95% !important;
+      border-bottom: solid 3px #ccc;
+      line-height: 1.5em;
+      padding-left: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 761px) {
+  .ProfileEditForm {
+    .Form {
+      margin-left: 10% !important;
+      input[name='username'],
+      input[name='email'] {
+        width: 95% !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .ProfileEditForm {
+    width: 100%;
+    .Form {
+      padding: 15px 30px;
+      input,
+      textarea {
+        margin-left: -15px;
+        width: 100% !important;
+      }
+    }
+  }
+}

@@ -25,7 +25,7 @@ const NotificationOption = ({ notification, onAddOption, onRemoveOption }) => (
               onChange={e => onChange(e.target, key, onAddOption, onRemoveOption)}
             />
             New articles from my favorite Authors
-            <div className="diviser" />
+            <div className="divider" />
             <input
               type="checkbox"
               className="medium-margin"

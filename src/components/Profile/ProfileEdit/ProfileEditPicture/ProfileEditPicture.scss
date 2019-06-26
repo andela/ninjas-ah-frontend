@@ -1,0 +1,33 @@
+@import '../../../../assets/css/pixels';
+@import '../../../../assets/css/colors';
+@import '../../../../assets/css/shadow';
+
+.ProfileEditPicture {
+  img {
+    @extend .shadow-2;
+    border: 0 !important;
+  }
+}
+
+@media screen and (min-width: 761px) {
+  .ProfileEditPicture {
+    .Form {
+      margin-top: 15px;
+      margin-left: 26% !important;
+      width: 40% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .ProfileEditPicture {
+    width: 100%;
+    .Form {
+      width: 70% !important;
+      margin-left: 7% !important;
+    }
+    img {
+      max-width: 320px !important;
+    }
+  }
+}
