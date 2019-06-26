@@ -1,1 +1,5 @@
-module.exports = {};
+const user = require('./initialStates/userInitialState');
+
+module.exports = {
+  user
+};

@@ -1,0 +1,28 @@
+@import '../../../assets/css/_colors';
+
+#Form {
+  #formTitle {
+    background: $yellow;
+    padding: 15px;
+    margin-top: -55px !important;
+    margin-left: -30px !important;
+    margin-right: -30px !important;
+    margin-bottom: 30px !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #Form {
+    margin-left: 5%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #Form {
+    margin-left: 24%;
+  }
+}
