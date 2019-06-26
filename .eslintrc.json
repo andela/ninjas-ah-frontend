@@ -20,7 +20,19 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
+    "object-curly-newline": [
+      "error",
+      {
+        "multiline": true
+      }
+    ],
+    "function-paren-newline": ["error", "multiline"],
     "import/no-named-as-default": 0,
     "import/prefer-default-export": 0,
     "react/prop-types": 1,

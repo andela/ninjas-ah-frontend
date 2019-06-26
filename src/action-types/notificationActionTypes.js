@@ -1,0 +1,5 @@
+export const CREATE_ONE = 'CREATE_ONE';
+export const TOGGLE_NOTIFICATION_TYPE = 'TOGGLE_NOTIFICATION_TYPE';
+export const ADD_OPTION = 'ADD_OPTION';
+export const REMOVE_OPTION = 'REMOVE_OPTION';
+export const CATCH_ERROR = 'CATCH_ERROR';
