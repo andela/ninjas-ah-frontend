@@ -3,7 +3,10 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
+<<<<<<< HEAD
 import { mount } from '../../../../config/enzymeConfig';
+=======
+>>>>>>> [feature 165412887] user notifications
 import config from '../../../__mocks__/notification';
 import NotificationHeader from '../../../components/Profile/Settings/NotificationsComponent/NotificationHeader';
 import { initialState } from '../../../__mocks__/store';
