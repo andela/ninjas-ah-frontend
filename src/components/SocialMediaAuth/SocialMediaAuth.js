@@ -78,7 +78,7 @@ export class SocialMediaAuth extends Component {
             ''
           )}
           {!loading && !Object.keys(errors).length && Object.keys(profile).length ? (
-            <Redirect to="/" />
+            <Redirect to="/profile" />
           ) : (
             ''
           )}
