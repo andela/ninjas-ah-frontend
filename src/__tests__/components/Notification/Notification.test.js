@@ -49,4 +49,14 @@ describe('Notification test', () => {
     wrapper.find('button[id="save-notification-configuration"]').simulate('click');
     expect(wrapper.find('button[id="save-notification-configuration"]').length).toBe(1);
   });
+  it('should create default configurations', () => {
+    window.localStorage.setItem('token', 'token');
+    const wrapper = mount(<Provider store={store}>
+        <MemoryRouter>
+          <Notification store={store} {...props} />
+        </MemoryRouter>
+      </Provider>);
+    wrapper.find('button[id="save"]').simulate('click');
+    expect(wrapper.find('button[id="save"]').length).toBe(1);
+  });
 });

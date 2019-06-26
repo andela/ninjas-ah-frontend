@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Alert, Button } from '../../../common';
+<<<<<<< HEAD
+=======
+// import Settings from '../Settings';
+>>>>>>> [feature 165412887] user notifications
 import {
   createNotificationConfiguration,
   getNotificationConfiguration,
@@ -60,7 +64,11 @@ export class Notification extends Component {
                   />
                   <Button
                     children="Save"
+<<<<<<< HEAD
                     id="save-notification-configuration"
+=======
+                    id="save"
+>>>>>>> [feature 165412887] user notifications
                     className="button yellow text-black bold radius-4 medium-margin center"
                     onClick={this.saveNotificationConfiguration}
                     loading={loading}
