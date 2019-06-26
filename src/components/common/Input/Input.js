@@ -26,7 +26,10 @@ const Input = ({
       placeholder={placeholder}
     />
     {error ? (
-      <div className="input-error danger radius-2" style={{ width: `${errorWidth}px` }}>
+      <div
+        className="input-error danger radius-2"
+        style={{ width: `${errorWidth}px` }}
+      >
         {error}
       </div>
     ) : (

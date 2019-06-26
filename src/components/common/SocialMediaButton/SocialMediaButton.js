@@ -1,11 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitterSquare, faFacebookSquare, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import {
+  faTwitterSquare,
+  faFacebookSquare,
+  faGoogle
+} from '@fortawesome/free-brands-svg-icons';
 import { urlHelper } from '../../../helpers';
 import googleSVG from '../../../assets/images/google.svg';
 
-const SocialMediaButton = ({ buttonId, name, buttonClass, children, href, size }) => {
+const SocialMediaButton = ({
+  buttonId,
+  name,
+  buttonClass,
+  children,
+  href,
+  size
+}) => {
   const { reactUrl, defaultUrl } = urlHelper.backend;
   const URL = reactUrl || defaultUrl;
 

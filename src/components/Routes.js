@@ -15,8 +15,16 @@ const Routes = ({ isAuth }) => (
       path="/profile/settings/notifications"
       render={props => <Notification {...props} />}
     />
-    <Route exact path="/" render={props => <Home {...props} isAuth={isAuth} />} />
-    <Route exact path="/auth" render={props => <SocialMediaAuth {...props} />} />
+    <Route
+      exact
+      path="/"
+      render={props => <Home {...props} isAuth={isAuth} />}
+    />
+    <Route
+      exact
+      path="/auth"
+      render={props => <SocialMediaAuth {...props} />}
+    />
     <Route exact path="/signup" render={props => <Signup {...props} />} />
   </Switch>
 );
