@@ -1,21 +1,23 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { mockStore, initialState } from '../../../__mocks__/store';
-import notification from '../../../__mocks__/notification';
+import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store';
+import { mount } from '../../../../config/enzymeConfig';
+import config from '../../../__mocks__/notification';
 import Notification from '../../../components/Profile/Settings/NotificationsComponent/Notification';
+import { initialState } from '../../../__mocks__/store';
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
-
+const mockStore = configureMockStore([thunk]);
 const props = {
-  notification: { alias: 'email' },
-  createOne: jest.fn()
+  config: { alias: 'email' },
+  createNotificationConfiguration: jest.fn(),
+  updateNotificationConfiguration: jest.fn()
 };
+
 const store = mockStore({
   ...initialState,
-  notificationReducer: notification
+  config
 });
 
 describe('Notification test', () => {
@@ -34,7 +36,17 @@ describe('Notification test', () => {
           <Notification store={store} {...props} />
         </MemoryRouter>
       </Provider>);
-    wrapper.find('button[id="save"]').simulate('click');
-    expect(wrapper.find('button[id="save"]').length).toBe(1);
+    wrapper.find('button[id="save-notification-configuration"]').simulate('click');
+    expect(wrapper.find('button[id="save-notification-configuration"]').length).toBe(1);
+  });
+  it('should create default configurations', () => {
+    window.localStorage.setItem('token', 'token');
+    const wrapper = mount(<Provider store={store}>
+        <MemoryRouter>
+          <Notification store={store} {...props} />
+        </MemoryRouter>
+      </Provider>);
+    wrapper.find('button[id="save-notification-configuration"]').simulate('click');
+    expect(wrapper.find('button[id="save-notification-configuration"]').length).toBe(1);
   });
 });

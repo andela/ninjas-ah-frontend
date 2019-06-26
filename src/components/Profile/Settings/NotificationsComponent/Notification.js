@@ -2,55 +2,68 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Button } from '../../../common';
-import Settings from '../Settings';
-import { createOne, getConfiguration } from '../../../../actions/notificationActions';
+import { Alert, Button } from '../../../common';
+import {
+  createNotificationConfiguration,
+  getNotificationConfiguration,
+  updateNotificationConfiguration
+} from '../../../../actions/notificationActions';
 import NotificationHeader from './NotificationHeader';
 import NotificationOptions from './NotificationOptions';
 import Layout from '../../../Layout';
 
 export class Notification extends Component {
-  componentDidMount() {
-    const { getConfiguration } = this.props;
-
-    getConfiguration();
+  componentWillMount() {
+    if (localStorage.token) {
+      const { configuration, createNotificationConfiguration } = this.props;
+      const newNotify = { ...configuration };
+      Object.keys(newNotify).forEach(key => delete newNotify[key].alias);
+      createNotificationConfiguration(configuration);
+    } else window.location.replace('/login');
   }
 
-  save = () => {
-    const { createOne, notification } = this.props;
-    const newNotify = { ...notification };
+  componentDidMount() {
+    const { getNotificationConfiguration, configuration } = this.props;
+    const newNotify = { ...configuration };
     Object.keys(newNotify).forEach(key => delete newNotify[key].alias);
-    createOne(newNotify);
+    getNotificationConfiguration();
+  }
+
+  saveNotificationConfiguration = () => {
+    const { configuration, updateNotificationConfiguration } = this.props;
+    const newNotify = { ...configuration };
+    Object.keys(newNotify).forEach(key => delete newNotify[key].alias);
+
+    updateNotificationConfiguration(newNotify);
   };
 
   render() {
-    const { notification, errorMessage } = this.props;
+    const { configuration, errors, message, loading } = this.props;
     return (
       <Layout>
-        <div className="container">
-          <div className="divider" />
-          <div id="notifications" className="row xxlarge-margin">
-            <div className="small-screen-4 medium-screen-1 large-screen-1 hide-on-medium hide-on-small">
-              <Settings />
-            </div>
-            <div className="small-screen-1 medium-screen-2 small-screen-2">
-              {errorMessage ? (
-                <div className="large-margin large-padding radius-2 text-danger">
-                  {errorMessage}
-                </div>
-              ) : null}
-              <div className="large-margin border b-light-grey radius-1">
-                <div className="large-margin ">
-                  <NotificationHeader notification={notification} />
-                  <NotificationOptions notification={notification} onClick={this.handleChecked} />
+        <div className="row">
+          <div className="container">
+            <div className="small-screen-4 medium-screen-4 large-screen-4">
+              {(message || errors.token || errors.authentication || errors.message) && (
+                <Alert
+                  alertType={(message && 'success') || 'danger'}
+                  message={message || errors.token || errors.authentication || errors.message}
+                />
+              )}
+              <div className="border b-light-grey radius-1 shadow-2" id="notifications">
+                <div className="xlarge-padding">
+                  <NotificationHeader notification={configuration} />
+                  <NotificationOptions
+                    notification={configuration}
+                    onClick={this.handleChecked}
+                    configuration={configuration}
+                  />
                   <Button
-<<<<<<< HEAD
-=======
                     children="Save"
->>>>>>> [feature #165412886]Get notifications
-                    id="save"
+                    id="save-notification-configuration"
                     className="button yellow text-black bold radius-4 medium-margin center"
-                    onClick={this.save}
+                    onClick={this.saveNotificationConfiguration}
+                    loading={loading}
                   >
                     Save
                   </Button>
@@ -64,19 +77,31 @@ export class Notification extends Component {
   }
 }
 Notification.propTypes = {
-  notification: PropTypes.object.isRequired,
-  createOne: PropTypes.func.isRequired,
-  getConfiguration: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
+  configuration: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
+  errors: PropTypes.object,
+  message: PropTypes.string,
+  createNotificationConfiguration: PropTypes.func.isRequired,
+  updateNotificationConfiguration: PropTypes.func.isRequired,
+  getNotificationConfiguration: PropTypes.func.isRequired
 };
-const mapStateToProps = ({ notificationReducer }) => ({
-  notification: notificationReducer.config,
-  errorMessage: notificationReducer.errorMessage
+const mapStateToProps = ({
+  notification: {
+    config,
+    updateNotificationConfiguration: { message, loading },
+    getNotificationConfiguration: { errors }
+  }
+}) => ({
+  configuration: config,
+  errors,
+  message,
+  loading
 });
 const mapDispatchToProps = dispatch => ({
-  createOne: config => dispatch(createOne(config)),
-  getConfiguration: () => {
-    dispatch(getConfiguration());
+  createNotificationConfiguration: config => dispatch(createNotificationConfiguration(config)),
+  updateNotificationConfiguration: config => dispatch(updateNotificationConfiguration(config)),
+  getNotificationConfiguration: () => {
+    dispatch(getNotificationConfiguration());
   }
 });
 export default connect(

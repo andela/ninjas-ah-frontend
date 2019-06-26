@@ -11,7 +11,7 @@
     "test:CI": "CI=true react-scripts test \"-- --coverage\"",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint . --fix"
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
@@ -82,5 +82,18 @@
       "!<rootDir>/coverage/**/*.*",
       "!<rootDir>/build/**/*.*"
     ]
-  }
+  },
+  "description": "# Badges",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela/ninjas-ah-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela/ninjas-ah-frontend/issues"
+  },
+  "homepage": "https://github.com/andela/ninjas-ah-frontend#readme"
 }

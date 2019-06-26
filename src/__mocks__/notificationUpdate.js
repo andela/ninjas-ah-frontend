@@ -1,5 +1,5 @@
 export default (Object.notification = {
-  config: {
+  configuration: {
     inApp: {
       articles: {
         show: true,
@@ -13,6 +13,5 @@ export default (Object.notification = {
       }
     }
   },
-  updateNotificationConfiguration: { loading: false, message: '', errors: {} },
-  getNotificationConfiguration: { loading: false, message: '', errors: {} }
+  updateNotificationConfiguration: { loading: false, message: '', errors: {} }
 });
