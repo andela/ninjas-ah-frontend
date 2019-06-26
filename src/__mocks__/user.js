@@ -3,11 +3,12 @@ export default (Object.user = {
   lastName: 'Smith',
   username: 'josmi',
   email: 'josmi@email.com',
-  password: 'Abcd1234!'
+  image: 'image.jpg'
 });
 
 export const userToRegister = {
   ...Object.user,
+  password: 'Abcd1234!',
   confirmPassword: 'Abcd1234!'
 };
 

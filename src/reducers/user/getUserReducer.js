@@ -5,7 +5,7 @@ export default (state, { type, payload }) => {
     case userActionsTypes.GET_USER_START:
       return {
         ...state,
-        getUser: { ...state.getUser, loading: true }
+        getUser: { ...state.getUser, loading: true, errors: {} }
       };
     case userActionsTypes.GET_USER_END:
       return {
@@ -17,6 +17,7 @@ export default (state, { type, payload }) => {
       localStorage.token = payload.token || localStorage.token;
       return {
         ...state,
+        isAuth: true,
         profile: { ...state.profile, ...payload.user },
         getUser: { loading: false, message: payload.message, errors: {} }
       };

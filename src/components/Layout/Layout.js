@@ -6,6 +6,10 @@ import Footer from '../Footer';
 export default class Layout extends Component {
   state = { screenHeight: window.innerHeight - 150 };
 
+  componentDidMount = () => {
+    window.addEventListener('resize', () => this.setState({ screenHeight: window.innerHeight - 150 }));
+  };
+
   render() {
     const { screenHeight } = this.state;
     const { children } = this.props;

@@ -20,5 +20,10 @@ module.exports = {
     loading: false,
     message: '',
     errors: {}
+  },
+  uploadImage: {
+    loading: false,
+    image: {},
+    errors: {}
   }
 };

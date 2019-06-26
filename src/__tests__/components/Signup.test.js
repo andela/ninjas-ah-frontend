@@ -35,10 +35,10 @@ describe('<Signup />', () => {
       }
     }));
 
-    form.simulate('submit', { target: { preventDefault: jest.fn() } });
+    form.simulate('submit', { preventDefault: jest.fn() });
   });
 
-  test('display an error if passwords do not match', () => {
+  test('display an error if passwords does not match', () => {
     inputs.map(input => input.simulate('change', {
       target: {
         name: input.instance().name,
@@ -46,7 +46,7 @@ describe('<Signup />', () => {
       }
     }));
 
-    form.simulate('submit', { target: { preventDefault: jest.fn() } });
+    form.simulate('submit', { preventDefault: jest.fn() });
   });
 
   test('displays errors if the submitted form is empty', () => {

@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import queryString from 'query-string';
 import { Login } from '../../../components/Login/Login';
 
 const mockStore = configureMockStore([thunk]);

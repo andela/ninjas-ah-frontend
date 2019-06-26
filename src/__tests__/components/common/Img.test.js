@@ -4,7 +4,7 @@ import { Img } from '../../../components/common';
 
 describe('<Img />', () => {
   test('renders without crashing', () => {
-    const component = mount(<Img />);
-    expect(component).toHaveLength(1);
+    expect(mount(<Img />)).toHaveLength(1);
+    expect(mount(<Img imgSrc="" />)).toHaveLength(1);
   });
 });

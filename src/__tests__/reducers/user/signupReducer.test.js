@@ -1,11 +1,11 @@
-import useReducer from '../../../reducers/user';
+import userReducer from '../../../reducers/user';
 import initialState from '../../../store/initialStates/userInitialState';
 import { userActionsTypes } from '../../../actions-types';
 import user from '../../../__mocks__/user';
 
 describe('User reducers', () => {
   test('SIGNUP_USER_START', () => {
-    const reducer = useReducer(initialState, {
+    const reducer = userReducer(initialState, {
       type: userActionsTypes.SIGNUP_USER_START,
       payload: { loading: true }
     });
@@ -15,7 +15,7 @@ describe('User reducers', () => {
   });
 
   test('SIGNUP_USER_SUCCESS', () => {
-    const reducer = useReducer(initialState, {
+    const reducer = userReducer(initialState, {
       type: userActionsTypes.SIGNUP_USER_SUCCESS,
       payload: { user }
     });
@@ -27,17 +27,17 @@ describe('User reducers', () => {
   });
 
   test('SIGNUP_USER_FAILURE', () => {
-    const reducer = useReducer(initialState, {
+    const reducer = userReducer(initialState, {
       type: userActionsTypes.SIGNUP_USER_FAILURE,
-      payload: { errors: { user: 'user do not exist' } }
+      payload: { errors: { user: 'user does not exist' } }
     });
 
     expect(reducer.signup.errors).toHaveProperty('user');
-    expect(reducer.signup.errors.user).toEqual('user do not exist');
+    expect(reducer.signup.errors.user).toEqual('user does not exist');
   });
 
   test('SIGNUP_USER_END', () => {
-    const reducer = useReducer(initialState, {
+    const reducer = userReducer(initialState, {
       type: userActionsTypes.SIGNUP_USER_END,
       payload: { loading: false }
     });
