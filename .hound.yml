@@ -1,5 +1,10 @@
 fail_on_violations: true
 
+css:
+  enabled: false
+scss:
+  enabled: false
+  
 eslint:
   enabled: true
   config_file: .eslintrc.json

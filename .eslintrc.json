@@ -20,6 +20,11 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "import/no-named-as-default": 0,
     "import/prefer-default-export": 0,

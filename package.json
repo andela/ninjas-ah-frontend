@@ -2,7 +2,21 @@
   "name": "ninjas-ah-frontend",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "npm run lint && react-scripts start",
+    "build": "npm run lint && react-scripts build",
+    "test": "react-scripts test --watchAll \"-- --coverage\"",
+    "cover": "CI=true react-scripts test \"-- --coverage\"",
+    "coveralls": "cat coverage/lcov.info | coveralls",
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/.bin/eslint . --fix"
+  },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.19.0",
     "dotenv": "^8.0.0",
     "node-sass": "^4.12.0",
@@ -15,15 +29,8 @@
     "react-thunk": "^1.0.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --watchAll \"-- --coverage\"",
-    "cover": "CI=true react-scripts test \"-- --coverage\"",
-    "coveralls": "cat coverage/lcov.info | coveralls",
-    "eject": "react-scripts eject"
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,10 +49,12 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.4",
+    "enzyme": "^3.10.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.14.1"
+    "eslint-plugin-react": "^7.14.2",
+    "react-test-renderer": "^16.8.6"
   }
 }
