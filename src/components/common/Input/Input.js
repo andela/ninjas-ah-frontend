@@ -13,7 +13,8 @@ const Input = ({
   value,
   name,
   error,
-  errorWidth
+  errorWidth,
+  isRequired
 }) => (
   <div id={inputFieldId} className={`${inputFieldClass}`}>
     <input
@@ -24,12 +25,10 @@ const Input = ({
       className={inputClass}
       onChange={onChange}
       placeholder={placeholder}
+      required={isRequired}
     />
     {error ? (
-      <div
-        className="input-error danger radius-2"
-        style={{ width: `${errorWidth}px` }}
-      >
+      <div className="input-error danger radius-2" style={{ width: `${errorWidth}px` }}>
         {error}
       </div>
     ) : (
@@ -45,14 +44,16 @@ Input.propTypes = {
   type: PropTypes.string,
   inputFieldClass: PropTypes.string,
   inputClass: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   value: PropTypes.string,
   error: PropTypes.any,
-  errorWidth: PropTypes.number
+  errorWidth: PropTypes.number,
+  isRequired: PropTypes.bool
 };
 
 Input.defaultProps = {
+  isRequired: false,
   name: '',
   type: 'text',
   onChange: e => e,
