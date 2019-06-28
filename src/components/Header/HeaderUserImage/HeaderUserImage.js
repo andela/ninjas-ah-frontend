@@ -12,7 +12,7 @@ class HeaderUserImage extends Component {
     const { image, className } = this.props;
     return (
       <div className={className}>
-        <Img imgSrc={image || profileImagePlaceHolder} width="45px" imgClass="radius-5" />
+        <Img imgSrc={image || profileImagePlaceHolder} width="36px" imgClass="radius-5" />
         <FontAwesomeIcon className="caret" icon={faCaretDown} />
       </div>
     );

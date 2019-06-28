@@ -11,6 +11,10 @@ import Login from './Login';
 import Profile from './Profile';
 import ForgotPassword from './ResetPassword/ForgotPassword';
 import ResetPassword from './ResetPassword/ResetPassword';
+import Article from './Articles/Article';
+import CreateArticle from './Profile/Articles/CreateArticle/CreateArticle';
+import PreviewArticle from './Profile/Articles/PreviewArticle';
+import EditArticle from './Profile/Articles/EditArticle';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -26,6 +30,14 @@ const Routes = ({ isAuth }) => (
     />
     <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
     <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
+    <Route exact path="/article/:slug" render={props => <Article {...props} />} />
+    <Route exact path="/profile/article/new" render={props => <CreateArticle {...props} />} />
+    <Route
+      exact
+      path="/profile/article/preview/:slug"
+      render={props => <PreviewArticle {...props} />}
+    />
+    <Route exact path="/profile/article/edit/:slug" render={props => <EditArticle {...props} />} />
   </Switch>
 );
 
