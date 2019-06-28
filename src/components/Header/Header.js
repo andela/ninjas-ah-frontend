@@ -35,29 +35,33 @@ class Header extends Component {
     const { showUserMenu } = this.state;
     return (
       <header className="Header">
-        <div className="small-screen-1 medium-screen-2 large-screen-2">
-          <div className="logo hide-on-small">
-            <Link to="/">
-              <Img imgSrc={siteLogo} alt="Authors Haven" />
-            </Link>
+        <div className="container">
+          <div className="small-screen-1 medium-screen-2 large-screen-2">
+            <div className="logo  hide-on-small">
+              <Link to="/">
+                <Img imgSrc={siteLogo} className="border b-light" alt="Authors Haven" />
+              </Link>
+            </div>
+            <div className="logo hide-on-medium hide-on-large">
+              <Link to="/">
+                <Img imgSrc={siteLogoSmall} alt="Authors Haven" width="60px" />
+              </Link>
+            </div>
           </div>
-          <div className="logo hide-on-medium hide-on-large">
-            <Link to="/">
-              <Img imgSrc={siteLogoSmall} alt="Authors Haven" width="60px" />
-            </Link>
+          <div className="small-screen-3 medium-screen-2 large-screen-2 right-align">
+            <Button buttonClass="button header-search-button white">
+              <FontAwesomeIcon icon={faSearch} size="lg" />
+            </Button>
+            <Button buttonClass="button header-notification-button white">
+              <FontAwesomeIcon icon={faBell} size="lg" /> <span className="number">{10}</span>
+            </Button>
+            <span className="wrap-header-user-button">
+              <Button buttonClass="button header-user-button white" onClick={this.toggleUserMenu}>
+                <HeaderUserImage />
+              </Button>
+              {showUserMenu ? <HeaderUserMenu /> : ''}
+            </span>
           </div>
-        </div>
-        <div className="small-screen-3 medium-screen-2 large-screen-2">
-          <Button buttonClass="button header-user-button right white" onClick={this.toggleUserMenu}>
-            <HeaderUserImage />
-          </Button>
-          <Button buttonClass="button header-notification-button right white">
-            <FontAwesomeIcon icon={faBell} size="lg" /> <span className="number">{10}</span>
-          </Button>
-          <Button buttonClass="button header-search-button right white">
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-          </Button>
-          {showUserMenu ? <HeaderUserMenu /> : ''}
         </div>
       </header>
     );

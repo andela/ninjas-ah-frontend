@@ -1,0 +1,10 @@
+@import '../../../assets/css/_pixels';
+#articleCard {
+  .card-info {
+    padding: $medium 0;
+  }
+
+  .card-info span {
+    padding: $xsmall ($large/2) $xsmall 0;
+  }
+}

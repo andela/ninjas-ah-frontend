@@ -9,6 +9,10 @@ import Signup from './Signup';
 import Notification from './Profile/Settings/NotificationsComponent/Notification';
 import Login from './Login';
 import Profile from './Profile';
+import Article from './Articles/Article';
+import CreateArticle from './Profile/Articles/CreateArticle';
+import PreviewArticle from './Profile/Articles/PreviewArticle';
+import EditArticle from './Profile/Articles/EditArticle';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -22,6 +26,14 @@ const Routes = ({ isAuth }) => (
       path="/profile/settings/notifications"
       render={props => <Notification {...props} />}
     />
+    <Route exact path="/article/:slug" render={props => <Article {...props} />} />
+    <Route exact path="/profile/article/new" render={props => <CreateArticle {...props} />} />
+    <Route
+      exact
+      path="/profile/article/preview/:slug"
+      render={props => <PreviewArticle {...props} />}
+    />
+    <Route exact path="/profile/article/edit/:slug" render={props => <EditArticle {...props} />} />
   </Switch>
 );
 

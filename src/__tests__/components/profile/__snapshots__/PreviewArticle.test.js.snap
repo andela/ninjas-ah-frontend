@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateArticle /> should render a <PreviewArticleComponent /> component  1`] = `ShallowWrapper {}`;
+
+exports[`<PreviewArticle /> should render a <PreviewArticleComponent /> component  1`] = `ShallowWrapper {}`;

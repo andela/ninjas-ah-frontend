@@ -24,10 +24,10 @@ class HeaderUserMenu extends Component {
     const { isAuth, className, username, firstName, lastName } = this.props;
     return (
       <div className={className}>
-        <p className="username">
+        <div className="username">
           {username || (firstName && lastName && `${firstName} ${lastName}`) || ''}
-        </p>
-        <ul>
+        </div>
+        <ul className="list-block left-align">
           {!isAuth && (
             <li>
               <Link to="/signup">
