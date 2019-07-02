@@ -10,6 +10,8 @@ import Signup from '../../components/Signup';
 import Profile from '../../components/Profile';
 import Notification from '../../components/Profile/Settings/NotificationsComponent/Notification';
 import Login from '../../components/Login';
+import ForgotPassword from '../../components/ResetPassword/ForgotPassword';
+import ResetPassword from '../../components/ResetPassword/ResetPassword';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {
@@ -81,4 +83,22 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(Login)).toHaveLength(1);
   });
-});
+    test('renders <ForgotPassword /> without crashing', () => {
+      const component = mount(<Provider store={store}>
+          <MemoryRouter initialEntries={['/forgot-password']}>
+            <Routes />
+          </MemoryRouter>
+        </Provider>);
+      expect(component.find(ForgotPassword)).toHaveLength(1);
+    });
+
+    test('renders <ResetPassword /> without crashing', () => {
+      const component = mount(<Provider store={store}>
+          <MemoryRouter initialEntries={['/reset-password/:token']}>
+            <Routes />
+          </MemoryRouter>
+        </Provider>);
+      expect(component.find(ResetPassword)).toHaveLength(1);
+    });
+  });
+
