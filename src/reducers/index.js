@@ -1,2 +1,3 @@
-const reducers = {};
-export default reducers;
+import password from './user/passwordReducer';
+
+export default { password };

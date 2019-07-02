@@ -1,0 +1,14 @@
+@import './_pixels.scss';
+/* button */
+.button {
+  padding:$small $large;
+  margin-right: ($xsmall / 3);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: $medium
+  
+}
+.button:disabled {
+  background: $light;
+}

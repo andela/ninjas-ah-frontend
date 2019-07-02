@@ -1,0 +1,11 @@
+.Input {
+  .input-error {
+    position: absolute;
+    margin-top: -10px;
+    width: 210px;
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 5px;
+    z-index: 9;
+  }
+}

@@ -2,28 +2,44 @@
   "name": "ninjas-ah-frontend",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "npm run lint && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll",
+    "test:coverage": "react-scripts test --watchAll \"-- --coverage\"",
+    "test:CI": "CI=true react-scripts test \"-- --coverage\"",
+    "coveralls": "cat coverage/lcov.info | coveralls",
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/.bin/eslint . --fix",
+    "cover": "CI=true react-scripts test \"-- --coverage\""
+  },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.19.0",
     "dotenv": "^8.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "expect": "^24.8.0",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "^3.0.1",
     "react-thunk": "^1.0.0",
+    "react-toastify": "^5.3.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --watchAll \"-- --coverage\"",
-    "cover": "CI=true react-scripts test \"-- --coverage\"",
-    "coveralls": "cat coverage/lcov.info | coveralls",
-    "eject": "react-scripts eject"
+    "redux-mock-store": "^1.5.3",
+    "redux-thunk": "^2.3.0",
+    "sinon": "^7.3.2"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +62,15 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.14.1"
+    "eslint-plugin-react": "^7.14.1",
+    "react-test-renderer": "^16.8.6"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/**/*.js",
+      "!<rootDir>/src/serviceWorker.js",
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/coverage/**/*.*"
+    ]
   }
 }
