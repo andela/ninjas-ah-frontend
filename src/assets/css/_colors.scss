@@ -9,6 +9,7 @@ $success: #1c8a4a;
 $info: #1cbdee;
 $light-grey: #ccc;
 $yellow: #f9d342;
+$darkenBlue: #1e88e5;
 /* background anim colors */
 $anim-palette-1: #ffb426;
 $anim-palette-2: #0e152e;
@@ -49,6 +50,9 @@ $anim-palette-5: #bd243e;
 }
 .primary {
   background: $primary;
+}
+.darkenBlue {
+  background-color: $darkenBlue;
 }
 .text-primary {
   color: $primary;

@@ -1,4 +1,4 @@
-import { passwordAction } from '../../actions-types/User';
+import { passwordAction } from '../../actions-types';
 
 export default (state = {}, { type, payload }) => {
   switch (type) {

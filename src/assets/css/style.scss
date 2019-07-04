@@ -149,6 +149,21 @@ header {
   width: 98%;
   display: block;
 }
+
+.card-chat {
+  margin: ($xsmall * 3) auto;
+  padding: 1%;
+  width: 50%;
+  color: #fff;
+  float: right;
+  border-radius: 50px;
+  display: block;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
 .card-info span {
   padding: $xsmall;
 }

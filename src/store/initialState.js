@@ -1,1 +1,1 @@
-module.exports = { password: '' };
+module.exports = {};

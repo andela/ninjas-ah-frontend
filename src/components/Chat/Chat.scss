@@ -1,0 +1,50 @@
+@import '../../assets/css/colors';
+
+$border: 1px solid #f9d342;
+$box-shadow: 2px 2px 3px #999;
+$border-radius: 50px;
+$position: fixed;
+$margin-top: 22px;
+$width: 60px;
+$height: 60px;
+$bottom: 40px;
+$right: 40px;
+$bottom-btn: 36px;
+$right-btn: 25px;
+// $width-btn: 70px;
+
+.borderResult {
+  border: $border;
+}
+
+.float {
+  position: $position;
+  width: $width;
+  height: $height;
+  bottom: $bottom;
+  right: $right;
+  background-color: $yellow;
+  color: $white;
+  cursor: pointer;
+  border-radius: $border-radius;
+  text-align: center;
+  box-shadow: $box-shadow;
+  -webkit-border-radius: $border-radius;
+  -moz-border-radius: $border-radius;
+  -ms-border-radius: $border-radius;
+  -o-border-radius: $border-radius;
+}
+
+.float-btn {
+  position: $position;
+  bottom: $bottom-btn;
+  right: $right-btn;
+  color: $white;
+  cursor: pointer;
+  border-radius: $border-radius;
+  text-align: center;
+}
+
+.my-float {
+  margin-top: $margin-top;
+}

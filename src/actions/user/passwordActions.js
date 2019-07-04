@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { axiosHelper } from '../../helpers';
-import { passwordAction } from '../../actions-types/User/index';
+import { passwordAction } from '../../actions-types';
 
 export const forgotPassword = email => async (dispatch) => {
   try {

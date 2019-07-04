@@ -1,6 +1,6 @@
 import passwordReducer from '../../reducers/user/passwordReducer';
 import initialState from '../../store/initialState';
-import { passwordAction } from '../../actions-types/User';
+import { passwordAction } from '../../actions-types';
 import {
   sendEmail,
   fakeEmail,
@@ -14,7 +14,6 @@ describe('User reducer', () => {
       type: passwordAction.FORGOT_PASSWORD_INITIALIZED,
       payload: { ...sendEmail }
     });
-    console.log(sendEmail);
     expect(reducer).toHaveProperty('email');
   });
 
@@ -59,13 +58,5 @@ describe('User reducer', () => {
     });
     expect(reducer).toHaveProperty('password');
     expect(reducer).toHaveProperty('confirmPassword');
-  });
-
-  test('Default', () => {
-    const reducer = passwordReducer(initialState, {
-      type: null,
-      payload: null
-    });
-    expect(reducer).toHaveProperty('password');
   });
 });
