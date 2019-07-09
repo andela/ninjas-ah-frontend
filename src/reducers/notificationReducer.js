@@ -14,7 +14,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         errorMessage: payload.config || payload.authentication || payload.token
       };
-
     case types.notificationActionTypes.TOGGLE_NOTIFICATION_TYPE:
       return {
         ...state,
@@ -59,6 +58,27 @@ export default (state = initialState, { type, payload }) => {
           }
         }
       };
+    case types.notificationActionTypes.GET_CONFIGURATION:
+      return {
+        ...state,
+        config: {
+          inApp: {
+            alias: 'Authors Haven',
+            articles: {
+              show: payload.config.inApp.articles.show,
+              on: payload.config.inApp.articles.on
+            }
+          },
+          email: {
+            alias: 'Email',
+            articles: {
+              show: false,
+              on: []
+            }
+          }
+        }
+      };
+
     default:
       return state;
   }

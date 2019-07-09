@@ -1,16 +1,21 @@
-/* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Button } from '../../../common';
 import Settings from '../Settings';
-import { createOne } from '../../../../actions/notificationActions';
+import { createOne, getConfiguration } from '../../../../actions/notificationActions';
 import NotificationHeader from './NotificationHeader';
 import NotificationOptions from './NotificationOptions';
-import Layout from '../../../Layout/Layout';
+import Layout from '../../../Layout';
 
 export class Notification extends Component {
+  componentDidMount() {
+    const { getConfiguration } = this.props;
+
+    getConfiguration();
+  }
+
   save = () => {
     const { createOne, notification } = this.props;
     const newNotify = { ...notification };
@@ -39,6 +44,10 @@ export class Notification extends Component {
                   <NotificationHeader notification={notification} />
                   <NotificationOptions notification={notification} onClick={this.handleChecked} />
                   <Button
+<<<<<<< HEAD
+=======
+                    children="Save"
+>>>>>>> [feature #165412886]Get notifications
                     id="save"
                     className="button yellow text-black bold radius-4 medium-margin center"
                     onClick={this.save}
@@ -57,13 +66,19 @@ export class Notification extends Component {
 Notification.propTypes = {
   notification: PropTypes.object.isRequired,
   createOne: PropTypes.func.isRequired,
+  getConfiguration: PropTypes.func.isRequired,
   errorMessage: PropTypes.string
 };
 const mapStateToProps = ({ notificationReducer }) => ({
   notification: notificationReducer.config,
   errorMessage: notificationReducer.errorMessage
 });
-const mapDispatchToProps = dispatch => ({ createOne: config => dispatch(createOne(config)) });
+const mapDispatchToProps = dispatch => ({
+  createOne: config => dispatch(createOne(config)),
+  getConfiguration: () => {
+    dispatch(getConfiguration());
+  }
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -16,6 +16,21 @@ export const createOne = config => async (dispatch) => {
     });
   }
 };
+export const getConfiguration = config => async (dispatch) => {
+  try {
+    const res = await axiosHelper().get('/notifications/configuration', { config });
+    const { data } = res;
+    dispatch({
+      type: types.notificationActionTypes.GET_CONFIGURATION,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: types.notificationActionTypes.CATCH_ERROR,
+      payload: error.response
+    });
+  }
+};
 
 export const addOption = (option, type) => ({
   type: types.notificationActionTypes.ADD_OPTION,
