@@ -1,5 +1,5 @@
 import { notificationReducer as initialState } from '../store/initialState';
-import * as types from '../action-types';
+import * as types from '../actions-types';
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {

@@ -1,4 +1,4 @@
+import user from './user';
 import notificationReducer from './notificationReducer';
 
-const reducers = { notificationReducer };
-export default reducers;
+export default { user, notificationReducer };

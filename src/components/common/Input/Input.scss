@@ -1,0 +1,15 @@
+@import '../../../assets/css/colors';
+$background-color: rgb(243, 108, 108);
+
+.Input {
+  .input-error {
+    position: absolute;
+    margin-top: -10px;
+    width: 210px;
+    font-size: 14px;
+    color: $white;
+    padding: 10px 5px;
+    z-index: 9;
+    background-color: $background-color;
+  }
+}

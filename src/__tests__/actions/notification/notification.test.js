@@ -3,7 +3,7 @@ import { createOne, addOption, toggleNotificationType } from '../../../actions/n
 import store from '../../../__mocks__/store';
 import notification from '../../../__mocks__/notification';
 import { resolvedRequest, rejectedRequest } from '../../../__mocks__/axios';
-import * as types from '../../../action-types';
+import * as types from '../../../actions-types';
 
 describe('Create notification', () => {
   test('return new notification configurations ', async () => {

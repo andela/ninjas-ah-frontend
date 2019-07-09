@@ -5,6 +5,6 @@ export default class Home extends Component {
 
   render() {
     const { message } = this.state;
-    return <div>{message}</div>;
+    return <div className="Home">{message}</div>;
   }
 }
