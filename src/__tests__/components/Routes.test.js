@@ -8,6 +8,7 @@ import Home from '../../components/Home';
 import SocialMediaAuth from '../../components/SocialMediaAuth';
 import Signup from '../../components/Signup';
 import Notification from '../../components/Profile/Settings/NotificationsComponent/Notification';
+import Login from '../../components/Login';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {
@@ -44,5 +45,13 @@ describe('<Routes />', () => {
         </MemoryRouter>
       </Provider>);
     expect(component.find(Notification).length).toBe(1);
+  });
+  it('render Login', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/login']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Login)).toHaveLength(1);
   });
 });

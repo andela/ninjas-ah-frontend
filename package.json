@@ -9,6 +9,7 @@
     "test": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --watchAll \"-- --coverage\"",
     "test:CI": "CI=true react-scripts test \"-- --coverage\"",
+    "cover": "CI=true react-scripts test \"-- --coverage\"",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint . --fix"
@@ -21,10 +22,13 @@
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.19.0",
+    "check-prop-types": "^1.1.2",
     "dotenv": "^8.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
     "joi-browser": "^13.4.0",
+    "moxios": "^0.4.0",
     "node-sass": "^4.12.0",
     "nyc": "^14.1.1",
     "prop-types": "^15.7.2",
@@ -36,9 +40,11 @@
     "react-scripts": "^3.0.1",
     "react-spinners": "^0.5.4",
     "react-thunk": "^1.0.0",
+    "react-toastify": "^5.3.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.3",
+    "redux-promise-middleware": "^6.1.1",
     "redux-thunk": "^2.3.0",
     "serve": "^11.0.2",
     "socket.io-client": "^2.2.0"
@@ -65,14 +71,18 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.14.2",
-    "react-test-renderer": "^16.8.6"
+    "jest-enzyme": "^7.0.2",
+    "react-test-render": "^1.1.1",
+    "react-test-renderer": "^16.8.6",
+    "redux-mock-store": "^1.5.3"
   },
   "jest": {
     "collectCoverageFrom": [
       "<rootDir>/**/*.js",
       "!<rootDir>/src/serviceWorker.js",
       "!<rootDir>/src/index.js",
-      "!<rootDir>/coverage/**/*.*"
+      "!<rootDir>/coverage/**/*.*",
+      "!<rootDir>/build/**/*.*"
     ]
   }
 }

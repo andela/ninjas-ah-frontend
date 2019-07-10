@@ -49,7 +49,10 @@ export class Signup extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     const { errors } = this.state;
-    this.setState({ message: nextProps.message, errors: { ...errors, ...nextProps.errors } });
+    this.setState({
+      message: nextProps.message,
+      errors: { ...errors, ...nextProps.errors }
+    });
   };
 
   render() {

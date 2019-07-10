@@ -8,6 +8,7 @@ $danger: #d64c4c;
 $success: #1c8a4a;
 $info: #1cbdee;
 $light-grey: #ccc;
+$light-grey: #e6e6e6;
 $yellow: #f9d342;
 /* background anim colors */
 $anim-palette-1: #ffb426;
@@ -27,11 +28,9 @@ $twitter-color: #50abf1;
 .yellow {
   background: $yellow;
 }
-
 .twitter-color {
   background: $twitter-color;
 }
-
 .text-yellow {
   color: $yellow;
 }

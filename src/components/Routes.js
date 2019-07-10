@@ -5,8 +5,9 @@ import { PropTypes } from 'prop-types';
 
 import SocialMediaAuth from './SocialMediaAuth';
 import Home from './Home';
-import Notification from './Profile/Settings/NotificationsComponent/Notification';
 import Signup from './Signup';
+import Notification from './Profile/Settings/NotificationsComponent/Notification';
+import Login from './Login';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -18,6 +19,7 @@ const Routes = ({ isAuth }) => (
     <Route exact path="/" render={props => <Home {...props} isAuth={isAuth} />} />
     <Route exact path="/auth" render={props => <SocialMediaAuth {...props} />} />
     <Route exact path="/signup" render={props => <Signup {...props} />} />
+    <Route exact path="/login" render={props => <Login {...props} />} />
   </Switch>
 );
 
