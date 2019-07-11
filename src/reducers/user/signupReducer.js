@@ -5,7 +5,7 @@ export default (state, { type, payload }) => {
     case userActionsTypes.SIGNUP_USER_START:
       return {
         ...state,
-        signup: { ...state.signup, loading: true, errors: {} }
+        signup: { ...state.signup, message: '', loading: true, errors: {} }
       };
     case userActionsTypes.SIGNUP_USER_END:
       return {
@@ -13,7 +13,6 @@ export default (state, { type, payload }) => {
         signup: { ...state.signup, loading: false }
       };
     case userActionsTypes.SIGNUP_USER_SUCCESS:
-      localStorage.user = JSON.stringify(payload.user);
       return {
         ...state,
         profile: payload.user,

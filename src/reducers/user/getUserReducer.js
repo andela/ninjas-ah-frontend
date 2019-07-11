@@ -5,7 +5,7 @@ export default (state, { type, payload }) => {
     case userActionsTypes.GET_USER_START:
       return {
         ...state,
-        getUser: { ...state.getUser, loading: true, errors: {} }
+        getUser: { ...state.getUser, message: '', loading: true, errors: {} }
       };
     case userActionsTypes.GET_USER_END:
       return {
