@@ -7,6 +7,7 @@ import Routes from '../../components/Routes';
 import Home from '../../components/Home';
 import SocialMediaAuth from '../../components/SocialMediaAuth';
 import Signup from '../../components/Signup';
+import Profile from '../../components/Profile';
 import Notification from '../../components/Profile/Settings/NotificationsComponent/Notification';
 import Login from '../../components/Login';
 
@@ -38,6 +39,32 @@ describe('<Routes />', () => {
     expect(component.find(Signup)).toHaveLength(1);
   });
 
+  test('renders <Profile /> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile']}>
+          <Routes isAuth={true} />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Profile)).toHaveLength(1);
+  });
+
+  test('renders <Profile /> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile?email=email@email.com']}>
+          <Routes isAuth={true} />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Profile)).toHaveLength(1);
+  });
+
+  test('renders <Profile /> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile?token=401']}>
+          <Routes isAuth={true} />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Profile)).toHaveLength(1);
+  });
   test('renders <Notification/> without crashing', () => {
     const component = mount(<Provider store={store}>
         <MemoryRouter initialEntries={['/profile/settings/notifications']}>

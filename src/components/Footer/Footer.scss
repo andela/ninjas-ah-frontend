@@ -1,9 +1,9 @@
-@import '../../assets/css/colors';
-@import '../../assets/css/padding';
-@import '../../assets/css/pixels';
+@import '../../assets/css/colors.scss';
+@import '../../assets/css/padding.scss';
+
 .Footer {
   .divider + div {
-    margin-top: $xlarge;
+    margin-top: $xlarge-padding;
     border-top: solid 1px $light-grey;
   }
 }

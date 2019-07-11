@@ -5,13 +5,15 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './Alert.scss';
 import Button from '../Button/Button';
 
-class Alert extends Component {
+export class Alert extends Component {
   state = { showAlert: true };
 
   handleClick = () => {
     const { showAlert } = this.state;
     this.setState({ showAlert: !showAlert });
   };
+
+  componentWillReceiveProps = nextProps => nextProps.message && this.setState({ showAlert: true });
 
   render() {
     const { showAlert } = this.state;
@@ -48,7 +50,7 @@ Alert.propTypes = {
 
 Alert.defaultProps = {
   message: 'Alert',
-  className: 'Alert center-align large-screen-2 medium-screen-2 small-screen-3',
+  className: 'Alert center-align large-screen-1 medium-screen-2 small-screen-3',
   alertType: 'info',
   size: 25
 };

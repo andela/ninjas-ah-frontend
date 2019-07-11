@@ -3,12 +3,23 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const Button = ({ buttonId, type, buttonClass, onClick, children, color, size, loading }) => (
+const Button = ({
+  buttonId,
+  type,
+  buttonClass,
+  onClick,
+  children,
+  color,
+  size,
+  loading,
+  ...props
+}) => (
   <button
     id={buttonId}
     type={type}
     className={`${buttonClass} ${loading && 'button-disabled'}`}
     onClick={onClick}
+    {...props}
   >
     {children}
     {loading && (

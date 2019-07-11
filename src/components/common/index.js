@@ -4,5 +4,6 @@ import Form from './Form/Form';
 import SocialMediaButton from './SocialMediaButton/SocialMediaButton';
 import Alert from './Alert/Alert';
 import Img from './Img/Img';
+import TextArea from './TextArea/TextArea';
 
-export { Input, Button, Form, SocialMediaButton, Alert, Img };
+export { Input, Button, Form, SocialMediaButton, Alert, Img, TextArea };

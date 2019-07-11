@@ -1,4 +1,11 @@
-@import './pixels';
+@import 'pixels';
+
+$xxlarge-padding: ($xsmall * 12);
+$xlarge-padding: ($xsmall * 6);
+$large-padding: ($xsmall * 3);
+$medium-padding: ($xsmall * 2);
+$small-padding: $xsmall;
+
 /* Padding Formatting */
 .xxlarge-padding {
   padding: ($xsmall * 12);

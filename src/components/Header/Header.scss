@@ -1,12 +1,65 @@
 @import '../../assets/css/pixels';
-@import '../../assets/css/colors';
-@import '../../assets/css/shadow';
+@import '../../assets/css/radius';
+@import '../../assets/css/colors.scss';
+@import '../../assets/css/shadow.scss';
+@import '../../assets/css/padding.scss';
 
-.fixheader {
+.Header {
   top: 0;
   position: fixed;
   @extend .white, .shadow-1;
+
+  .grabSearch {
+    margin-top: 10px;
+  }
+
+  .logo {
+    padding-left: 40px;
+  }
+
+  .header-notification-button {
+    padding-top: 27px;
+    margin-right: 30px;
+    .number {
+      @extend .radius-5, .danger, .small-text;
+      color: $white;
+      padding: 2px 5px;
+      margin-top: 20px;
+      top: 0;
+      position: absolute;
+    }
+  }
+
+  .header-search-button {
+    padding-top: 27px;
+  }
+
+  @media screen and (min-width: 761px) {
+    .Header {
+      .logo {
+        padding-left: 40px;
+      }
+
+      margin-top: 10px;
+      margin-right: 40px;
+    }
+  }
 }
-.grabSearch {
-  margin-top: 10px;
+
+@media screen and (max-width: 760px) {
+  .Header {
+    .logo {
+      padding-left: 15px;
+    }
+
+    .header-user-button {
+      padding-left: 0px;
+      padding-right: 10px;
+    }
+
+    .header-search-button {
+      padding-left: 0px;
+      padding-right: 10px;
+    }
+  }
 }
