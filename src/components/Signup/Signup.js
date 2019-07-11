@@ -25,15 +25,16 @@ export class Signup extends Component {
 
   handleChange = (e) => {
     const { form, errors } = this.state;
+
     this.setState({
       form: { ...form, [e.target.name]: e.target.value },
-      errors: { ...errors, [e.target.name]: '' },
+      errors: { ...errors, [e.target.name]: null },
       loading: false,
       message: ''
     });
   };
 
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { signupUser } = this.props;
     const { errors, form } = this.state;
@@ -43,7 +44,7 @@ export class Signup extends Component {
     this.setState({ errors: { ...errors, ...formErrors } });
 
     if (!Object.keys(formErrors).length) {
-      await signupUser(formData);
+      signupUser(formData);
     }
   };
 
@@ -53,6 +54,8 @@ export class Signup extends Component {
       message: nextProps.message,
       errors: { ...errors, ...nextProps.errors }
     });
+
+    return nextProps.message && this.setState({ form: {} });
   };
 
   render() {
@@ -167,7 +170,8 @@ Signup.propTypes = {
   loading: PropTypes.bool,
   message: PropTypes.string,
   errors: PropTypes.object,
-  signupUser: PropTypes.func
+  signupUser: PropTypes.func,
+  onClearSignupErrors: PropTypes.func
 };
 
 const mapStateToProps = ({ user: { signup: { loading, message, errors } } }) => ({

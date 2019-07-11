@@ -39,11 +39,12 @@ export class Notification extends Component {
                   <NotificationHeader notification={notification} />
                   <NotificationOptions notification={notification} onClick={this.handleChecked} />
                   <Button
-                    text="Save"
                     id="save"
                     className="button yellow text-black bold radius-4 medium-margin center"
                     onClick={this.save}
-                  />
+                  >
+                    Save
+                  </Button>
                 </div>
               </div>
             </div>

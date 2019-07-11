@@ -1,41 +1,71 @@
 import React, { Component } from 'react';
-import sitelogo from '../../assets/images/logo_ah_secondo.png';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
-import { Form, Input } from '../common';
+import siteLogo from '../../assets/images/logo_ah_secondo.png';
+import siteLogoSmall from '../../assets/images/logo_ah_small.png';
+import { Img, Button } from '../common';
+import HeaderUserMenu from './HeaderUserMenu/HeaderUserMenu';
+import HeaderUserImage from './HeaderUserImage/HeaderUserImage';
 
-export default class Header extends Component {
-  state = { searchArticle: '' };
+class Header extends Component {
+  state = { showUserMenu: false };
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  componentDidMount = () => {
+    window.document.addEventListener('click', (e) => {
+      const { parentNode, classList } = e.srcElement;
+      return (
+        (classList || parentNode.classList)
+        && !classList.contains('header-user-button')
+        && !parentNode.classList.contains('HeaderUserImage')
+        && this.setState({ showUserMenu: false })
+      );
+    });
+  };
+
+  toggleUserMenu = () => {
+    const { showUserMenu } = this.state;
+    this.setState({ showUserMenu: !showUserMenu });
   };
 
   render() {
-    const { searchArticle } = this.state;
+    const { showUserMenu } = this.state;
     return (
-      <header className="fixheader">
-        <div className="container">
-          <div className="row">
-            <div className="small-screen-4 medium-screen-4 large-screen-2">
-              <div className="logo">
-                <img src={sitelogo} alt="Authors Haven" />
-              </div>
-            </div>
-            <div className="hide-on-small hide-on-medium large-screen-2">
-              <Form formClass="large-screen-2 hide" onSubmit={e => e}>
-                <Input
-                  name="searchArticle"
-                  type="text"
-                  inputClass="radius-5 medium-text"
-                  placeholder="Search"
-                  onChange={this.handleChange}
-                  value={searchArticle}
-                />
-              </Form>
-            </div>
+      <header className="Header">
+        <div className="small-screen-1 medium-screen-2 large-screen-2">
+          <div className="logo hide-on-small">
+            <Link to="/">
+              <Img imgSrc={siteLogo} alt="Authors Haven" />
+            </Link>
           </div>
+          <div className="logo hide-on-medium hide-on-large">
+            <Link to="/">
+              <Img imgSrc={siteLogoSmall} alt="Authors Haven" width="60px" />
+            </Link>
+          </div>
+        </div>
+        <div className="small-screen-3 medium-screen-2 large-screen-2">
+          <Button buttonClass="button header-user-button right white" onClick={this.toggleUserMenu}>
+            <HeaderUserImage />
+          </Button>
+          <Button buttonClass="button header-notification-button right white">
+            <FontAwesomeIcon icon={faBell} size="lg" /> <span className="number">{10}</span>
+          </Button>
+          <Button buttonClass="button header-search-button right white">
+            <FontAwesomeIcon icon={faSearch} size="lg" />
+          </Button>
+          {showUserMenu ? <HeaderUserMenu /> : ''}
         </div>
       </header>
     );
   }
 }
+
+Header.propTypes = { isAuth: PropTypes.bool };
+
+const mapStateToProps = ({ user: { isAuth } }) => ({ isAuth });
+
+export default connect(mapStateToProps)(Header);
