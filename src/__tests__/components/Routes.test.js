@@ -83,22 +83,21 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(Login)).toHaveLength(1);
   });
-    test('renders <ForgotPassword /> without crashing', () => {
-      const component = mount(<Provider store={store}>
-          <MemoryRouter initialEntries={['/forgot-password']}>
-            <Routes />
-          </MemoryRouter>
-        </Provider>);
-      expect(component.find(ForgotPassword)).toHaveLength(1);
-    });
-
-    test('renders <ResetPassword /> without crashing', () => {
-      const component = mount(<Provider store={store}>
-          <MemoryRouter initialEntries={['/reset-password/:token']}>
-            <Routes />
-          </MemoryRouter>
-        </Provider>);
-      expect(component.find(ResetPassword)).toHaveLength(1);
-    });
+  test('renders <ForgotPassword /> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/forgot-password']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(ForgotPassword)).toHaveLength(1);
   });
 
+  test('renders <ResetPassword /> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/reset-password/:token']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(ResetPassword)).toHaveLength(1);
+  });
+});
