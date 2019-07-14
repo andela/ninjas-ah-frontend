@@ -1,4 +1,4 @@
-const TimeStamp = ({ time }) => {
+const timeStamp = ({ time }) => {
   const months = [
     'Jan',
     'Feb',
@@ -18,4 +18,4 @@ const TimeStamp = ({ time }) => {
   return created;
 };
 
-export default TimeStamp;
+export default timeStamp;

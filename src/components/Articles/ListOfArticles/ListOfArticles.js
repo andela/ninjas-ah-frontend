@@ -5,7 +5,7 @@ import 'dotenv/config';
 import PropTypes from 'prop-types';
 import { getAllArticles } from '../../../actions';
 import placeholder from '../../../assets/images/placeholder.png';
-import TimeStamp from '../../../helpers/TimeStamp';
+import TimeStamp from '../../../helpers/timeStamp';
 import { Img } from '../../common';
 import './listOfArticles.scss';
 
