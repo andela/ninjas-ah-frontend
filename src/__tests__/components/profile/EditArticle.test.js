@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'react-thunk';
 import { Provider } from 'react-redux';
 import article from '../../../__mocks__/article';
-import EditArticle, { EditArticle as EditArticleComponent } from '../../../components/Profile/articles/EditArticle/EditArticle';
+import EditArticle, { EditArticle as EditArticleComponent } from '../../../components/Profile/Articles/EditArticle/EditArticle';
 import { shallow, mount } from '../../../../config/enzymeConfig';
 
 const props = {

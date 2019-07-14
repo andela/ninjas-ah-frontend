@@ -1,7 +1,7 @@
 import React from 'react';
 import article from '../../../__mocks__/article';
 import URL from '../../../__mocks__/URL';
-import { PreviewArticle as PreviewArticleComponent } from '../../../components/Profile/articles/PreviewArticle/PreviewArticle';
+import { PreviewArticle as PreviewArticleComponent } from '../../../components/Profile/Articles/PreviewArticle/PreviewArticle';
 import { shallow } from '../../../../config/enzymeConfig';
 
 const props = {

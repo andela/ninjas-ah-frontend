@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'react-thunk';
 import { Provider } from 'react-redux';
 import article from '../../../__mocks__/article';
-import CreateArticle, { CreateArticle as CreateArticleComponent } from '../../../components/Profile/articles/CreateArticle/CreateArticle';
+import CreateArticle, { CreateArticle as CreateArticleComponent } from '../../../components/Profile/Articles/CreateArticle/CreateArticle';
 import { shallow, mount } from '../../../../config/enzymeConfig';
 
 describe('<CreateArticle />', () => {
