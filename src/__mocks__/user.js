@@ -34,8 +34,8 @@ export const mismatchedResetPassword = {
 };
 
 export const matchedResetPassword = {
-  password: 'Brazzaville10!',
-  confirmPassword: 'Brazzaville10!'
+  passwordOne: 'Brazzaville10!',
+  passwordTwo: 'Brazzaville10!'
 };
 
 export const sendEmail = { email: 'noreplay@gmail.com' };

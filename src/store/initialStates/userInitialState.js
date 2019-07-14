@@ -25,5 +25,15 @@ module.exports = {
     loading: false,
     image: {},
     errors: {}
+  },
+  forgotPassword: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  updatePassword: {
+    loading: false,
+    message: '',
+    errors: {}
   }
 };

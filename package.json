@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s ./build",
     "dev": "npm run lint && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --watchAll \"-- --coverage\"",
     "test:CI": "CI=true react-scripts test \"-- --coverage\"",
-    "cover": "CI=true react-scripts test \"-- --coverage\"",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint . --fix"
@@ -46,8 +45,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.3",
     "redux-promise-middleware": "^6.1.1",
-    "redux-thunk": "^2.3.0",
-    "sinon": "^7.3.2"
+    "redux-thunk": "^2.3.0"
   },
   "eslintConfig": {
     "extends": "react-app"

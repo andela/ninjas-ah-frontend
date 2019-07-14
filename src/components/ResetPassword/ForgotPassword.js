@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Input, Button, Form, Img } from '../common';
 import { regularExpression } from '../../helpers/user/formValidator';
-import { forgotPassword } from '../../actions/user/passwordActions';
+import { forgotPasswordAction } from '../../actions/user';
 import Logo from '../../assets/images/logo_ah_secondo.png';
 
 class ForgotPassword extends Component {
@@ -21,18 +21,19 @@ class ForgotPassword extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { email } = this.state;
-    this.setState({ loading: true });
+
     if (regularExpression.test(email)) {
-      const isEmailSent = await this.props.forgotPassword(email);
-      this.setState({ email: '', loading: false });
+      const isEmailSent = await this.props.forgotPasswordAction(email);
+      this.setState({ email: '' });
       return isEmailSent;
     }
-    this.setState({ loading: false });
+
     return toast.error('Please enter your Email');
   };
 
   render() {
-    const { email, loading } = this.state;
+    const { loading } = this.props;
+    const { email } = this.state;
     return (
       <div className="container">
         <ToastContainer position={toast.POSITION.TOP_CENTER} />
@@ -69,11 +70,19 @@ class ForgotPassword extends Component {
 }
 
 ForgotPassword.propTypes = {
-  isLoading: PropTypes.bool,
-  forgotPassword: PropTypes.func
+  loading: PropTypes.bool,
+  message: PropTypes.string,
+  errors: PropTypes.object,
+  forgotPasswordAction: PropTypes.func
 };
 
+const mapStateToProps = ({ user: { forgotPassword: { loading, message, errors } } }) => ({
+  loading,
+  message,
+  errors
+});
+
 export default connect(
-  null,
-  { forgotPassword }
+  mapStateToProps,
+  { forgotPasswordAction }
 )(ForgotPassword);

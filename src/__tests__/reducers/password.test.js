@@ -1,62 +1,76 @@
 import passwordReducer from '../../reducers/user/passwordReducer';
 import initialState from '../../store/initialState';
-import { passwordAction } from '../../actions-types';
-import {
-  sendEmail,
-  fakeEmail,
-  matchedResetPassword,
-  mismatchedResetPassword
-} from '../../__mocks__/user';
+import { userActionsTypes } from '../../actions-types';
+import { matchedResetPassword, mismatchedResetPassword } from '../../__mocks__/user';
 
-describe('User reducer', () => {
-  test('INITIALIZE_EMAIL', () => {
+describe('Password reducer', () => {
+  test('FORGOT_PASSWORD_START', () => {
     const reducer = passwordReducer(initialState, {
-      type: passwordAction.FORGOT_PASSWORD_INITIALIZED,
-      payload: { ...sendEmail }
+      type: userActionsTypes.FORGOT_PASSWORD_START,
+      payload: { loading: true }
     });
-    expect(reducer).toHaveProperty('email');
+    expect(reducer.forgotPassword).toHaveProperty('loading');
+    expect(reducer.forgotPassword.loading).toBeTruthy();
   });
 
   test('EMAIL_SENT_SUCCESSFULLY', () => {
     const reducer = passwordReducer(initialState, {
-      type: passwordAction.FORGOT_PASSWORD_SUCCESS,
-      payload: { ...sendEmail }
+      type: userActionsTypes.FORGOT_PASSWORD_SUCCESS,
+      payload: { message: { sendEmail: 'luctunechi45@gmail.com' } }
     });
-    expect(reducer).toHaveProperty('email');
+    expect(reducer.forgotPassword.message).toHaveProperty('sendEmail');
   });
 
   test('ERROR', () => {
     const reducer = passwordReducer(initialState, {
-      type: passwordAction.FORGOT_PASSWORD_ERROR,
-      payload: { ...fakeEmail }
+      type: userActionsTypes.FORGOT_PASSWORD_FAILURE,
+      payload: { errors: { sendEmail: 'qweqwewqew@gmail' } }
     });
-    expect(reducer).toHaveProperty('email');
+    expect(reducer.forgotPassword.errors).toHaveProperty('sendEmail');
   });
 
-  test('INITIALIZE_PASSWORD', () => {
+  test('FORGOT_PASSWORD_END', () => {
     const reducer = passwordReducer(initialState, {
-      type: passwordAction.RESET_PASSWORD_INITIALIZED,
-      payload: { ...matchedResetPassword }
+      type: userActionsTypes.FORGOT_PASSWORD_END,
+      payload: { loading: false }
     });
-    expect(reducer).toHaveProperty('password');
-    expect(reducer).toHaveProperty('confirmPassword');
+
+    expect(reducer.forgotPassword).toHaveProperty('loading');
+    expect(reducer.forgotPassword.loading).toBeFalsy();
+  });
+
+  test('UPDATE_PASSWORD_START', () => {
+    const reducer = passwordReducer(initialState, {
+      type: userActionsTypes.RESET_PASSWORD_START,
+      payload: { loading: true }
+    });
+    expect(reducer.updatePassword).toHaveProperty('loading');
+    expect(reducer.updatePassword.loading).toBeTruthy();
   });
 
   test('UPDATE_SUCCESSFULLY_PASSWORD', () => {
     const reducer = passwordReducer(initialState, {
-      type: passwordAction.RESET_PASSWORD_SUCCESS,
-      payload: { ...matchedResetPassword }
+      type: userActionsTypes.RESET_PASSWORD_SUCCESS,
+      payload: { message: { matchedResetPassword } }
     });
-    expect(reducer).toHaveProperty('password');
-    expect(reducer).toHaveProperty('confirmPassword');
+    expect(reducer.updatePassword).toHaveProperty('message');
   });
 
   test('ERROR', () => {
     const reducer = passwordReducer(initialState, {
-      type: passwordAction.RESET_PASSWORD_ERROR,
-      payload: { ...mismatchedResetPassword }
+      type: userActionsTypes.RESET_PASSWORD_FAILURE,
+      payload: { errors: { mismatchedResetPassword } }
     });
-    expect(reducer).toHaveProperty('password');
-    expect(reducer).toHaveProperty('confirmPassword');
+    expect(reducer.updatePassword).toHaveProperty('errors');
+  });
+
+  test('UPDATE_PASSWORD_END', () => {
+    const reducer = passwordReducer(initialState, {
+      type: userActionsTypes.RESET_PASSWORD_END,
+      payload: { loading: false }
+    });
+
+    expect(reducer.updatePassword).toHaveProperty('loading');
+    expect(reducer.updatePassword.loading).toBeFalsy();
   });
 });

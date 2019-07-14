@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Input, Button, Form, Img } from '../common';
-import { resetPassword } from '../../actions/user/passwordActions';
+import { updatePasswordAction } from '../../actions/user';
 import Logo from '../../assets/images/logo_ah_secondo.png';
 import './ResetPassword.scss';
 
@@ -26,7 +26,7 @@ class ResetPassword extends Component {
     e.preventDefault();
     const { form: { password, confirmPassword } } = this.state;
     const {
-      resetPassword,
+      updatePasswordAction,
       match: { params: { token } }
     } = this.props;
     if (!password || !confirmPassword) {
@@ -36,17 +36,21 @@ class ResetPassword extends Component {
       return toast.error('The passwords are not matching');
     }
 
-    const { message } = await resetPassword({
-      password,
-      confirmPassword,
+    const { message } = await updatePasswordAction(
+      {
+        passwordOne: password,
+        passwordTwo: confirmPassword
+      },
       token
-    });
+    );
+
     this.setState({ form: { password: '', confirmPassword: '' } });
     return message;
   };
 
   render() {
-    const { form, loading } = this.state;
+    const { loading } = this.props;
+    const { form } = this.state;
     return (
       <div className="container">
         <ToastContainer position={toast.POSITION.TOP_CENTER} />
@@ -96,12 +100,20 @@ class ResetPassword extends Component {
 }
 
 ResetPassword.propTypes = {
-  isLoading: PropTypes.bool,
-  resetPassword: PropTypes.func,
+  loading: PropTypes.bool,
+  message: PropTypes.string,
+  errors: PropTypes.object,
+  updatePasswordAction: PropTypes.func,
   match: PropTypes.object
 };
 
+const mapStateToProps = ({ user: { updatePassword: { loading, message, errors } } }) => ({
+  loading,
+  message,
+  errors
+});
+
 export default connect(
-  null,
-  { resetPassword }
+  mapStateToProps,
+  { updatePasswordAction }
 )(ResetPassword);
