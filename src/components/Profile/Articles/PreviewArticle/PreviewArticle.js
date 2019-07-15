@@ -56,9 +56,6 @@ export class PreviewArticle extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if (nextProps && nextProps.imageErrors) {
-      this.setState({ imageErrors: nextProps.imageErrors });
-    }
   }
 
   handleDelete = () => {
@@ -222,18 +219,13 @@ PreviewArticle.propTypes = {
   match: PropTypes.object,
   params: PropTypes.object,
   message: PropTypes.object,
-  errors: PropTypes.object,
-  imageErrors: PropTypes.any
+  errors: PropTypes.object
 };
 
-export const mapStateToProps = ({
-  articles: { article, message, errors },
-  images: { imageErrors }
-}) => ({
+export const mapStateToProps = ({ articles: { article, message, errors } }) => ({
   article,
   message,
-  errors,
-  imageErrors
+  errors
 });
 
 export default connect(
