@@ -9,6 +9,8 @@ import Signup from './Signup';
 import Notification from './Profile/Settings/NotificationsComponent/Notification';
 import Login from './Login';
 import Profile from './Profile';
+import ForgotPassword from './ResetPassword/ForgotPassword';
+import ResetPassword from './ResetPassword/ResetPassword';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -22,6 +24,8 @@ const Routes = ({ isAuth }) => (
       path="/profile/settings/notifications"
       render={props => <Notification {...props} />}
     />
+    <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
+    <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
   </Switch>
 );
 

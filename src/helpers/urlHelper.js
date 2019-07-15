@@ -9,12 +9,12 @@ const { REACT_APP_URL_BACKEND, REACT_APP_URL_FRONTEND } = process.env;
 
 const frontend = {
   reactUrl: REACT_APP_URL_FRONTEND,
-  defaultUrl: `${protocol}//${hostname}${port}`
+  defaultUrl: `${protocol}//${hostname}${port ? `:${port}` : ''}`
 };
 
 const backend = {
   reactUrl: REACT_APP_URL_BACKEND,
-  defaultUrl: `${protocol}//${hostname}${port}`
+  defaultUrl: `${protocol}//${hostname}${port ? `:${port}` : ''}`
 };
 
 export { frontend, backend };
