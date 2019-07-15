@@ -27,7 +27,7 @@ describe('ResetPassword Component', () => {
     expect(component).toHaveLength(1);
   });
 
-  test('register user if all inputs are correct', () => {
+  test('send email if input is correct', () => {
     form.simulate('submit', { preventDefault: jest.fn() });
   });
 

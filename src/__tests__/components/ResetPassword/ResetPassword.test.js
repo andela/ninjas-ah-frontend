@@ -27,11 +27,11 @@ describe('ResetPassword Component', () => {
     expect(component).toHaveLength(1);
   });
 
-  test('register user if all inputs are correct', () => {
+  test('send new password if inputs is correct', () => {
     form.simulate('submit', { preventDefault: jest.fn() });
   });
 
-  test('register user if all inputs are correct', () => {
+  test('send new password if inputs is correct', () => {
     inputs.map(input => input.simulate('change', {
       target: {
         name: input.instance().name,
@@ -42,7 +42,7 @@ describe('ResetPassword Component', () => {
     form.simulate('submit', { preventDefault: jest.fn() });
   });
 
-  test('register user if all inputs are correct', () => {
+  test('fail in case the password is not matching', () => {
     inputs.map(input => input.simulate('change', {
       target: {
         name: input.instance().name,
@@ -53,7 +53,7 @@ describe('ResetPassword Component', () => {
     form.simulate('submit', { preventDefault: jest.fn() });
   });
 
-  test('register user if all inputs are correct', () => {
+  test('update with new password if values are correct', () => {
     inputs.map(input => input.simulate('change', {
       target: {
         name: input.instance().name,
