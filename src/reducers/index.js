@@ -1,4 +1,4 @@
 import user from './user';
-import notificationReducer from './notificationReducer';
+import notification from './notifications';
 
-export default { user, notificationReducer };
+export default { user, notification };

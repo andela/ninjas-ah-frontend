@@ -22,6 +22,14 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(Home)).toHaveLength(1);
   });
+  test('renders <Home /> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/']}>
+          <Routes isAuth={true} />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Home)).toHaveLength(1);
+  });
 
   test('renders <SocialMediaAuth /> without crashing', () => {
     const component = mount(<Provider store={store}>

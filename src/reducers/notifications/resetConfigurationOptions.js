@@ -1,21 +1,8 @@
-import { notificationReducer as initialState } from '../store/initialState';
-import * as types from '../actions-types';
+import { notificationActionTypes } from '../../actions-types';
 
-export default (state = initialState, { type, payload }) => {
+export default (state, { type, payload }) => {
   switch (type) {
-    case types.notificationActionTypes.CREATE_ONE:
-      return {
-        ...state,
-        payload
-      };
-
-    case types.notificationActionTypes.CATCH_ERROR:
-      return {
-        ...state,
-        errorMessage: payload.config || payload.authentication || payload.token
-      };
-
-    case types.notificationActionTypes.TOGGLE_NOTIFICATION_TYPE:
+    case notificationActionTypes.TOGGLE_NOTIFICATION_CONFIGURATION_TYPE:
       return {
         ...state,
         config: {
@@ -30,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
         }
       };
 
-    case types.notificationActionTypes.ADD_OPTION:
+    case notificationActionTypes.ADD_OPTION:
       return {
         ...state,
         config: {
@@ -45,7 +32,7 @@ export default (state = initialState, { type, payload }) => {
         }
       };
 
-    case types.notificationActionTypes.REMOVE_OPTION:
+    case notificationActionTypes.REMOVE_OPTION:
       return {
         ...state,
         config: {
@@ -60,6 +47,6 @@ export default (state = initialState, { type, payload }) => {
         }
       };
     default:
-      return state;
+      return null;
   }
 };
