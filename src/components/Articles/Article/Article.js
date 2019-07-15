@@ -8,7 +8,7 @@ import LazyLoad from 'react-lazyload';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { fetchOneArticle } from '../../../actions';
 import avatar from '../../../assets/images/user.png';
-import timeStamp from '../../../helpers/timeStampe';
+import timeStamp from '../../../helpers/timeStamp';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import './Article.scss';

@@ -23,7 +23,7 @@ import {
   unpublishArticle,
   uploadImage
 } from '../../../../actions';
-import timeStamp from '../../../../helpers/timeStampe';
+import timeStamp from '../../../../helpers/timeStamp';
 import './PreviewArticle.scss';
 import Layout from '../../../Layout';
 
