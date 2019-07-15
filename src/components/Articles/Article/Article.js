@@ -94,7 +94,7 @@ export class Article extends Component {
 
                 <div className="divider light" />
                 <div className="articleBody">
-                  {article && <Editor editorState={editorState} readOnly={true} />}
+                  {article && <Editor editorState={editorState} readOnly={false} />}
                 </div>
               </div>
             </div>

@@ -5,13 +5,7 @@ import PropTypes from 'prop-types';
 import 'dotenv/config';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTrash,
-  faPen,
-  faTimesCircle,
-  faCircle,
-  faQuestionCircle
-} from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPen, faTimesCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { MetaTags } from 'react-meta-tags';
 import { NotFound } from '../../../common';
 import Heading from '../../../common/Heading/Heading';
@@ -20,8 +14,7 @@ import {
   fetchOneArticle,
   deleteArticle,
   publishArticle,
-  unpublishArticle,
-  uploadImage
+  unpublishArticle
 } from '../../../../actions';
 import timeStamp from '../../../../helpers/timeStamp';
 import './PreviewArticle.scss';
@@ -99,26 +92,9 @@ export class PreviewArticle extends Component {
     }
   };
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('image', this.state.image);
-    this.props.uploadImage(formData);
-  };
-
   render() {
     const { message } = this.props;
-    const {
-      imageRectangle,
-      article,
-      errors,
-      status,
-      loaded,
-      displayUploadButton,
-      imagePath,
-      imageErrors,
-      editorState
-    } = this.state;
+    const { imageRectangle, article, errors, status, loaded, imagePath, editorState } = this.state;
     return (
       <Layout>
         <div id="preview">
@@ -157,51 +133,6 @@ export class PreviewArticle extends Component {
                   </div>
                 </div>
                 <div className="small-screen-4 medium-screen-3 large-screen-1">
-                  <div className="card light">
-                    <Heading type={1} text={'Cover Image'} />
-                    <div className="image">
-                      <img
-                        src={
-                          imagePath
-                          || (article.coverUrl
-                            && `${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${article.coverUrl}`)
-                          || placeholder
-                        }
-                        className="radius-1"
-                        alt={article.title.substring(20, 0)}
-                      />
-                    </div>
-                    <form onSubmit={this.onSubmit}>
-                      <div className="input-field white">
-                        <input
-                          type="file"
-                          name="image"
-                          value={this.image}
-                          onChange={this.fileSelectedHandler}
-                        />
-                      </div>
-                      {displayUploadButton ? (
-                        <div className="input-field center-align">
-                          <button
-                            type="submit"
-                            className="button primary bold text-black radius-4 medium-v-padding"
-                          >
-                            Upload
-                          </button>
-                        </div>
-                      ) : (
-                        <span>{''}</span>
-                      )}
-                      {imageErrors && imageErrors.image ? (
-                        <div className="medium-padding danger medium-v-margin text-white">
-                          <FontAwesomeIcon icon={faQuestionCircle} /> {imageErrors.image}
-                        </div>
-                      ) : (
-                        <span>{''}</span>
-                      )}
-                    </form>
-                  </div>
-
                   <div className="card">
                     <Heading type={1} text={'Action'} />
                     <div className="box article-actions">
@@ -295,7 +226,6 @@ PreviewArticle.propTypes = {
   deleteArticle: PropTypes.func,
   publishArticle: PropTypes.func,
   unpublishArticle: PropTypes.func,
-  uploadImage: PropTypes.func,
   slug: PropTypes.string,
   published: PropTypes.string,
   unpublished: PropTypes.string,
@@ -321,5 +251,5 @@ export const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchOneArticle, deleteArticle, publishArticle, unpublishArticle, uploadImage }
+  { fetchOneArticle, deleteArticle, publishArticle, unpublishArticle }
 )(PreviewArticle);

@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextareaAutosize from 'react-autosize-textarea';
 import MetaTags from 'react-meta-tags';
+import { Link } from 'react-router-dom';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Alert, NotFound } from '../../../common';
 import { editPost, fetchOneArticle } from '../../../../actions';
 import Layout from '../../../Layout';
@@ -176,6 +177,14 @@ export class EditArticle extends Component {
                   </form>
                 </div>
                 <div className="small-screen-4 medium-screen-3 large-screen-1">
+                  <div className="box article-actions">
+                    <Link
+                      to={`/profile/article/preview/${article.slug}`}
+                      className="button block success text-white center-align radius-4"
+                    >
+                      <FontAwesomeIcon icon={faPen} /> Preview
+                    </Link>
+                  </div>
                   <div className="card">
                     <Heading type={1} text={'Details'} />
                     <div className="box">

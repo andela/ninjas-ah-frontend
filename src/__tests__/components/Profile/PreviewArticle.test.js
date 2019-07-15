@@ -79,11 +79,6 @@ describe('<PreviewArticle />', () => {
   it('should render a <PreviewArticleComponent /> component ', () => {
     expect(component).toMatchSnapshot();
   });
-  it('should trigger submit', () => {
-    const instance = component.instance();
-    const fakeEvent = { preventDefault: () => {} };
-    instance.onSubmit(fakeEvent);
-  });
   it('should trigger publish ', () => {
     component.setProps({ article: state.article, message: state.message });
     component.instance().handlePublish();
