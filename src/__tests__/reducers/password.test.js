@@ -1,11 +1,12 @@
-import passwordReducer from '../../reducers/user/passwordReducer';
+import forgotPasswordReducer from '../../reducers/user/forgotPasswordReducer';
+import updatePasswordReducer from '../../reducers/user/updatePasswordReducer';
 import initialState from '../../store/initialState';
 import { userActionsTypes } from '../../actions-types';
 import { matchedResetPassword, mismatchedResetPassword } from '../../__mocks__/user';
 
 describe('Password reducer', () => {
   test('FORGOT_PASSWORD_START', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = forgotPasswordReducer(initialState, {
       type: userActionsTypes.FORGOT_PASSWORD_START,
       payload: { loading: true }
     });
@@ -14,7 +15,7 @@ describe('Password reducer', () => {
   });
 
   test('EMAIL_SENT_SUCCESSFULLY', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = forgotPasswordReducer(initialState, {
       type: userActionsTypes.FORGOT_PASSWORD_SUCCESS,
       payload: { message: { sendEmail: 'luctunechi45@gmail.com' } }
     });
@@ -22,15 +23,15 @@ describe('Password reducer', () => {
   });
 
   test('ERROR', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = forgotPasswordReducer(initialState, {
       type: userActionsTypes.FORGOT_PASSWORD_FAILURE,
-      payload: { errors: { sendEmail: 'qweqwewqew@gmail' } }
+      payload: { errors: { message: '----------' } }
     });
-    expect(reducer.forgotPassword.errors).toHaveProperty('sendEmail');
+    expect(reducer.forgotPassword.errors).toHaveProperty('message');
   });
 
   test('FORGOT_PASSWORD_END', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = forgotPasswordReducer(initialState, {
       type: userActionsTypes.FORGOT_PASSWORD_END,
       payload: { loading: false }
     });
@@ -40,7 +41,7 @@ describe('Password reducer', () => {
   });
 
   test('UPDATE_PASSWORD_START', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = updatePasswordReducer(initialState, {
       type: userActionsTypes.RESET_PASSWORD_START,
       payload: { loading: true }
     });
@@ -49,7 +50,7 @@ describe('Password reducer', () => {
   });
 
   test('UPDATE_SUCCESSFULLY_PASSWORD', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = updatePasswordReducer(initialState, {
       type: userActionsTypes.RESET_PASSWORD_SUCCESS,
       payload: { message: { matchedResetPassword } }
     });
@@ -57,7 +58,7 @@ describe('Password reducer', () => {
   });
 
   test('ERROR', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = updatePasswordReducer(initialState, {
       type: userActionsTypes.RESET_PASSWORD_FAILURE,
       payload: { errors: { mismatchedResetPassword } }
     });
@@ -65,7 +66,7 @@ describe('Password reducer', () => {
   });
 
   test('UPDATE_PASSWORD_END', () => {
-    const reducer = passwordReducer(initialState, {
+    const reducer = updatePasswordReducer(initialState, {
       type: userActionsTypes.RESET_PASSWORD_END,
       payload: { loading: false }
     });

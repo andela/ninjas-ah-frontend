@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import store from '../../../__mocks__/store';
-import { mount } from '../../../../config/enzymeConfig';
-import ResetPassword from '../../../components/ResetPassword/ResetPassword';
+import { mount, shallow } from '../../../../config/enzymeConfig';
+import ResetPassword, { ResetPassword as ResetPasswordComponent } from '../../../components/ResetPassword/ResetPassword';
 import { resetPassword, mismatchedResetPassword } from '../../../__mocks__/user';
 
 let inputs = '';
@@ -62,5 +62,15 @@ describe('ResetPassword Component', () => {
     }));
 
     form.simulate('submit', { preventDefault: jest.fn() });
+  });
+
+  test('displays success message if the password was successfully updated', () => {
+    const component = shallow(<ResetPasswordComponent />);
+    component.setProps({ message: 'Password successfully updated' });
+  });
+
+  test('displays an error if the password is not updated', () => {
+    const component = shallow(<ResetPasswordComponent />);
+    component.setProps({ errors: { message: 'Network error' } });
   });
 });

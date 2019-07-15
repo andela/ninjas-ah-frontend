@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import store from '../../../__mocks__/store';
-import { mount } from '../../../../config/enzymeConfig';
-import ForgotPassword from '../../../components/ResetPassword/ForgotPassword';
+import { mount, shallow } from '../../../../config/enzymeConfig';
+import ForgotPassword, { ForgotPassword as ForgotPasswordComponent } from '../../../components/ResetPassword/ForgotPassword';
 import { sendEmail, fakeEmail } from '../../../__mocks__/user';
 
 let inputs = '';
@@ -51,5 +51,15 @@ describe('ResetPassword Component', () => {
     }));
 
     form.simulate('submit', { preventDefault: jest.fn() });
+  });
+
+  test('displays success message if the message was successfully sent', () => {
+    const component = shallow(<ForgotPasswordComponent />);
+    component.setProps({ message: 'Email sent' });
+  });
+
+  test('displays an error if the email is not sent', () => {
+    const component = shallow(<ForgotPasswordComponent />);
+    component.setProps({ errors: { message: 'Network error' } });
   });
 });

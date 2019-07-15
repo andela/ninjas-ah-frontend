@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Input, Button, Form, Img } from '../common';
-import { updatePasswordAction } from '../../actions/user';
+import { updatePassword } from '../../actions/user';
 import Logo from '../../assets/images/logo_ah_secondo.png';
 import './ResetPassword.scss';
 
-class ResetPassword extends Component {
+export class ResetPassword extends Component {
   state = {
     form: {
       password: '',
       confirmPassword: ''
-    },
-    loading: false
+    }
   };
 
   handleChange = (e) => {
@@ -26,7 +25,7 @@ class ResetPassword extends Component {
     e.preventDefault();
     const { form: { password, confirmPassword } } = this.state;
     const {
-      updatePasswordAction,
+      updatePassword,
       match: { params: { token } }
     } = this.props;
     if (!password || !confirmPassword) {
@@ -36,7 +35,7 @@ class ResetPassword extends Component {
       return toast.error('The passwords are not matching');
     }
 
-    const { message } = await updatePasswordAction(
+    const { message } = await updatePassword(
       {
         passwordOne: password,
         passwordTwo: confirmPassword
@@ -46,6 +45,13 @@ class ResetPassword extends Component {
 
     this.setState({ form: { password: '', confirmPassword: '' } });
     return message;
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    const alertMessage = (nextProps.message && toast.success(nextProps.message))
+      || (nextProps.errors && toast.error(nextProps.errors.message));
+
+    return !nextProps.loading && alertMessage;
   };
 
   render() {
@@ -103,7 +109,7 @@ ResetPassword.propTypes = {
   loading: PropTypes.bool,
   message: PropTypes.string,
   errors: PropTypes.object,
-  updatePasswordAction: PropTypes.func,
+  updatePassword: PropTypes.func,
   match: PropTypes.object
 };
 
@@ -115,5 +121,5 @@ const mapStateToProps = ({ user: { updatePassword: { loading, message, errors } 
 
 export default connect(
   mapStateToProps,
-  { updatePasswordAction }
+  { updatePassword }
 )(ResetPassword);

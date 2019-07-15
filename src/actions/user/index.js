@@ -5,8 +5,8 @@ import login from './login';
 import editProfile from './editProfile';
 import updateProfile from './updateProfile';
 import uploadImage from './uploadImage';
-import forgotPasswordAction from './forgotPasswordAction';
-import updatePasswordAction from './updatePasswordAction';
+import forgotPassword from './forgotPasswordAction';
+import updatePassword from './updatePasswordAction';
 
 export {
   getUser,
@@ -16,6 +16,6 @@ export {
   uploadImage,
   login,
   updateProfile,
-  forgotPasswordAction,
-  updatePasswordAction
+  forgotPassword,
+  updatePassword
 };
