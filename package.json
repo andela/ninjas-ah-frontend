@@ -9,7 +9,6 @@
     "test": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --watchAll \"-- --coverage\"",
     "test:CI": "CI=true react-scripts test \"-- --coverage\"",
-    "cover": "CI=true react-scripts test \"-- --coverage\"",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint . --fix"
@@ -37,6 +36,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "^3.0.1",
     "react-spinners": "^0.5.4",
     "react-thunk": "^1.0.0",
@@ -45,9 +45,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.3",
     "redux-promise-middleware": "^6.1.1",
-    "redux-thunk": "^2.3.0",
-    "serve": "^11.0.2",
-    "socket.io-client": "^2.2.0"
+    "redux-thunk": "^2.3.0"
   },
   "eslintConfig": {
     "extends": "react-app"
