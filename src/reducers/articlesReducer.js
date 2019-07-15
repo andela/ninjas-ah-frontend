@@ -21,7 +21,9 @@ export default function (state = initialState, { type, payload }) {
     case articlesType.FETCH_ARTICLE_SUCCESS:
       return {
         ...state,
-        article: { ...state.article, ...payload.article }
+        article: { ...state.article, ...payload.article },
+        errors: {},
+        message: {}
       };
     case articlesType.FETCH_ARTICLE_FAILURE:
       return {

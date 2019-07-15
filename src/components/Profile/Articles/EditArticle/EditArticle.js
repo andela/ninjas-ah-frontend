@@ -22,7 +22,7 @@ export class EditArticle extends Component {
     pageTitle: 'Edit a story',
     title: '',
     description: '',
-    body: '',
+    body: null,
     article: '',
     slug: '',
     message: '',
@@ -35,8 +35,11 @@ export class EditArticle extends Component {
   };
 
   async componentDidMount() {
-    const { match: { params: { slug } } } = this.props;
-    this.props.fetchOneArticle(slug).then(() => {
+    const {
+      isAuth,
+      match: { params: { slug } }
+    } = this.props;
+    this.props.fetchOneArticle(slug, isAuth).then(() => {
       this.setState({
         message: '',
         loaded: true,
@@ -46,7 +49,7 @@ export class EditArticle extends Component {
         article: this.props.article,
         status: this.props.article.status
       });
-      this.convertToEditorState(this.state.body);
+      return this.state && this.state.body && this.convertToEditorState(this.state.body);
     });
     this.setState({ slug });
   }
@@ -86,7 +89,6 @@ export class EditArticle extends Component {
   };
 
   render() {
-    const { errors } = this.props;
     const {
       pageTitle,
       title,
@@ -95,20 +97,28 @@ export class EditArticle extends Component {
       article,
       editorState,
       status,
-      loaded
+      loaded,
+      errors
     } = this.state;
-
     return (
       <Layout>
         <div id="editArticle">
           <div className="container">
-            {errors
+            {(errors
+              && errors.errors
+              && Array.isArray(errors.errors)
               && (errors.errors || []).map(error => (
                 <div className="text-danger border b-light medium-padding text-white" key={error}>
                   <FontAwesomeIcon icon={faQuestionCircle} /> {error}
                 </div>
-              ))}
-            {article && Object.keys(article).length > 0 && !errors.error ? (
+              )))
+              || (errors && Object.keys(errors).length && (
+                <div className="text-danger border b-light medium-padding text-white">
+                  <FontAwesomeIcon icon={faQuestionCircle} /> {errors.article}
+                </div>
+              ))
+              || ''}
+            {article && Object.keys(article).length > 0 ? (
               <div className="row">
                 <MetaTags>
                   <title>Editing: {title || article.title} - Authors Haven </title>
@@ -207,7 +217,13 @@ export class EditArticle extends Component {
                 </div>
               </div>
             ) : (
-              <div>{loaded && !Object.keys(article).length ? <NotFound /> : <div>{''}</div>}</div>
+              <div>
+                {loaded && !Object.keys(article).length ? (
+                  <NotFound message="Sorry, we could not find the story you are looking for!" />
+                ) : (
+                  <div>{''}</div>
+                )}
+              </div>
             )}
           </div>
         </div>
@@ -217,7 +233,7 @@ export class EditArticle extends Component {
   }
 }
 
-EditArticle.defaultProps = { match: { params: { slug: '' } } };
+EditArticle.defaultProps = { errors: { errors: [] }, match: { params: { slug: '' } } };
 
 EditArticle.propTypes = {
   editPost: PropTypes.func.isRequired,
@@ -228,12 +244,14 @@ EditArticle.propTypes = {
   params: PropTypes.object,
   message: PropTypes.object,
   errors: PropTypes.object,
-  content: PropTypes.string
+  content: PropTypes.string,
+  isAuth: PropTypes.bool
 };
-export const mapStateToProps = ({ articles: { article, message, errors } }) => ({
+export const mapStateToProps = ({ user: { isAuth }, articles: { article, message, errors } }) => ({
   article,
   message,
-  errors
+  errors,
+  isAuth
 });
 
 export default connect(

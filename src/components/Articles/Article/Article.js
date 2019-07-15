@@ -99,7 +99,7 @@ export class Article extends Component {
               </div>
             </div>
           ) : (
-            <div>{!article ? <NotFound /> : <div>{''}</div>}</div>
+            <div>{!Object.keys(article).length ? <NotFound /> : <div>{''}</div>}</div>
           )}
         </div>
       </Layout>

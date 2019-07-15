@@ -9,20 +9,18 @@ import TextareaAutosize from 'react-autosize-textarea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import richTextConfig from '../../../../helpers/richTextConfig.json';
-import { Alert } from '../../../common';
 import { createPost } from '../../../../actions';
 import '../EditArticle/EditArticle.scss';
 import Layout from '../../../Layout';
 
 export class CreateArticle extends Component {
   state = {
-    page: 'Create a story',
     title: '',
     description: '',
     body: '',
     coverUrl: null,
     article: '',
-    errors: {},
+    errors: [],
     editorState: EditorState.createEmpty()
   };
 
@@ -63,7 +61,7 @@ export class CreateArticle extends Component {
   };
 
   render() {
-    const { page, message, errors, article, editorState } = this.state;
+    const { errors, editorState } = this.state;
 
     return (
       <Layout>
@@ -82,20 +80,10 @@ export class CreateArticle extends Component {
                   <FontAwesomeIcon icon={faQuestionCircle} /> {value[1]}
                 </div>
               ))}
-              {article.title ? (
-                <Alert
-                  loading={true}
-                  alertType="success"
-                  message="Article created successfully. We are redirecting you..."
-                />
-              ) : (
-                ''
-              )}
-              {message ? <Alert alertType="success" message={message} /> : ''}
+
               <form id="saveArticle" onSubmit={this.onSubmit}>
-                {message ? <Alert alertType="success" message={message} /> : ''}
                 <div className="row">
-                  <h2 className="large-v-padding">{page}</h2>
+                  <h2 className="large-v-padding">Create Article</h2>
                   <div className="input-field">
                     <label>Title</label>
                     <br />

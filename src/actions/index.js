@@ -12,7 +12,9 @@ import {
 import { uploadImage } from './images';
 
 export {
-  userAction, notificationActions, getAllArticles,
+  userAction,
+  notificationActions,
+  getAllArticles,
   fetchOneArticle,
   createPost,
   editPost,

@@ -85,9 +85,10 @@ describe('<EditArticleComponent />', () => {
     expect(instance).toBeDefined();
   });
   it('should call onChange method when the description value is changed', () => {
+    const component = shallow(<EditArticleComponent {...props} />);
     const spy = jest.spyOn(component.instance(), 'onChange');
     component.instance().forceUpdate();
-    component.setProps({ ...props, errors: {} });
+    component.setProps({ ...props, errors: { errors: ['error1'] } });
     const event = { target: { value: 'description' } };
     const textArea = component.find('#articleDescription');
     textArea.simulate('change', event);

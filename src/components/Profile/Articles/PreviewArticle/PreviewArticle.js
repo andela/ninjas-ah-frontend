@@ -27,15 +27,18 @@ export class PreviewArticle extends Component {
     message: '',
     loaded: false,
     articleId: '',
-    errors: '',
+    errors: {},
     status: '',
     image: '',
     displayUploadButton: false
   };
 
   componentDidMount() {
-    const { match: { params: { slug } } } = this.props;
-    this.props.fetchOneArticle(slug);
+    const {
+      isAuth,
+      match: { params: { slug } }
+    } = this.props;
+    this.props.fetchOneArticle(slug, isAuth);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -219,13 +222,15 @@ PreviewArticle.propTypes = {
   match: PropTypes.object,
   params: PropTypes.object,
   message: PropTypes.object,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  isAuth: PropTypes.bool
 };
 
-export const mapStateToProps = ({ articles: { article, message, errors } }) => ({
+export const mapStateToProps = ({ user: { isAuth }, articles: { article, message, errors } }) => ({
   article,
   message,
-  errors
+  errors,
+  isAuth
 });
 
 export default connect(
