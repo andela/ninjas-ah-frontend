@@ -15,3 +15,14 @@ export default (Object.notification = {
   },
   updateNotificationConfiguration: { loading: false, message: '', errors: {} }
 });
+
+export const notifications = {
+  notifications: {
+    id: 1,
+    message: 'Message here',
+    status: 'unseen'
+  },
+  updateNotificationConfiguration: { loading: false, message: '', errors: {} }
+};
+
+export const unseenNotifications = [];

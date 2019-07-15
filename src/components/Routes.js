@@ -7,6 +7,7 @@ import SocialMediaAuth from './SocialMediaAuth';
 import Home from './Home';
 import Signup from './Signup';
 import Notification from './Profile/Settings/NotificationsComponent/Notification';
+
 import Login from './Login';
 import Profile from './Profile';
 import ForgotPassword from './ResetPassword/ForgotPassword';
@@ -19,6 +20,7 @@ const Routes = ({ isAuth }) => (
     <Route exact path="/signup" render={props => <Signup {...props} />} />
     <Route exact path="/profile" render={props => <Profile {...props} />} />
     <Route exact path="/login" render={props => <Login {...props} />} />
+
     <Route
       exact
       path="/profile/settings/notifications"

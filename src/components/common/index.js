@@ -5,5 +5,6 @@ import SocialMediaButton from './SocialMediaButton/SocialMediaButton';
 import Alert from './Alert/Alert';
 import Img from './Img/Img';
 import TextArea from './TextArea/TextArea';
+import Modal from '../Header/Notifications/Modal/Modal';
 
-export { Input, Button, Form, SocialMediaButton, Alert, Img, TextArea };
+export { Input, Button, Form, SocialMediaButton, Alert, Img, TextArea, Modal };

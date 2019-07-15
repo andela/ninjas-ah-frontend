@@ -8,8 +8,12 @@ $danger: #d64c4c;
 $success: #1c8a4a;
 $info: #1cbdee;
 $light-grey: #ccc;
+$light-grie: rgb(161, 159, 159);
 $light-grey: #e6e6e6;
 $yellow: #f9d342;
+$light-yellow: #fcf5da;
+$light-red: #f8e5e3;
+$light-red-hover: #f8d1cd;
 /* background anim colors */
 $anim-palette-1: #ffb426;
 $anim-palette-2: #0e152e;
@@ -27,6 +31,12 @@ $twitter-color: #50abf1;
 }
 .yellow {
   background: $yellow;
+}
+.light-red {
+  background: $light-red;
+}
+.light-red:hover {
+  background: $light-red-hover;
 }
 .twitter-color {
   background: $twitter-color;
@@ -49,6 +59,9 @@ $twitter-color: #50abf1;
 }
 .text-grey {
   color: $grey;
+}
+.text-light-grie {
+  color: $light-grie;
 }
 .white {
   background: $white;
