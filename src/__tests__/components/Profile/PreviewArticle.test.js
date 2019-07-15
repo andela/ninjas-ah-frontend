@@ -92,8 +92,4 @@ describe('<PreviewArticle />', () => {
     component.setProps({ article: state.article, message: state.message });
     component.instance().handleDelete();
   });
-  it('should cover image upload ', () => {
-    component.setProps({ imageErrors: 'Image not uploaded' });
-    component.instance().fileSelectedHandler({ target: { files: ['image/image.png'] } });
-  });
 });
