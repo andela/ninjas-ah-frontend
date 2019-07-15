@@ -9,7 +9,6 @@ import { faTrash, faPen, faTimesCircle, faCircle } from '@fortawesome/free-solid
 import { MetaTags } from 'react-meta-tags';
 import { NotFound } from '../../../common';
 import Heading from '../../../common/Heading/Heading';
-import placeholder from '../../../../assets/images/placeholder.png';
 import {
   fetchOneArticle,
   deleteArticle,
@@ -31,7 +30,6 @@ export class PreviewArticle extends Component {
     errors: '',
     status: '',
     image: '',
-    imagePath: '',
     displayUploadButton: false
   };
 
