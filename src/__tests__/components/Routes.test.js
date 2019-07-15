@@ -11,9 +11,9 @@ import Profile from '../../components/Profile';
 import Notification from '../../components/Profile/Settings/NotificationsComponent/Notification';
 import Login from '../../components/Login';
 import Article from '../../components/Articles/Article/Article';
-import CreateArticle from '../../components/Profile/Articles/CreateArticle/CreateArticle';
-import EditArticle from '../../components/Profile/Articles/EditArticle/EditArticle';
-import PreviewArticle from '../../components/Profile/Articles/PreviewArticle/PreviewArticle';
+import CreateArticle from '../../components/Profile/Articles/CreateArticle';
+import EditArticle from '../../components/Profile/Articles/EditArticle';
+import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {

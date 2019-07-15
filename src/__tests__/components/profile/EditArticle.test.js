@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'react-thunk';
 import { Provider } from 'react-redux';
 import article from '../../../__mocks__/article';
-import EditArticle, { EditArticle as EditArticleComponent } from '../../../components/Profile/Articles/EditArticle/EditArticle';
+import { EditArticle as EditArticleComponent } from '../../../components/Profile/Articles/EditArticle/EditArticle';
 import { shallow, mount } from '../../../../config/enzymeConfig';
 
 const props = {
@@ -11,11 +11,7 @@ const props = {
     await true;
   }),
   errors: { errors: ['article not found'] },
-  article: {
-    title: 'Hello John Doe',
-    description: 'John Doe, Mocker',
-    body: 'body of the article'
-  },
+  article,
   message: { message: 'article edited successfully' },
   match: { params: { slug: 'slug-slug-slug' } },
   editPost: jest.fn(),

@@ -10,7 +10,7 @@ import Notification from './Profile/Settings/NotificationsComponent/Notification
 import Login from './Login';
 import Profile from './Profile';
 import Article from './Articles/Article';
-import CreateArticle from './Profile/Articles/CreateArticle';
+import CreateArticle from './Profile/Articles/CreateArticle/CreateArticle';
 import PreviewArticle from './Profile/Articles/PreviewArticle';
 import EditArticle from './Profile/Articles/EditArticle';
 

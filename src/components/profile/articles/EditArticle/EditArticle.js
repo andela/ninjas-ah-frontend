@@ -13,7 +13,7 @@ import { editPost, fetchOneArticle } from '../../../../actions';
 import Layout from '../../../Layout';
 import './EditArticle.scss';
 import Heading from '../../../common/Heading/Heading';
-import TimeStamp from '../../../../helpers/TimeStamp';
+import TimeStamp from '../../../../helpers/timeStamp';
 import richTextConfig from '../../../../helpers/richTextConfig.json';
 
 export class EditArticle extends Component {
