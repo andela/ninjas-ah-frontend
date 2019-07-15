@@ -27,11 +27,13 @@ export class CreateArticle extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    const { history } = this.props;
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if (nextProps.article) {
+    if (nextProps.article && Object.keys(nextProps.article).length) {
       this.setState({ article: nextProps.article });
+      history.push(`/profile/article/preview/${nextProps.article.slug}`);
     }
   }
 
