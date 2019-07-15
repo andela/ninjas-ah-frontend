@@ -79,20 +79,9 @@ export class PreviewArticle extends Component {
     this.setState({ status: 'published' });
   };
 
-  fileSelectedHandler = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      this.setState({
-        imagePath: URL.createObjectURL(event.target.files[0]),
-        image: event.target.files[0],
-        displayUploadButton: true,
-        imageErrors: ''
-      });
-    }
-  };
-
   render() {
     const { message } = this.props;
-    const { imageRectangle, article, errors, status, loaded, imagePath, editorState } = this.state;
+    const { imageRectangle, article, errors, status, loaded, editorState } = this.state;
     return (
       <Layout>
         <div id="preview">
