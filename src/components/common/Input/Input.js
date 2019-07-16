@@ -14,7 +14,8 @@ const Input = ({
   name,
   error,
   errorWidth,
-  isRequired
+  isRequired,
+  autocomplete
 }) => (
   <div id={inputFieldId} className={`${inputFieldClass}`}>
     <input
@@ -26,6 +27,7 @@ const Input = ({
       onChange={onChange}
       placeholder={placeholder}
       required={isRequired}
+      autoComplete={autocomplete}
     />
     {error ? (
       <div className="input-error danger radius-2" style={{ width: `${errorWidth}px` }}>
@@ -49,7 +51,8 @@ Input.propTypes = {
   value: PropTypes.string,
   error: PropTypes.any,
   errorWidth: PropTypes.number,
-  isRequired: PropTypes.bool
+  isRequired: PropTypes.bool,
+  autocomplete: PropTypes.string
 };
 
 Input.defaultProps = {
@@ -60,7 +63,8 @@ Input.defaultProps = {
   inputFieldClass: 'Input input-field',
   placeholder: '',
   value: '',
-  errorWidth: 210
+  errorWidth: 210,
+  autocomplete: 'off'
 };
 
 export default Input;

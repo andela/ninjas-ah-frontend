@@ -12,6 +12,11 @@ import Notification from '../../components/Profile/Settings/NotificationsCompone
 import Login from '../../components/Login';
 import ForgotPassword from '../../components/ResetPassword/ForgotPassword';
 import ResetPassword from '../../components/ResetPassword/ResetPassword';
+import Article from '../../components/Articles/Article/Article';
+import CreateArticle from '../../components/Profile/Articles/CreateArticle';
+import EditArticle from '../../components/Profile/Articles/EditArticle';
+import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
+import SearchArticles from '../../components/SearchArticles/SearchArticles';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {
@@ -107,5 +112,48 @@ describe('<Routes />', () => {
         </MemoryRouter>
       </Provider>);
     expect(component.find(ResetPassword)).toHaveLength(1);
+  });
+  test('renders <Article/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/article/hello-world-23gar4']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Article).length).toBe(1);
+  });
+
+  test('renders <CreateArticle/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile/article/new']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(CreateArticle).length).toBe(1);
+  });
+
+  test('renders <EditArticle/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile/article/edit/hello-world-23gar4']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(EditArticle).length).toBe(1);
+  });
+
+  test('renders <PreviewArticle/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile/article/preview/hello-world-23gar4']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(PreviewArticle).length).toBe(1);
+  });
+  test('renders <PreviewArticle/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/search']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(SearchArticles).length).toBe(1);
   });
 });

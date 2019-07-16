@@ -17,3 +17,10 @@
   opacity: 0.6;
   cursor: default;
 }
+.button.block {
+  margin-top: ($xsmall / 3) 0;
+  display: block;
+  float: none;
+  padding: $small 0 !important;
+  width: 100% !important;
+}
