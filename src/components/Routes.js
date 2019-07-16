@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
@@ -11,6 +11,10 @@ import Login from './Login';
 import Profile from './Profile';
 import ForgotPassword from './ResetPassword/ForgotPassword';
 import ResetPassword from './ResetPassword/ResetPassword';
+import Article from './Articles/Article';
+import CreateArticle from './Profile/Articles/CreateArticle/CreateArticle';
+import PreviewArticle from './Profile/Articles/PreviewArticle';
+import EditArticle from './Profile/Articles/EditArticle';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -26,6 +30,27 @@ const Routes = ({ isAuth }) => (
     />
     <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
     <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
+    <Route exact path="/article/:slug" render={props => <Article {...props} />} />
+    <Route
+      exact
+      path="/profile/article/new"
+      render={props => (isAuth ? (
+          <CreateArticle {...props} />
+      ) : (
+          <Redirect to="/login?redirect=profile/article/new" />
+      ))
+      }
+    />
+    <Route
+      exact
+      path="/profile/article/preview/:slug"
+      render={props => (isAuth ? <PreviewArticle {...props} /> : <Redirect to="/login" />)}
+    />
+    <Route
+      exact
+      path="/profile/article/edit/:slug"
+      render={props => (isAuth ? <EditArticle {...props} /> : <Redirect to="/login" />)}
+    />
   </Switch>
 );
 

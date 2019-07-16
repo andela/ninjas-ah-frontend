@@ -3,11 +3,13 @@ import './Footer.scss';
 
 const year = new Date().getFullYear();
 const Footer = () => (
-  <div className="Footer">
-    <div className="divider" />
-    <div>
-      <div className="small-screen-4 large-v-padding center-align">
-        @Copyright Ninjas Team, {year}
+  <div id="footer" className="black">
+    <div className="container">
+      <div className="center-align text-white">
+        Welcome to
+        <br />
+        <b>Authors Haven</b>
+        <br /> &copy; Copyright Ninjas Team, {year}
       </div>
     </div>
   </div>

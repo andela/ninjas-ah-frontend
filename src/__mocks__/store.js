@@ -7,4 +7,4 @@ export { initialState };
 export const middlewares = [thunk, apiMiddleware];
 export const mockStore = configureMockStore(middlewares);
 
-export default mockStore(initialState);
+export default mockStore({ ...initialState, user: { ...initialState.user, isAuth: true } });

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Article /> should render a <Article /> component  1`] = `ShallowWrapper {}`;

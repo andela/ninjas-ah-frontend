@@ -1,9 +1,13 @@
-@import '../../assets/css/colors.scss';
-@import '../../assets/css/padding.scss';
-
-.Footer {
-  .divider + div {
-    margin-top: $xlarge-padding;
-    border-top: solid 1px $light-grey;
-  }
+@import '../../assets/css/_colors';
+@import '../../assets/css/_padding';
+@import '../../assets/css/_pixels';
+@import '../../assets/css/_shadow';
+@import '../../assets/css/_padding';
+#footer {
+  width: 100%;
+  margin-top: 80px;
+  padding: 90px 0;
+  background: black;
+  background-repeat: no-repeat;
+  background-position: center top;
 }
