@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { notification as initialState } from '../../store/initialState';
 import resetConfigurationOptions from './resetConfigurationOptions';
 import createConfiguration from './createConfiguration';
@@ -8,6 +7,7 @@ import deleteNotification from './deleteNotification';
 import getNotifications from './getNotifications';
 import updateUnseeNotification from './updateUnseenNotifications';
 import getUnseenNotifications from './getUnseenNotifications';
+import marAllAsSeen from './markAllAsSeen';
 
 export default (state = initialState, action) => {
   const resetConfigOptions = resetConfigurationOptions(state, action);
@@ -17,6 +17,7 @@ export default (state = initialState, action) => {
   const updateUnseenNotif = updateUnseeNotification(state, action);
   const getNotif = getNotifications(state, action);
   const getUnseesNotif = getUnseenNotifications(state, action);
+  const markAsSeen = marAllAsSeen(state, action);
   const deleteNotif = deleteNotification(state, action);
 
   return (
@@ -28,6 +29,7 @@ export default (state = initialState, action) => {
     || getUnseesNotif
     || deleteNotif
     || updateUnseenNotif
+    || markAsSeen
     || state
   );
 };

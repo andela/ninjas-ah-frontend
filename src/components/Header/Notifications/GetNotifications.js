@@ -35,11 +35,11 @@ class GetNotifications extends Component {
   };
 
   render() {
-    const { loading, unseenNotifications } = this.props;
+    const { unseenNotifications } = this.props;
     const { showModal } = this.state;
     return (
       <span className="header-notification-button left">
-        <Button buttonClass="button white" loading={loading} onClick={this.displayNotifications}>
+        <Button buttonClass="button white" onClick={this.displayNotifications} id="display">
           <FontAwesomeIcon icon={faBell} size="lg" />{' '}
           {unseenNotifications.length === 0 ? (
             ''
