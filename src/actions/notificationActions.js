@@ -43,3 +43,44 @@ export const toggleNotificationType = type => ({
   type: types.notificationActionTypes.TOGGLE_NOTIFICATION_CONFIGURATION_TYPE,
   payload: type
 });
+export const getNotification = () => async dispatch => dispatch(apiAction({
+  method: 'get',
+  url: '/notifications',
+  onStart: types.notificationActionTypes.GET_NOTIFICATION_START,
+  onSuccess: types.notificationActionTypes.GET_NOTIFICATION_SUCCESS,
+  onFailure: types.notificationActionTypes.GET_NOTIFICATION_FAILURE,
+  onEnd: types.notificationActionTypes.GET_NOTIFICATION_END
+}));
+export const getUnseenNotification = () => async dispatch => dispatch(apiAction({
+  method: 'get',
+  url: '/notifications/unseen',
+  onStart: types.notificationActionTypes.GET_UNSEEN_NOTIFICATION_START,
+  onSuccess: types.notificationActionTypes.GET_UNSEEN_NOTIFICATION_SUCCESS,
+  onFailure: types.notificationActionTypes.GET_UNSEEN_NOTIFICATION_FAILURE,
+  onEnd: types.notificationActionTypes.GET_UNSEEN_NOTIFICATION_END
+}));
+export const updateUnseenNotification = unseeNotification => async dispatch => dispatch(apiAction({
+  method: 'put',
+  url: `/notifications/${unseeNotification.id}/seen`,
+  date: { unseeNotification },
+  onStart: types.notificationActionTypes.UPDATE_UNSEEN_NOTIFICATION_START,
+  onSuccess: types.notificationActionTypes.UPDATE_UNSEEN_NOTIFICATION_SUCCESS,
+  onFailure: types.notificationActionTypes.UPDATE_UNSEEN_NOTIFICATION_FAILURE,
+  onEnd: types.notificationActionTypes.UPDATE_UNSEEN_NOTIFICATION_END
+}));
+
+export const deleteNotification = deleteNotification => async (dispatch) => {
+  dispatch(apiAction({
+    method: 'delete',
+    url: `/notifications/${deleteNotification.id}`,
+    data: { deleteNotification },
+    onStart: types.notificationActionTypes.DELETE_NOTIFICATION_START,
+    onSuccess: types.notificationActionTypes.DELETE_NOTIFICATION_SUCCESS,
+    onFailure: types.notificationActionTypes.DELETE_NOTIFICATION_FAILURE,
+    onEnd: types.notificationActionTypes.DELETE_NOTIFICATION_END
+  }));
+  dispatch({
+    type: types.notificationActionTypes.REMOVE_NOTIFICATION,
+    payload: deleteNotification.id
+  });
+};

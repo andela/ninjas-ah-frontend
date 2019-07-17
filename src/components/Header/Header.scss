@@ -16,20 +16,21 @@
     position: relative;
   }
   .header-notification-button {
-    padding-top: 5px;
-    margin-right: 25px;
+    top: 15px;
+    right: 25px;
+    position: relative;
     .number {
       @extend .radius-5, .danger, .small-text;
       color: $white;
       padding: 2px 5px;
-      margin-top: 20px;
+      top: 5px;
       top: 0;
       position: absolute;
     }
   }
 
   .header-search-button {
-    padding-top: 5px;
+    padding-top: 25px;
   }
 }
 

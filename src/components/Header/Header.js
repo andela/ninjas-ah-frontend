@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 import siteLogo from '../../assets/images/logo_ah_secondo.png';
 import siteLogoSmall from '../../assets/images/logo_ah_small.png';
 import { Img, Button } from '../common';
 import HeaderUserMenu from './HeaderUserMenu/HeaderUserMenu';
 import HeaderUserImage from './HeaderUserImage/HeaderUserImage';
+import Notification from './Notifications/GetNotifications';
 
 class Header extends Component {
   state = { showUserMenu: false };
@@ -48,18 +49,24 @@ class Header extends Component {
               </Link>
             </div>
           </div>
-          <div className="small-screen-3 medium-screen-2 large-screen-2 right-align">
-            <Button buttonClass="button header-search-button white">
-              <FontAwesomeIcon icon={faSearch} size="lg" />
-            </Button>
-            <Button buttonClass="button header-notification-button white">
-              <FontAwesomeIcon icon={faBell} size="lg" /> <span className="number">{10}</span>
-            </Button>
-            <span className="wrap-header-user-button">
-              <Button buttonClass="button header-user-button white" onClick={this.toggleUserMenu}>
-                <HeaderUserImage />
+
+          <div className="small-screen-3 medium-screen-2 large-screen-2">
+            <span className="right">
+              <Button buttonClass="button header-search-button left white">
+                <FontAwesomeIcon icon={faSearch} size="lg" />
               </Button>
-              {showUserMenu ? <HeaderUserMenu /> : ''}
+              <Notification />
+              <span className="wrap-header-user-button">
+                <Button
+                  buttonClass="button  white"
+                  id="toggleUserMenuButton"
+                  onClick={this.toggleUserMenu}
+                >
+                  <HeaderUserImage />
+                </Button>
+
+                {showUserMenu ? <HeaderUserMenu /> : ''}
+              </span>
             </span>
           </div>
         </div>

@@ -31,7 +31,7 @@ export class ListsOfArticles extends Component {
             <div className="card">
               <div className="small-screen-4 medium-screen-1 large-screen-1">
                 <div className="image">
-                  <Link to={`/article/${article.slug}`}>
+                  <Link to={`/articles/${article.slug}`}>
                     <Img
                       imgSrc={
                         article.coverUrl
@@ -46,7 +46,7 @@ export class ListsOfArticles extends Component {
               </div>
               <div className="small-screen-4 medium-screen-3 large-screen-3">
                 <h2 className="nobold">
-                  <Link to={`/article/${article.slug}`}>{article.title}</Link>
+                  <Link to={`/articles/${article.slug}`}>{article.title}</Link>
                 </h2>
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
