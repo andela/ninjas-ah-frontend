@@ -6,12 +6,24 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.FETCH_ARTICLES_START:
       return {
         ...state,
-        articles: []
+        articles: [],
+        loading: true
       };
     case articlesType.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
         articles: [...state.articles, ...payload.articles]
+      };
+    case articlesType.FETCH_ARTICLES_END:
+      return {
+        ...state,
+        loading: false
+      };
+    case articlesType.FETCH_ARTICLES_FAILURE:
+      return {
+        ...state,
+        errors: { ...state.errors, ...payload.errors },
+        loading: false
       };
     case articlesType.FETCH_ARTICLE_START:
       return {
@@ -29,7 +41,8 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         errors: payload,
-        article: { ...state.article }
+        article: { ...state.article },
+        loading: false
       };
     case articlesType.CREATE_ARTICLE_START:
       return {

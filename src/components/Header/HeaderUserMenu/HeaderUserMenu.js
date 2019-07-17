@@ -25,7 +25,7 @@ class HeaderUserMenu extends Component {
     return (
       <div className={className}>
         <div className="username">
-          {username || (firstName && lastName && `${firstName} ${lastName}`) || ''}
+          {username || (firstName && lastName && `${firstName} ${lastName}`) || 'Welcome'}
         </div>
         <ul className="list-block left-align">
           {!isAuth && (
