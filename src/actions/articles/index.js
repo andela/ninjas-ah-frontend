@@ -5,6 +5,7 @@ import { getAllArticles } from './getAllArticles';
 import { deleteArticle } from './deleteArticle';
 import { publishArticle } from './publishArticle';
 import { unpublishArticle } from './unpublishArticle';
+import { getPublished } from './getPublished';
 
 export {
   createPost,
@@ -13,5 +14,6 @@ export {
   publishArticle,
   unpublishArticle,
   getAllArticles,
-  fetchOneArticle
+  fetchOneArticle,
+  getPublished
 };

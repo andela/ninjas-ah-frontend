@@ -7,8 +7,10 @@ import {
   editPost,
   deleteArticle,
   publishArticle,
-  unpublishArticle
+  unpublishArticle,
+  getPublished
 } from './articles';
+import { createRate } from './rating';
 import { uploadImage } from './images';
 
 export {
@@ -21,5 +23,7 @@ export {
   deleteArticle,
   publishArticle,
   unpublishArticle,
-  uploadImage
+  uploadImage,
+  getPublished,
+  createRate
 };

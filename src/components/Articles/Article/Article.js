@@ -6,18 +6,22 @@ import 'dotenv/config';
 import MetaTags from 'react-meta-tags';
 import LazyLoad from 'react-lazyload';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { fetchOneArticle } from '../../../actions';
 import avatar from '../../../assets/images/user.png';
 import timeStamp from '../../../helpers/timeStamp';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import './Article.scss';
+import Rating from './Rating';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 
 export class Article extends Component {
   state = {
     article: {},
+    loaded: false,
     imageRectangle:
       'c_fill,g_auto,h_350,w_970/b_rgb:000000,e_gradient_fade,y_-0.20/c_scale,co_rgb:ffffff',
     editorState: EditorState.createEmpty()
@@ -31,7 +35,7 @@ export class Article extends Component {
     const editorState = article.body
       ? EditorState.createWithContent(convertFromRaw(JSON.parse(article.body)))
       : EditorState.createEmpty();
-
+    this.setState({ loaded: true });
     return this.setState({ article, editorState });
   }
 
@@ -41,7 +45,7 @@ export class Article extends Component {
   }
 
   render() {
-    const { imageRectangle, article, editorState } = this.state;
+    const { imageRectangle, article, editorState, loaded } = this.state;
     return (
       <Layout>
         <div id="article">
@@ -86,6 +90,14 @@ export class Article extends Component {
                         Follow
                       </Link>
                       <span className="medium-h-padding">{timeStamp(article.createdAt)}</span>
+                      <span className="medium-h-padding">
+                        <FontAwesomeIcon icon={faClock} className="text-light-grey" />
+                        {' '}
+                        {article.readTime} min read
+                      </span>
+                    </div>
+                    <div className="small-screen-4 medium-screen-2 large-screen-2">
+                      <Rating slug={article.slug} rating={article.rating || 0} />
                     </div>
                   </div>
                 </div>
@@ -99,7 +111,7 @@ export class Article extends Component {
               </div>
             </div>
           ) : (
-            <div>{!Object.keys(article).length ? <NotFound /> : <div>{''}</div>}</div>
+            <div>{loaded && !Object.keys(article).length ? <NotFound /> : <div>{''}</div>}</div>
           )}
         </div>
       </Layout>
@@ -115,11 +127,16 @@ Article.propTypes = {
   editorState: PropTypes.func,
   match: PropTypes.object,
   slug: PropTypes.string,
+  rating: PropTypes.number,
   params: PropTypes.object,
   message: PropTypes.object,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  loaded: PropTypes.bool
 };
-const mapStateToProps = ({ articles: { article, errors } }) => ({ article, errors });
+const mapStateToProps = ({ articles: { article, errors } }) => ({
+  article,
+  errors
+});
 
 export default connect(
   mapStateToProps,

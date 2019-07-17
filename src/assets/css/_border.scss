@@ -2,7 +2,6 @@
 .border {
   border: 1px solid;
 }
-
 .b-light {
   border-color: $light;
 }
@@ -28,6 +27,12 @@
 
 .b-primary {
   border-color: $primary;
+}
+.b-danger {
+  border-color: $danger;
+}
+.b-light-grey {
+  border-color: $light-grey;
 }
 .b-bottom-light-grey {
   border-bottom: 1px solid $light-grey;

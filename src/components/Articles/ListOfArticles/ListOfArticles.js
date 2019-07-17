@@ -50,7 +50,9 @@ export class ListsOfArticles extends Component {
                 </h2>
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
-                  <span>{article.author.username}</span> <span>{timeStamp(article.createdAt)}</span>{' '}
+                  <span>{article.author ? article.author.username : ''}</span>{' '}
+                  <span>{timeStamp(article.createdAt)}</span>
+                  <span>{article.readTime} min read</span>
                 </div>
               </div>
             </div>

@@ -1,16 +1,16 @@
 @import '../../../assets/css/_colors.scss';
 @import '../../../assets/css/_pixels.scss';
-.grabTags {
+.grab-tags {
   border-bottom: 1px solid $grey;
 }
 
-.tagsMenu {
+.tags-menu {
   padding: ($xsmall * 1.5) 0;
 }
-.tagsMenu li {
+.tags-menu li {
   padding: auto 0.4em;
 }
-.tagsMenu a {
+.tags-menu a {
   padding: 0.5em;
   font-size: 1em;
 }

@@ -16,6 +16,7 @@ import Article from '../../components/Articles/Article/Article';
 import CreateArticle from '../../components/Profile/Articles/CreateArticle';
 import EditArticle from '../../components/Profile/Articles/EditArticle';
 import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
+import PublishedArticles from '../../components/Profile/Articles/MyArticles/Published';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {
@@ -146,5 +147,13 @@ describe('<Routes />', () => {
         </MemoryRouter>
       </Provider>);
     expect(component.find(PreviewArticle).length).toBe(1);
+  });
+  test('renders <PublishedArticles/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile/articles']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(PublishedArticles).length).toBe(1);
   });
 });
