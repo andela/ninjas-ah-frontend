@@ -17,6 +17,7 @@ import { getAllBookmarks, deleteOneBookmark } from './bookmarks';
 import getArticleLikes from './getArticleLikes';
 import likeArticle from './likeArticle';
 import dislikeArticle from './dislikeArticle';
+import { fetchComments, createComment } from './comments';
 
 export {
   userAction,
@@ -37,5 +38,7 @@ export {
   deleteOneBookmark,
   getArticleLikes,
   likeArticle,
-  dislikeArticle
+  dislikeArticle,
+  fetchComments,
+  createComment
 };

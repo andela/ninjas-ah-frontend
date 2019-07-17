@@ -1,4 +1,5 @@
 import { ratingActionsTypes } from '../../actions-types';
+import { rating as initialState } from '../../store/initialState';
 
 export default function (state, { type, payload }) {
   switch (type) {
