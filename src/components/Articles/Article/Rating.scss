@@ -1,0 +1,71 @@
+@import '../../../assets/css/_pixels';
+@import '../../../assets/css/_colors';
+@import '../../../assets/css/_border';
+@import '../../../assets/css/_radius';
+@import '../../../assets/css/_shadow';
+#wrap-ratings {
+  position: relative;
+  .wrap-stars {
+    height: 30px;
+    float: left;
+    position: relative;
+    background: #dedede;
+  }
+  .rating-percent {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 30px;
+    z-index: 1;
+    @extend .primary;
+  }
+  .wrap-stars .one-star {
+    height: 30px;
+    width: 30px;
+    position: relative;
+    z-index: 2;
+    float: left;
+    cursor: pointer;
+    background-image: url('../../../assets/images/star.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% 100%;
+  }
+  i {
+    margin: auto 10px;
+    padding: $small/2 $medium;
+    width: 30px;
+    text-align: center;
+    background: #42413e;
+    color: #ffffff;
+    border-radius: 3px;
+    font-style: normal !important;
+    float: left;
+  }
+  .rating-errors {
+    position: absolute;
+    top: 55px;
+    color: $grey;
+    right: $small;
+    padding: $small $medium;
+    display: block;
+    background: $white;
+    z-index: 1500000000;
+    @extend .border, .b-grey, .radius-1, .shadow-2;
+  }
+  .rating-errors i {
+    content: 'Close';
+    cursor: pointer;
+    text-align: center;
+    color: $white !important;
+    background: $black;
+    font-size: 10px;
+    position: absolute;
+    top: -20px;
+    padding: 7px;
+    right: -12px;
+    height: 10px;
+    @extend .shadow-4;
+  }
+}

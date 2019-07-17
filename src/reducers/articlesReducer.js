@@ -6,17 +6,30 @@ export default function (state = initialState, { type, payload }) {
     case articlesType.FETCH_ARTICLES_START:
       return {
         ...state,
-        articles: []
+        articles: [],
+        loading: true
       };
     case articlesType.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
         articles: [...state.articles, ...payload.articles]
       };
+    case articlesType.FETCH_ARTICLES_END:
+      return {
+        ...state,
+        loading: false
+      };
+    case articlesType.FETCH_ARTICLES_FAILURE:
+      return {
+        ...state,
+        errors: { ...state.errors, ...payload.errors },
+        loading: false
+      };
     case articlesType.FETCH_ARTICLE_START:
       return {
         ...state,
-        article: {}
+        article: {},
+        loading: true
       };
     case articlesType.FETCH_ARTICLE_SUCCESS:
       return {
@@ -28,7 +41,14 @@ export default function (state = initialState, { type, payload }) {
     case articlesType.FETCH_ARTICLE_FAILURE:
       return {
         errors: payload,
-        article: {}
+        article: {},
+        loading: false
+      };
+    case articlesType.FETCH_ARTICLE_END:
+      return {
+        ...state,
+        errors: payload,
+        loading: false
       };
     case articlesType.CREATE_ARTICLE_START:
       return {
@@ -88,6 +108,22 @@ export default function (state = initialState, { type, payload }) {
       return {
         ...state,
         errors: { ...state.errors, ...payload }
+      };
+    case articlesType.FETCH_MY_PUBLISHED_ARTICLES_START:
+      return {
+        ...state,
+        articles: []
+      };
+    case articlesType.FETCH_MY_PUBLISHED_ARTICLES_SUCCESS:
+      return {
+        ...state,
+        articles: [...state.articles, ...payload.articles]
+      };
+    case articlesType.FETCH_MY_PUBLISHED_ARTICLES_FAILURE:
+      return {
+        ...state,
+        errors: payload,
+        article: {}
       };
     default:
       return state;

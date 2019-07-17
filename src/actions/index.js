@@ -7,9 +7,12 @@ import {
   editPost,
   deleteArticle,
   publishArticle,
-  unpublishArticle
+  unpublishArticle,
+  getPublished
 } from './articles';
+import { createRate } from './rating';
 import { uploadImage } from './images';
+import { fetchComments, createComment } from './comments';
 
 export {
   userAction,
@@ -21,5 +24,9 @@ export {
   deleteArticle,
   publishArticle,
   unpublishArticle,
-  uploadImage
+  uploadImage,
+  getPublished,
+  createRate,
+  fetchComments,
+  createComment
 };

@@ -5,10 +5,17 @@ import PropTypes from 'prop-types';
 import 'dotenv/config';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPen, faTimesCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTrash,
+  faPen,
+  faTimesCircle,
+  faCircle,
+  faGlobeAfrica
+} from '@fortawesome/free-solid-svg-icons';
 import { MetaTags } from 'react-meta-tags';
 import { NotFound } from '../../../common';
 import Heading from '../../../common/Heading/Heading';
+import ArticleMenu from '../MyArticles/ArticleMenu';
 import {
   fetchOneArticle,
   deleteArticle,
@@ -80,12 +87,13 @@ export class PreviewArticle extends Component {
   };
 
   render() {
-    const { message } = this.props;
+    const { message, loading } = this.props;
     const { imageRectangle, article, errors, status, loaded, editorState } = this.state;
     return (
       <Layout>
         <div id="preview">
           <div className="container">
+            <ArticleMenu />
             {loaded && article && Object.keys(article).length > 0 ? (
               <div className="row grabArticle">
                 <MetaTags>
@@ -151,6 +159,13 @@ export class PreviewArticle extends Component {
                       >
                         <FontAwesomeIcon icon={faTrash} /> Delete
                       </button>
+                      <Link
+                        to={`/articles/${article.slug}`}
+                        target="_blank"
+                        className="button block light text-black center center-align radius-4"
+                      >
+                        <FontAwesomeIcon icon={faGlobeAfrica} /> View Public
+                      </Link>
                       <div>
                         {errors && errors.error ? (
                           <div className="medium-padding border b-danger light text-danger radius-2">
@@ -192,7 +207,7 @@ export class PreviewArticle extends Component {
               </div>
             ) : (
               <div>
-                {loaded && article && Object.keys(article).length < 1 ? (
+                {loaded && loading && article && Object.keys(article).length < 1 ? (
                   <NotFound />
                 ) : (
                   <div>{''}</div>
@@ -223,7 +238,8 @@ PreviewArticle.propTypes = {
   params: PropTypes.object,
   message: PropTypes.object,
   errors: PropTypes.object,
-  isAuth: PropTypes.bool
+  isAuth: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 export const mapStateToProps = ({ user: { isAuth }, articles: { article, message, errors } }) => ({

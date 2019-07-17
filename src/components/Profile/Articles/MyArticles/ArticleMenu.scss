@@ -1,0 +1,18 @@
+@import '../../../../assets/css/colors';
+@import '../../../../assets/css/pixels';
+.grab-article-menu {
+  border-bottom: 1px solid $light;
+
+  .list-inline {
+    padding: 0;
+  }
+  .list-inline li {
+    padding: 0.5em 0.7em;
+  }
+  .list-inline li:nth-child(1) {
+    padding-left: 0 !important;
+  }
+  .list-inline a {
+    font-size: 1em;
+  }
+}
