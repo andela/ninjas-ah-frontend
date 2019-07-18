@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'dotenv/config';
-import MetaTags from 'react-meta-tags';
+import { Helmet } from 'react-helmet';
 import LazyLoad from 'react-lazyload';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,6 +13,8 @@ import avatar from '../../../assets/images/user.png';
 import timeStamp from '../../../helpers/timeStamp';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
+import ShareArticle from '../Share/ShareArticle';
+
 import './Article.scss';
 import Rating from './Rating';
 
@@ -46,12 +48,13 @@ export class Article extends Component {
 
   render() {
     const { imageRectangle, article, editorState, loaded } = this.state;
+
     return (
       <Layout>
         <div id="article">
           {article && article.id ? (
             <div className="row">
-              <MetaTags>
+              <Helmet>
                 <title> {article.title || 'Welcome'} - Authors Haven</title>
                 <meta
                   name={article.description || 'Authors Haven'}
@@ -61,9 +64,35 @@ export class Article extends Component {
                       : 'Authors Haven'
                   }
                 />
+                {/* facebook metatags */}
+                <meta property="og:url" content={window.location.href || 'Authors Haven'} />
                 <meta property="og:title" content={article.title || 'Authors Haven'} />
-                <meta property="og:image" content={article.coverUrl || ''} />
-              </MetaTags>
+                <meta property="og:type" content="Article" />
+                <meta
+                  property="og:description"
+                  content={article.description || 'Authors Haven'}
+                />{' '}
+                <meta
+                  property="og:image"
+                  content={
+                    `${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${article.coverUrl}` || ''
+                  }
+                />
+                {/* twitter metatags */}
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:site" content={window.location.host} />
+                <meta name="twitter:creator" content={article.author.username || ''} />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:title" content={article.title} />
+                <meta property="og:description" content={article.description} />
+                <meta
+                  property="og:image"
+                  content={
+                    `${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${article.coverUrl}` || ''
+                  }
+                />
+              </Helmet>
+
               <LazyLoad height={350}>
                 {article.coverUrl ? (
                   <div className="image">
@@ -91,8 +120,7 @@ export class Article extends Component {
                       </Link>
                       <span className="medium-h-padding">{timeStamp(article.createdAt)}</span>
                       <span className="medium-h-padding">
-                        <FontAwesomeIcon icon={faClock} className="text-light-grey" />
-                        {' '}
+                        <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
                         {article.readTime} min read
                       </span>
                     </div>
@@ -102,9 +130,15 @@ export class Article extends Component {
                   </div>
                 </div>
                 <br />
+                <div>
+                  <ShareArticle />
+                </div>
+
+                <br />
                 <div className="large-text">{article.description}</div>
 
                 <div className="divider light" />
+                <div className="left" />
                 <div className="articleBody">
                   {article && <Editor editorState={editorState} readOnly={false} />}
                 </div>
