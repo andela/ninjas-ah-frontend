@@ -7,7 +7,7 @@ $secondary: #1843b8;
 $danger: #d64c4c;
 $success: #1c8a4a;
 $info: #1cbdee;
-$light-grey: #e6e6e6;
+$light-grey: #cbcbcb;
 $light-red: #f5eeee;
 $yellow: #f9d342;
 /* background anim colors */
@@ -52,6 +52,9 @@ $twitter-color: #50abf1;
 }
 .light-red {
   background: $light-red;
+}
+.text-light-grey {
+  color: $light-grey;
 }
 .text-grey {
   color: $grey;

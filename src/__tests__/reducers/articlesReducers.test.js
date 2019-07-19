@@ -130,7 +130,27 @@ describe('Articles reducers', () => {
     });
     expect(reducer.errors).toBeInstanceOf(Object);
   });
-
+  it('FETCH_MY_PUBLISHED_ARTICLES_START', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.FETCH_MY_PUBLISHED_ARTICLES_START,
+      payload: []
+    });
+    expect(reducer.errors).toBeInstanceOf(Object);
+  });
+  it('FETCH_MY_PUBLISHED_ARTICLES_SUCCESS', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.FETCH_MY_PUBLISHED_ARTICLES_SUCCESS,
+      payload: { articles }
+    });
+    expect(reducer.articles).toBeInstanceOf(Array);
+  });
+  it('FETCH_MY_PUBLISHED_ARTICLES_FAILURE', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.FETCH_MY_PUBLISHED_ARTICLES_FAILURE,
+      payload: { errors }
+    });
+    expect(reducer.errors).toBeInstanceOf(Object);
+  });
   it('DEFAULT', () => {
     articlesReducer(initialState, {
       type: null,

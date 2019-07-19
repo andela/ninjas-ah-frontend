@@ -89,6 +89,22 @@ export default function (state = initialState, { type, payload }) {
         ...state,
         errors: { ...state.errors, ...payload }
       };
+    case articlesType.FETCH_MY_PUBLISHED_ARTICLES_START:
+      return {
+        ...state,
+        articles: []
+      };
+    case articlesType.FETCH_MY_PUBLISHED_ARTICLES_SUCCESS:
+      return {
+        ...state,
+        articles: [...state.articles, ...payload.articles]
+      };
+    case articlesType.FETCH_MY_PUBLISHED_ARTICLES_FAILURE:
+      return {
+        ...state,
+        errors: payload,
+        article: {}
+      };
     default:
       return state;
   }
