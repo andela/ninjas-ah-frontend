@@ -16,6 +16,7 @@ import CreateArticle from './Profile/Articles/CreateArticle/CreateArticle';
 import PreviewArticle from './Profile/Articles/PreviewArticle';
 import EditArticle from './Profile/Articles/EditArticle';
 import PublishedArticles from './Profile/Articles/MyArticles/Published';
+import SearchArticles from './SearchArticles';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -24,6 +25,7 @@ const Routes = ({ isAuth }) => (
     <Route exact path="/signup" render={props => <Signup {...props} />} />
     <Route exact path="/profile" render={props => <Profile {...props} />} />
     <Route exact path="/login" render={props => <Login {...props} />} />
+    <Route exact path="/search" render={props => <SearchArticles {...props} />} />
     <Route
       exact
       path="/profile/settings/notifications"

@@ -52,9 +52,13 @@ class Header extends Component {
 
           <div className="small-screen-3 medium-screen-2 large-screen-2">
             <span className="right">
-              <Button buttonClass="button header-search-button left white">
-                <FontAwesomeIcon icon={faSearch} size="lg" />
-              </Button>
+              {window.location.pathname !== '/search' ? (
+                <Link to="/search" className="button header-search-button  white">
+                  <FontAwesomeIcon icon={faSearch} size="lg" />
+                </Link>
+              ) : (
+                ''
+              )}
               <Notification />
               <span className="wrap-header-user-button">
                 <Button

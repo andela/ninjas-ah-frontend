@@ -12,6 +12,7 @@ import {
 } from './articles';
 import { createRate } from './rating';
 import { uploadImage } from './images';
+import searchArticles from './searchArticles';
 
 export {
   userAction,
@@ -25,5 +26,6 @@ export {
   unpublishArticle,
   uploadImage,
   getPublished,
-  createRate
+  createRate,
+  searchArticles
 };
