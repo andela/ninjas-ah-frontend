@@ -1,0 +1,106 @@
+@import '../../assets/css/colors';
+
+$border: 1px solid #f9d342;
+$box-shadow: 2px 2px 3px #999;
+$border-radius: 50px;
+$position: fixed;
+$margin-top: 22px;
+$margin-top-delete: 17px;
+$width: 60px;
+$height: 60px;
+$bottom: 40px;
+$right: 40px;
+$bottom-btn: 16px;
+$right-btn: 33px;
+$font-size: 13px;
+// $width-btn: 70px;
+
+.borderResult {
+  border: $border;
+}
+
+.float {
+  position: $position;
+  width: $width;
+  height: $height;
+  bottom: $bottom;
+  right: $right;
+  background-color: $yellow;
+  color: $white;
+  cursor: pointer;
+  border-radius: $border-radius;
+  text-align: center;
+  box-shadow: $box-shadow;
+  -webkit-border-radius: $border-radius;
+  -moz-border-radius: $border-radius;
+  -ms-border-radius: $border-radius;
+  -o-border-radius: $border-radius;
+}
+
+.delete-trash-icon {
+  color: red;
+  cursor: pointer;
+}
+
+.delete-icon {
+  width: 20px;
+  margin-top: 5px;
+  float: right;
+  color: red;
+  cursor: pointer;
+}
+
+.modal-dialog {
+  overflow-y: initial !important;
+}
+.modal-body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 500px;
+  margin-bottom: 80px;
+}
+
+.date-right {
+  float: right;
+}
+.fixed-input {
+  position: fixed;
+  bottom: 0;
+  width: 95%;
+}
+
+.parent {
+  display: table;
+}
+
+.center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.float-btn {
+  position: $position;
+  bottom: $bottom-btn;
+  right: $right-btn;
+  color: $white;
+  cursor: pointer;
+  border-radius: $border-radius;
+  text-align: center;
+}
+
+.my-float {
+  margin-top: $margin-top;
+}
+
+.margin-top-delete {
+  margin-top: $margin-top-delete;
+}
+
+.user-name-style {
+  font-size: $font-size;
+}
+
+.padding-divs {
+  padding-top: 80px;
+}

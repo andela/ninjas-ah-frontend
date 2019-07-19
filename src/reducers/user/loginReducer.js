@@ -19,6 +19,7 @@ export default (state, { type, payload }) => {
         ...state,
         isAuth: true,
         profile: payload.user,
+        token: payload.token,
         login: { loading: false, message: payload.message, errors: {} }
       };
     case userActionsTypes.LOGIN_USER_FAILURE:

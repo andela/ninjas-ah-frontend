@@ -182,3 +182,55 @@ header {
 .inline {
   display: inline;
 }
+
+.card {
+  margin: ($xsmall * 3) auto;
+  padding: 1%;
+  width: 98%;
+  display: block;
+}
+
+.card-chat {
+  margin: ($xsmall * 3) auto;
+  padding: 1%;
+  width: 50%;
+  color: #fff;
+  float: right;
+  border-radius: 80px;
+  display: block;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+}
+
+.card-chat-left {
+  margin: ($xsmall * 3) auto;
+  padding: 1%;
+  width: 50%;
+  color: #fff;
+  float: left;
+  border-radius: 80px;
+  display: block;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+}
+
+.card-info span {
+  padding: $xsmall;
+}
+
+// lists
+.list-inline li {
+  display: inline-block;
+  float: none;
+}
+.list-block li {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

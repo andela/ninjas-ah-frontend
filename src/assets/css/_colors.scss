@@ -10,6 +10,8 @@ $info: #1cbdee;
 $light-grey: #cbcbcb;
 $light-red: #f5eeee;
 $yellow: #f9d342;
+$darkenBlue: #1e88e5;
+$greenAccent: #eeeeee;
 /* background anim colors */
 $anim-palette-1: #ffb426;
 $anim-palette-2: #0e152e;
@@ -50,12 +52,16 @@ $twitter-color: #50abf1;
 .light-grey {
   background: $light-grey;
 }
-.light-red {
-  background: $light-red;
+
+.darkenBlue {
+  background-color: $darkenBlue;
 }
-.text-light-grey {
-  color: $light-grey;
+
+.gree-accent {
+  background-color: $greenAccent;
+  color: $grey;
 }
+
 .text-grey {
   color: $grey;
 }
