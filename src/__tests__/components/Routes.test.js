@@ -114,7 +114,7 @@ describe('<Routes />', () => {
   });
   test('renders <Article/> without crashing', () => {
     const component = mount(<Provider store={store}>
-        <MemoryRouter initialEntries={['/article/hello-world-23gar4']}>
+        <MemoryRouter initialEntries={['/articles/hello-world-23gar4']}>
           <Routes />
         </MemoryRouter>
       </Provider>);

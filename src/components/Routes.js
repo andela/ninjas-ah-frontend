@@ -30,7 +30,7 @@ const Routes = ({ isAuth }) => (
     />
     <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
     <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
-    <Route exact path="/article/:slug" render={props => <Article {...props} />} />
+    <Route exact path="/articles/:slug" render={props => <Article {...props} />} />
     <Route
       exact
       path="/profile/article/new"

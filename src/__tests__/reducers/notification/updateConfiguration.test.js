@@ -1,4 +1,4 @@
-import notificationUpdate from '../../../__mocks__/notificationUpdate';
+import notificationUpdate from '../../../__mocks__/updateNotification';
 import reducers from '../../../reducers';
 import initialState from '../../../store/initialStates/notification';
 import { notificationActionTypes } from '../../../actions-types';

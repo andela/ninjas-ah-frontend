@@ -14,7 +14,7 @@ describe('<Header />', () => {
         </MemoryRouter>
       </Provider>);
 
-    const headerUserButton = component.find('Header .header-user-button');
+    const headerUserButton = component.find('Header .wrap-header-user-button');
 
     headerUserButton.simulate('click', {});
     mockWindow.document.event({
@@ -25,6 +25,16 @@ describe('<Header />', () => {
       }
     });
 
+    expect(component).toHaveLength(1);
+  });
+  test('renders without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter>
+          <Header />
+        </MemoryRouter>
+      </Provider>);
+
+    component.find('button[id="toggleUserMenuButton"]').simulate('click');
     expect(component).toHaveLength(1);
   });
 });
