@@ -15,6 +15,8 @@ import Article from './Articles/Article';
 import CreateArticle from './Profile/Articles/CreateArticle/CreateArticle';
 import PreviewArticle from './Profile/Articles/PreviewArticle';
 import EditArticle from './Profile/Articles/EditArticle';
+import PublishedArticles from './Profile/Articles/MyArticles/Published';
+import SearchArticles from './SearchArticles';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -23,6 +25,7 @@ const Routes = ({ isAuth }) => (
     <Route exact path="/signup" render={props => <Signup {...props} />} />
     <Route exact path="/profile" render={props => <Profile {...props} />} />
     <Route exact path="/login" render={props => <Login {...props} />} />
+    <Route exact path="/search" render={props => <SearchArticles {...props} />} />
     <Route
       exact
       path="/profile/settings/notifications"
@@ -30,7 +33,7 @@ const Routes = ({ isAuth }) => (
     />
     <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
     <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
-    <Route exact path="/articles/:slug" render={props => <Article {...props} />} />
+    <Route exact path="/articles/:slug" render={props => <Article {...props} isAuth={isAuth} />} />
     <Route
       exact
       path="/profile/article/new"
@@ -50,6 +53,16 @@ const Routes = ({ isAuth }) => (
       exact
       path="/profile/article/edit/:slug"
       render={props => (isAuth ? <EditArticle {...props} /> : <Redirect to="/login" />)}
+    />
+    <Route
+      exact
+      path="/profile/articles"
+      render={props => (isAuth ? (
+          <PublishedArticles {...props} />
+      ) : (
+          <Redirect to="/login?redirect=profile/articles" />
+      ))
+      }
     />
   </Switch>
 );

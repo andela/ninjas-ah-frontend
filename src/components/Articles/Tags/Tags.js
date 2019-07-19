@@ -8,9 +8,9 @@ export default class Tags extends Component {
   render() {
     const { page } = this.state;
     return (
-      <section className="grabTags" alt={page}>
+      <section className="grab-tags" alt={page}>
         <div className="container">
-          <ul className="list-inline tagsMenu">
+          <ul className="list-inline tags-menu">
             <li>
               <Link to="/">Culture</Link>
             </li>

@@ -1,7 +1,6 @@
 env:
   global:
     - NODE_ENV=test
-    - CI=true
     - REACT_APP_URL_BACKEND=http://localhost:3000
     - REACT_APP_URL_FRONTEND=http://localhost:5000
     - CC_TEST_REPORTER_ID=d43031f55998206172c77fb2bc3c560af8d54e2747e10927abeea54ca5740e95

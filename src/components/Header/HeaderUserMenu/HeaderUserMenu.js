@@ -54,8 +54,8 @@ class HeaderUserMenu extends Component {
 
           {isAuth && (
             <li>
-              <Link to="/profile/my-stories">
-                <FontAwesomeIcon icon={faBookOpen} /> My stories
+              <Link to="/profile/articles">
+                <FontAwesomeIcon icon={faBookOpen} /> My Articles
               </Link>
             </li>
           )}
