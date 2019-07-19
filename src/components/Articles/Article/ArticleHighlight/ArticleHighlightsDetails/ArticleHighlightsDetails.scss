@@ -1,0 +1,25 @@
+@import '../../../../../assets/css/_colors';
+@import '../../../../../assets/css/_radius';
+@import '../../../../../assets/css/_shadow';
+
+.ArticleHighlightsDetails {
+  .modal-body {
+    .delete-highlight {
+      margin-top: 1px;
+      width: 60px;
+    }
+    .no-comment {
+      color: $grey;
+      font-style: italic;
+      opacity: 0.4;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .ArticleHighlightsDetails {
+    .modal-body {
+      width: 90%;
+    }
+  }
+}

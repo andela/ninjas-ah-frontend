@@ -1,3 +1,3 @@
-import { createRate } from './createRate';
+import { createRate, clearCreateRateStore } from './createRate';
 
-export { createRate };
+export { createRate, clearCreateRateStore };

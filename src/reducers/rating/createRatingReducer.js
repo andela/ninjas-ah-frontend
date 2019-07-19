@@ -1,8 +1,12 @@
 import { ratingActionsTypes } from '../../actions-types';
-import { rating as initialState } from '../../store/initialState';
 
-export default function (state = initialState, { type, payload }) {
+export default function (state, { type, payload }) {
   switch (type) {
+    case ratingActionsTypes.CLEAR_CREATE_RATING_STORE:
+      return {
+        ...state,
+        createRate: { ...payload, loading: false, message: '', errors: {} }
+      };
     case ratingActionsTypes.CREATE_RATING_START:
       return {
         ...state,
@@ -19,6 +23,6 @@ export default function (state = initialState, { type, payload }) {
         createRate: { loading: false, message: '', errors: payload.errors }
       };
     default:
-      return state;
+      return null;
   }
 }

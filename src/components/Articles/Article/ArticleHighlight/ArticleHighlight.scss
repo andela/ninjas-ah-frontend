@@ -1,0 +1,53 @@
+@import '../../../../assets/css/_colors';
+@import '../../../../assets/css/_radius';
+@import '../../../../assets/css/_shadow';
+
+.ArticleHighlight {
+  .selection {
+    @extend .radius-2;
+    text-align: center;
+    background: lightgreen !important;
+    padding: 5px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  .highlight-buttons {
+    @extend .shadow-2;
+    background-color: initial;
+    position: absolute !important;
+    margin-top: 20px;
+    z-index: 12345;
+    .highlighter-button,
+    .highlight-comment-button {
+      @extend .black, .radius-1, .shadow-2;
+      padding: 5px 20px;
+      font-weight: bold;
+      color: $white;
+    }
+  }
+  .highlight-comment-modal {
+    .modal-content {
+      background: initial;
+      border: 0;
+      box-shadow: none;
+      .modal-body {
+        background: initial !important;
+        padding: 5px;
+        .Form {
+          @extend .white;
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .ArticleHighlight {
+    .highlight-comment-modal {
+      .modal-content {
+        width: 90%;
+      }
+    }
+  }
+}

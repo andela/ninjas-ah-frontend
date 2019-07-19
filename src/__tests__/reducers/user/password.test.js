@@ -1,8 +1,8 @@
-import forgotPasswordReducer from '../../reducers/user/forgotPasswordReducer';
-import updatePasswordReducer from '../../reducers/user/updatePasswordReducer';
-import initialState from '../../store/initialState';
-import { userActionsTypes } from '../../actions-types';
-import { matchedResetPassword, mismatchedResetPassword } from '../../__mocks__/user';
+import forgotPasswordReducer from '../../../reducers/user/forgotPasswordReducer';
+import updatePasswordReducer from '../../../reducers/user/updatePasswordReducer';
+import initialState from '../../../store/initialState';
+import { userActionsTypes } from '../../../actions-types';
+import { matchedResetPassword, mismatchedResetPassword } from '../../../__mocks__/user';
 
 describe('Password reducer', () => {
   test('FORGOT_PASSWORD_START', () => {

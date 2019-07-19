@@ -10,7 +10,7 @@ import {
   unpublishArticle,
   getPublished
 } from './articles';
-import { createRate } from './rating';
+import { createRate, clearCreateRateStore } from './rating';
 import { uploadImage } from './images';
 import searchArticles from './searchArticles';
 
@@ -27,5 +27,6 @@ export {
   uploadImage,
   getPublished,
   createRate,
+  clearCreateRateStore,
   searchArticles
 };

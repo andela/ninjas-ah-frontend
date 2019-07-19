@@ -9,10 +9,10 @@ import './HeaderUserImage.scss';
 
 class HeaderUserImage extends Component {
   render() {
-    const { image, className } = this.props;
+    const { image } = this.props;
     return (
-      <div className={className}>
-        <Img imgSrc={image || profileImagePlaceHolder} width="36px" imgClass="radius-5" />
+      <div className="HeaderUserImage">
+        <Img imgSrc={image || profileImagePlaceHolder} width="40px" imgClass="radius-5" />
         <FontAwesomeIcon className="caret" icon={faCaretDown} />
       </div>
     );
@@ -23,8 +23,6 @@ HeaderUserImage.propTypes = {
   image: PropTypes.string,
   className: PropTypes.string
 };
-
-HeaderUserImage.defaultProps = { className: 'HeaderUserImage' };
 
 const mapStateToProps = ({ user: { profile: { image } } }) => ({ image });
 

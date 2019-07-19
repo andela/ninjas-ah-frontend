@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ArticleHighlightsDetailsComponent /> should display details of a highlighted text 1`] = `ShallowWrapper {}`;
+
+exports[`<ArticleHighlightsDetailsComponent /> should not show a button to delete a highlighted text 1`] = `ShallowWrapper {}`;
+
+exports[`<ArticleHighlightsDetailsComponent /> should render without crashing 1`] = `ShallowWrapper {}`;
+
+exports[`<ArticleHighlightsDetailsComponent /> should show a button to delete a highlighted text 1`] = `ShallowWrapper {}`;
+
+exports[`<ArticleHighlightsDetailsComponent /> should show a model displaying details of a highlighted text 1`] = `ShallowWrapper {}`;
