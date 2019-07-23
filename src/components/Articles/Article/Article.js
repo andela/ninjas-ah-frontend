@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import MetaTags from 'react-meta-tags';
+import { Helmet } from 'react-helmet';
 import LazyLoad from 'react-lazyload';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +15,8 @@ import timeStamp from '../../../helpers/timeStamp';
 import ArticleHighlight from './ArticleHighlight';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
+import ShareArticle from '../Share/ShareArticle';
+
 import './Article.scss';
 import Rating from './Rating';
 
@@ -103,7 +105,8 @@ export class Article extends Component {
           {article && article.id ? (
             <div className="row">
               <ArticleHighlight article={article} editorState={currentEditorState} />
-              <MetaTags>
+
+              <Helmet>
                 <title> {article.title || 'Welcome'} - Authors Haven</title>
                 <meta
                   name={article.description || 'Authors Haven'}
@@ -113,9 +116,26 @@ export class Article extends Component {
                       : 'Authors Haven'
                   }
                 />
+                {/* facebook metatags */}
+                <meta property="og:url" content={window.location.href || 'Authors Haven'} />
                 <meta property="og:title" content={article.title || 'Authors Haven'} />
-                <meta property="og:image" content={article.coverUrl || ''} />
-              </MetaTags>
+                <meta property="og:type" content="Article" />
+                <meta
+                  property="og:description"
+                  content={article.description || 'Authors Haven'}
+                />{' '}
+                <meta
+                  property="og:image"
+                  content={
+                    `${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${article.coverUrl}` || ''
+                  }
+                />
+                {/* twitter metatags */}
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:site" content={window.location.host} />
+                />
+              </Helmet>
+
               <LazyLoad height={350}>
                 {article.coverUrl ? (
                   <div className="image">
@@ -153,9 +173,15 @@ export class Article extends Component {
                   </div>
                 </div>
                 <br />
+                <div>
+                  <ShareArticle />
+                </div>
+
+                <br />
                 <div className="large-text">{article.description}</div>
 
                 <div className="divider light" />
+                <div className="left" />
                 <div className="articleBody">
                   {article && (
                     <Editor
