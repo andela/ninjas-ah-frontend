@@ -66,7 +66,7 @@ export class Article extends Component {
                 />
                 {/* facebook metatags */}
                 <meta property="og:url" content={window.location.href || 'Authors Haven'} />
-                <meta property="og:title" content={article.title || 'Authors Haven'} />
+                <meta property="og:title" content={article.title || 'Authors Hello Haven'} />
                 <meta property="og:type" content="Article" />
                 <meta
                   property="og:description"
@@ -82,15 +82,6 @@ export class Article extends Component {
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:site" content={window.location.host} />
                 <meta name="twitter:creator" content={article.author.username || ''} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:title" content={article.title} />
-                <meta property="og:description" content={article.description} />
-                <meta
-                  property="og:image"
-                  content={
-                    `${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${article.coverUrl}` || ''
-                  }
-                />
               </Helmet>
 
               <LazyLoad height={350}>
