@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createRate, fetchOneArticle } from '../../../actions';
+import { clearHighlightArticleStore } from '../../../actions/articles';
 import './Rating.scss';
 
 export class Rating extends Component {
@@ -27,10 +28,11 @@ export class Rating extends Component {
   }
 
   submitRate = async (rating) => {
-    const { isAuth, slug, fetchOneArticle } = this.props;
+    const { isAuth, slug, fetchOneArticle, clearHighlightArticleStore } = this.props;
     if (isAuth) {
       await this.props.createRate(slug, rating);
       await fetchOneArticle(slug);
+      clearHighlightArticleStore();
     } else {
       this.setState({ errors: { token: 'Failed to authenticate token' } });
     }
@@ -96,6 +98,7 @@ Rating.propTypes = {
   slug: PropTypes.string,
   ratingStars: PropTypes.func,
   createRate: PropTypes.func,
+  clearHighlightArticleStore: PropTypes.func,
   message: PropTypes.string,
   fetchOneArticle: PropTypes.func.isRequired,
   article: PropTypes.object,
@@ -109,5 +112,5 @@ export const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { createRate, fetchOneArticle }
+  { createRate, fetchOneArticle, clearHighlightArticleStore }
 )(Rating);

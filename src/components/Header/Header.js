@@ -19,9 +19,9 @@ class Header extends Component {
     window.document.addEventListener('click', (e) => {
       const { parentNode, classList } = e.srcElement;
       return (
-        (classList || parentNode.classList)
+        (classList || (parentNode && parentNode.classList))
         && !classList.contains('header-user-button')
-        && !parentNode.classList.contains('HeaderUserImage')
+        && (parentNode && parentNode.classList && !parentNode.classList.contains('HeaderUserImage'))
         && this.setState({ showUserMenu: false })
       );
     });
@@ -53,7 +53,7 @@ class Header extends Component {
           <div className="small-screen-3 medium-screen-2 large-screen-2">
             <span className="right">
               {window.location.pathname !== '/search' ? (
-                <Link to="/search" className="button header-search-button  white">
+                <Link to="/search" className="button inline-block header-search-button white">
                   <FontAwesomeIcon icon={faSearch} size="lg" />
                 </Link>
               ) : (
@@ -62,7 +62,7 @@ class Header extends Component {
               <Notification />
               <span className="wrap-header-user-button">
                 <Button
-                  buttonClass="button  white"
+                  buttonClass="button white"
                   id="toggleUserMenuButton"
                   onClick={this.toggleUserMenu}
                 >

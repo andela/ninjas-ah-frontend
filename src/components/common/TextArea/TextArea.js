@@ -13,7 +13,8 @@ const TextArea = ({
   name,
   error,
   errorWidth,
-  value
+  value,
+  isRequired
 }) => (
   <div id={textAreaFieldId} className={`${textAreaFieldClass}`}>
     <textarea
@@ -24,6 +25,7 @@ const TextArea = ({
       onChange={onChange}
       placeholder={placeholder}
       value={value}
+      required={isRequired}
     />
     {error ? (
       <div className="text-area-error radius-2" style={{ width: `${errorWidth}px` }}>
@@ -46,7 +48,8 @@ TextArea.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   error: PropTypes.any,
-  errorWidth: PropTypes.number
+  errorWidth: PropTypes.number,
+  isRequired: PropTypes.bool
 };
 
 TextArea.defaultProps = {

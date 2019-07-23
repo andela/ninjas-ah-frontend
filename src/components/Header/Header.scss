@@ -16,7 +16,7 @@
     position: relative;
   }
   .header-notification-button {
-    top: 15px;
+    top: 10px;
     right: 25px;
     position: relative;
     .number {
@@ -30,7 +30,8 @@
   }
 
   .header-search-button {
-    padding-top: 25px;
+    margin-top: 10px !important;
+    vertical-align: top;
   }
 }
 

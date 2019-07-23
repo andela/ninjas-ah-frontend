@@ -4,10 +4,10 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 export default class Layout extends Component {
-  state = { screenHeight: window.innerHeight - 150 };
+  state = { screenHeight: window.innerHeight - 50 };
 
   componentDidMount = () => {
-    window.addEventListener('resize', () => this.setState({ screenHeight: window.innerHeight - 150 }));
+    window.addEventListener('resize', () => this.setState({ screenHeight: window.innerHeight - 50 }));
   };
 
   render() {
@@ -16,7 +16,7 @@ export default class Layout extends Component {
     return (
       <div className="Layout">
         <Header />
-        <div style={{ minHeight: screenHeight }}>{children}</div>
+        <div style={{ minHeight: screenHeight, width: '100%', marginTop: '90px' }}>{children}</div>
         <Footer />
       </div>
     );

@@ -1,16 +1,18 @@
+import 'dotenv/config';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import 'dotenv/config';
 import MetaTags from 'react-meta-tags';
 import LazyLoad from 'react-lazyload';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { fetchOneArticle } from '../../../actions';
+import { getArticleHighlights } from '../../../actions/articles';
 import avatar from '../../../assets/images/user.png';
 import timeStamp from '../../../helpers/timeStamp';
+import ArticleHighlight from './ArticleHighlight';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import './Article.scss';
@@ -22,35 +24,85 @@ export class Article extends Component {
   state = {
     article: {},
     loaded: false,
+    styleMap: {},
     imageRectangle:
       'c_fill,g_auto,h_350,w_970/b_rgb:000000,e_gradient_fade,y_-0.20/c_scale,co_rgb:ffffff',
-    editorState: EditorState.createEmpty()
+    editorState: EditorState.createEmpty(),
+    currentEditorState: EditorState.createEmpty(),
+    highlight: {},
+    highlightCommentModalStyle: 'none'
   };
 
-  async getSpecificArticle(slug) {
-    const { fetchOneArticle } = this.props;
-    await fetchOneArticle(slug);
+  componentDidMount = () => {
+    const {
+      fetchOneArticle,
+      getArticleHighlights,
+      match: { params: { slug } }
+    } = this.props;
 
-    const { article } = this.props;
-    const editorState = article.body
-      ? EditorState.createWithContent(convertFromRaw(JSON.parse(article.body)))
-      : EditorState.createEmpty();
-    this.setState({ loaded: true });
-    return this.setState({ article, editorState });
-  }
+    return fetchOneArticle(slug) && getArticleHighlights(slug);
+  };
 
-  componentDidMount() {
-    const { match: { params: { slug } } } = this.props;
-    this.getSpecificArticle(slug);
-  }
+  componentWillReceiveProps = (nextProps) => {
+    const { article } = nextProps;
+    return article && article.body && this.displayArticle(article);
+  };
+
+  displayArticle = (article) => {
+    let articleBody = JSON.parse(article.body);
+    articleBody = article.highlights
+      ? this.showHighlights(article.highlights, articleBody)
+      : articleBody;
+    const editorState = EditorState.createWithContent(convertFromRaw(articleBody));
+    this.setState(prevState => ({ ...prevState, article, editorState, loaded: true }));
+  };
+
+  showHighlights = (highlights, articleBody) => {
+    const articleBodyWithHighlights = articleBody;
+    (highlights || []).forEach(({ id, anchorKey, startIndex, highlightedText }, key) => {
+      this.setState(prevState => ({
+        ...prevState,
+        styleMap: {
+          ...prevState.styleMap,
+          [`HIGHLIGHT${key}`]: { '--highlight-id': id }
+        }
+      }));
+      articleBody.blocks.forEach((block, index) => {
+        if (block.key === anchorKey) {
+          articleBodyWithHighlights.blocks[index].inlineStyleRanges = [
+            ...articleBodyWithHighlights.blocks[index].inlineStyleRanges,
+            {
+              offset: startIndex,
+              length: highlightedText.length,
+              style: `HIGHLIGHT${key}`
+            }
+          ];
+        }
+      });
+    });
+    return articleBodyWithHighlights;
+  };
+
+  onChange = editorState => this.setState(prevState => ({
+    ...prevState,
+    currentEditorState: editorState
+  }));
 
   render() {
-    const { imageRectangle, article, editorState, loaded } = this.state;
+    const {
+      imageRectangle,
+      article,
+      editorState,
+      currentEditorState,
+      styleMap,
+      loaded
+    } = this.state;
     return (
       <Layout>
         <div id="article">
           {article && article.id ? (
             <div className="row">
+              <ArticleHighlight article={article} editorState={currentEditorState} />
               <MetaTags>
                 <title> {article.title || 'Welcome'} - Authors Haven</title>
                 <meta
@@ -91,8 +143,7 @@ export class Article extends Component {
                       </Link>
                       <span className="medium-h-padding">{timeStamp(article.createdAt)}</span>
                       <span className="medium-h-padding">
-                        <FontAwesomeIcon icon={faClock} className="text-light-grey" />
-                        {' '}
+                        <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
                         {article.readTime} min read
                       </span>
                     </div>
@@ -106,7 +157,14 @@ export class Article extends Component {
 
                 <div className="divider light" />
                 <div className="articleBody">
-                  {article && <Editor editorState={editorState} readOnly={false} />}
+                  {article && (
+                    <Editor
+                      editorState={editorState}
+                      customStyleMap={styleMap}
+                      onChange={this.onChange}
+                      readOnly={false}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -124,6 +182,7 @@ Article.defaultProps = { match: { params: { slug: '' } } };
 Article.propTypes = {
   article: PropTypes.object,
   fetchOneArticle: PropTypes.func.isRequired,
+  getArticleHighlights: PropTypes.func,
   editorState: PropTypes.func,
   match: PropTypes.object,
   slug: PropTypes.string,
@@ -133,12 +192,20 @@ Article.propTypes = {
   errors: PropTypes.object,
   loaded: PropTypes.bool
 };
-const mapStateToProps = ({ articles: { article, errors } }) => ({
+
+const mapStateToProps = ({
+  articles: {
+    getHighlights: { loading },
+    article,
+    errors
+  }
+}) => ({
+  loading,
   article,
   errors
 });
 
 export default connect(
   mapStateToProps,
-  { fetchOneArticle }
+  { fetchOneArticle, getArticleHighlights }
 )(Article);

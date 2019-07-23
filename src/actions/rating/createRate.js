@@ -10,3 +10,8 @@ export const createRate = (slug, rating) => dispatch => dispatch(apiAction({
   onSuccess: ratingActionsTypes.CREATE_RATING_SUCCESS,
   onFailure: ratingActionsTypes.CREATE_RATING_FAILURE
 }));
+
+export const clearCreateRateStore = payload => dispatch => dispatch({
+  type: ratingActionsTypes.CLEAR_CREATE_RATING_STORE,
+  payload
+});

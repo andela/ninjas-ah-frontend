@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from '../../../config/enzymeConfig';
 import Layout from '../../components/Layout';
-import { mockWindow } from '../../__mocks__/window';
+import mockWindow from '../../__mocks__/window';
 
 describe('<Layout />', () => {
   test('renders without crashing', () => {

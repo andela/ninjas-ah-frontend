@@ -2,10 +2,37 @@
 @import '../../../assets/css/_radius';
 @import '../../../assets/css/_colors';
 @import '../../../assets/css/_shadow';
+
 #article {
+  .modal-content {
+    background: initial;
+    border: 0;
+    box-shadow: none;
+    .modal-body {
+      @extend .white, .radius-2;
+      padding: 5px;
+    }
+  }
   .articleBody {
     line-height: 1.8;
     max-width: 100%;
+    ::selection {
+      font-weight: bold !important;
+      background: lightgreen !important;
+    }
+    .selection {
+      background: lightgreen !important;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    span[style*='--highlight-id'] {
+      background-color: lightgreen;
+      cursor: pointer;
+      col &:hover {
+        opacity: 0.5;
+      }
+    }
   }
   .articleBody img {
     max-width: 100%;

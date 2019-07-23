@@ -6,6 +6,9 @@ import { deleteArticle } from './deleteArticle';
 import { publishArticle } from './publishArticle';
 import { unpublishArticle } from './unpublishArticle';
 import { getPublished } from './getPublished';
+import highlightArticle, { clearHighlightArticleStore } from './highlightArticle';
+import getArticleHighlights, { clearGetArticleHighlightsStore } from './getArticleHighlights';
+import deleteArticleHighlight, { clearDeleteArticleHighlightStore } from './deleteArticleHighlight';
 
 export {
   createPost,
@@ -15,5 +18,11 @@ export {
   unpublishArticle,
   getAllArticles,
   fetchOneArticle,
-  getPublished
+  getPublished,
+  highlightArticle,
+  clearHighlightArticleStore,
+  getArticleHighlights,
+  clearGetArticleHighlightsStore,
+  deleteArticleHighlight,
+  clearDeleteArticleHighlightStore
 };

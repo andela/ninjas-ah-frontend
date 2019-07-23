@@ -1,12 +1,19 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { mount } from '../../../config/enzymeConfig';
-import Article from '../../components/Articles/Article/Article';
+import { mount, shallow } from '../../../config/enzymeConfig';
+import Article, { Article as ArticleComponent } from '../../components/Articles/Article/Article';
 import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
 import EditArticle from '../../components/Profile/Articles/EditArticle';
 import CreateArticle from '../../components/Profile/Articles/CreateArticle';
 import store from '../../__mocks__/store';
+import { article, newHighlight } from '../../__mocks__/article';
+
+const props = {
+  match: { params: { slug: 'slug' } },
+  fetchOneArticle: jest.fn(),
+  getArticleHighlights: jest.fn()
+};
 
 describe('<Article />', () => {
   test('Get one article', () => {
@@ -43,6 +50,17 @@ describe('<Article />', () => {
           <CreateArticle {...props} />
         </MemoryRouter>
       </Provider>);
+    expect(component).toHaveLength(1);
+  });
+
+  test('Get one article', () => {
+    const component = shallow(<ArticleComponent {...props} />);
+    component.setProps({ article: { ...article, highlights: [newHighlight] } });
+    expect(component).toHaveLength(1);
+  });
+
+  test('not display an article', () => {
+    const component = shallow(<ArticleComponent {...props} />);
     expect(component).toHaveLength(1);
   });
 });

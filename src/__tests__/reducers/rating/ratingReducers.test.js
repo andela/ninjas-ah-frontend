@@ -8,6 +8,18 @@ const rating = {
 };
 
 describe('Rating reducers', () => {
+  test('CLEAR_DELETE_ARTICLE_HIGHLIGHT_STORE', () => {
+    const reducer = createRatingReducer(initialState, {
+      type: ratingActionsTypes.CLEAR_CREATE_RATING_STORE,
+      payload: {}
+    });
+
+    expect(reducer.createRate).toHaveProperty('loading');
+    expect(reducer.createRate.loading).toBeFalsy();
+    expect(reducer.createRate.errors).toEqual({});
+    expect(reducer.createRate.message).toEqual('');
+  });
+
   it('CREATE_RATING_START', () => {
     const reducer = createRatingReducer(initialState, {
       type: ratingActionsTypes.CREATE_RATING_START,
