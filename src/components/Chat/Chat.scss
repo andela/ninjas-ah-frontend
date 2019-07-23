@@ -1,10 +1,9 @@
 @import '../../assets/css/colors';
-
 $border: 1px solid #f9d342;
 $box-shadow: 2px 2px 3px #999;
 $border-radius: 50px;
 $position: fixed;
-$margin-top: 22px;
+$margin-top: 18px;
 $margin-top-delete: 17px;
 $width: 60px;
 $height: 60px;
@@ -13,94 +12,125 @@ $right: 40px;
 $bottom-btn: 16px;
 $right-btn: 33px;
 $font-size: 13px;
-// $width-btn: 70px;
+$font-size-floating-chat: 25px;
 
-.borderResult {
-  border: $border;
-}
-
-.float {
-  position: $position;
-  width: $width;
-  height: $height;
-  bottom: $bottom;
-  right: $right;
-  background-color: $yellow;
-  color: $white;
-  cursor: pointer;
-  border-radius: $border-radius;
-  text-align: center;
-  box-shadow: $box-shadow;
-  -webkit-border-radius: $border-radius;
-  -moz-border-radius: $border-radius;
-  -ms-border-radius: $border-radius;
-  -o-border-radius: $border-radius;
-}
-
-.delete-trash-icon {
-  color: red;
-  cursor: pointer;
+.Chat {
+  .my-float {
+    margin-top: $margin-top;
+    font-size: $font-size-floating-chat;
+  }
+  .float {
+    position: $position;
+    width: $width;
+    height: $height;
+    bottom: $bottom;
+    right: $right;
+    background-color: $yellow;
+    color: $white;
+    cursor: pointer;
+    border-radius: $border-radius;
+    text-align: center;
+    box-shadow: $box-shadow;
+    -webkit-border-radius: $border-radius;
+    -moz-border-radius: $border-radius;
+    -ms-border-radius: $border-radius;
+    -o-border-radius: $border-radius;
+  }
 }
 
-.delete-icon {
-  width: 20px;
-  margin-top: 5px;
-  float: right;
-  color: red;
-  cursor: pointer;
-}
+.ReactModalPortal {
+  .borderResult {
+    border: $border;
+  }
 
-.modal-dialog {
-  overflow-y: initial !important;
-}
-.modal-body {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  max-height: 500px;
-  margin-bottom: 80px;
-}
+  .delete-trash-icon {
+    color: red;
+    cursor: pointer;
+  }
 
-.date-right {
-  float: right;
-}
-.fixed-input {
-  position: fixed;
-  bottom: 0;
-  width: 95%;
-}
+  .delete-icon {
+    width: 20px;
+    margin-top: 5px;
+    float: right;
+    color: red;
+    cursor: pointer;
+  }
+  .modal-dialog {
+    overflow-y: initial !important;
+    z-index: 200;
+  }
+  .modal-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 500px;
+    margin-bottom: 80px;
+  }
 
-.parent {
-  display: table;
-}
+  .date-right {
+    float: right;
+  }
+  .fixed-input {
+    position: fixed;
+    bottom: 0;
+    width: 95%;
+  }
 
-.center {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
+  .parent {
+    display: table;
+  }
 
-.float-btn {
-  position: $position;
-  bottom: $bottom-btn;
-  right: $right-btn;
-  color: $white;
-  cursor: pointer;
-  border-radius: $border-radius;
-  text-align: center;
-}
+  .center {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
 
-.my-float {
-  margin-top: $margin-top;
-}
+  .float-btn {
+    position: $position !important;
+    bottom: $bottom-btn !important;
+    right: $right-btn !important;
+    color: $white !important;
+    cursor: pointer !important;
+    border-radius: $border-radius !important;
+    text-align: center !important;
+    -webkit-border-radius: $border-radius !important;
+    -moz-border-radius: $border-radius !important;
+    -ms-border-radius: $border-radius !important;
+    -o-border-radius: $border-radius !important;
+  }
 
-.margin-top-delete {
-  margin-top: $margin-top-delete;
-}
+  .margin-top-delete {
+    margin-top: $margin-top-delete;
+  }
 
-.user-name-style {
-  font-size: $font-size;
-}
+  .user-name-style {
+    font-size: $font-size;
+  }
 
-.padding-divs {
-  padding-top: 80px;
+  .Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../../assets/images/chat-bg-3.jpg');
+    width: 60%;
+    padding: 30px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .Modal {
+      width: 100% !important;
+    }
+  }
 }

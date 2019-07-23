@@ -192,6 +192,7 @@ header {
 
 .card-chat {
   margin: ($xsmall * 3) auto;
+  word-break: break-all;
   padding: 1%;
   width: 50%;
   color: #fff;
@@ -206,6 +207,7 @@ header {
 
 .card-chat-left {
   margin: ($xsmall * 3) auto;
+  word-break: break-all;
   padding: 1%;
   width: 50%;
   color: #fff;
