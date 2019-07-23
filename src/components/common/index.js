@@ -7,5 +7,17 @@ import Img from './Img/Img';
 import TextArea from './TextArea/TextArea';
 import Heading from './Heading/Heading';
 import NotFound from './NotFound/NotFound';
+import LikeDislikeButton from './LikeDislikeButton/LikeDislikeButton';
 
-export { Input, Button, Form, SocialMediaButton, Alert, Img, TextArea, Heading, NotFound };
+export {
+  Input,
+  Button,
+  Form,
+  SocialMediaButton,
+  Alert,
+  Img,
+  TextArea,
+  Heading,
+  NotFound,
+  LikeDislikeButton
+};

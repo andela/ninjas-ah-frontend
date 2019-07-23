@@ -19,6 +19,7 @@ import ShareArticle from '../Share/ShareArticle';
 
 import './Article.scss';
 import Rating from './Rating';
+import LikeArticle from '../LikeArticle/LikeArticle';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 
@@ -191,6 +192,10 @@ export class Article extends Component {
                       readOnly={false}
                     />
                   )}
+                </div>
+                <div className="divider light" />
+                <div>
+                  <LikeArticle />
                 </div>
               </div>
             </div>
