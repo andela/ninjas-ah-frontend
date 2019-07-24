@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CommentComponent /> should render a <CreateCommentComponent /> component  1`] = `ShallowWrapper {}`;
+
+exports[`<CommentFormComponent /> should render a <CreateCommentFormComponent /> component  1`] = `ShallowWrapper {}`;

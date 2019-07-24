@@ -6,9 +6,20 @@ module.exports = {
     errors: {}
   },
   createComment: {
-    comments: [],
     loading: false,
     message: '',
     errors: {}
+  },
+  editComment: {
+    comment: {},
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  deleteComment: {
+    loading: false,
+    message: '',
+    errors: {},
+    deleted: false
   }
 };

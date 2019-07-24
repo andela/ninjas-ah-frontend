@@ -2,12 +2,12 @@ import { commentsActionsTypes } from '../../actions-types';
 
 export default (state, { type, payload }) => {
   switch (type) {
-    case commentsActionsTypes.CREATE_COMMENT_START:
+    case commentsActionsTypes.EDIT_COMMENT_START:
       return {
         ...state,
-        createComment: { loading: true, errors: {} }
+        editComment: { loading: true, errors: {} }
       };
-    case commentsActionsTypes.CREATE_COMMENT_SUCCESS:
+    case commentsActionsTypes.EDIT_COMMENT_SUCCESS:
       return {
         ...state,
         fetchComments: {
@@ -15,17 +15,16 @@ export default (state, { type, payload }) => {
           message: payload.message
         }
       };
-    case commentsActionsTypes.CREATE_COMMENT_FAILURE:
+    case commentsActionsTypes.EDIT_COMMENT_FAILURE:
       return {
         ...state,
-
-        createComment: { errors: { message: payload.message } },
+        editComment: { errors: payload.errors },
         loading: false
       };
-    case commentsActionsTypes.CREATE_COMMENT_END:
+    case commentsActionsTypes.EDIT_COMMENT_END:
       return {
         ...state,
-        createComment: { ...state.createComment, loading: false }
+        editComment: { ...state.editComment, loading: false }
       };
     default:
       return null;

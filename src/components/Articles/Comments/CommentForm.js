@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-autosize-textarea';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {
-//   faThumbsUp,
-//   faClock,
-//   faPenAlt,
-//   faTrash,
-//   faCommentAlt
-// } from '@fortawesome/free-solid-svg-icons';
 import './Comments.scss';
 import { createComment } from '../../../actions';
 
@@ -19,13 +11,11 @@ export class CommentForm extends Component {
 
   componentWillMount() {
     const { comments } = this.props;
-    // createComment(this.props.slug);
     this.setState({ comments });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { errors, comments, message } = nextProps;
-    console.log('will', message, comments);
+    const { errors } = nextProps;
     if (errors) {
       this.setState({ errors });
     }
@@ -38,9 +28,10 @@ export class CommentForm extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
-    const { isAuth, slug } = this.props;
+    const { isAuth, slug, createComment } = this.props;
+    const { comment } = this.state;
     if (isAuth) {
-      await this.props.createComment({ comment: this.state.comment, slug });
+      await createComment({ comment, slug });
     } else {
       this.setState({ errors: { token: 'Failed to authenticate token' } });
     }
@@ -48,8 +39,7 @@ export class CommentForm extends Component {
 
   render() {
     const { isAuth, profile, slug, loading } = this.props;
-    const { errors, comment, message } = this.state;
-    console.log('loading', loading, message, errors && errors);
+    const { errors, comment } = this.state;
     return (
       <div id="comment-form-wrapper">
         {!isAuth || (errors && errors.token) ? (
@@ -84,7 +74,7 @@ export class CommentForm extends Component {
             />
           </div>
           <div className="input-field">
-            <button type="submit" className="button success bold text-white radius-5">
+            <button type="submit" className="button success text-white radius-5">
               Comment
             </button>
             {loading ? <span className="medium-padding radius-5">loading</span> : ''}
@@ -118,7 +108,7 @@ CommentForm.propTypes = {
   match: PropTypes.object,
   errors: PropTypes.object,
   loading: PropTypes.bool,
-  message: PropTypes.object
+  message: PropTypes.any
 };
 
 const mapStateToProps = ({
