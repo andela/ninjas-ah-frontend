@@ -1,5 +1,6 @@
 module.exports = {
   profile: JSON.parse(localStorage.user || '{}'),
+  token: localStorage.token,
   isAuth: !!localStorage.token,
   signup: {
     loading: false,

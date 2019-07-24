@@ -10,7 +10,8 @@ $info: #1cbdee;
 $light-grey: #cbcbcb;
 $light-red: #f5eeee;
 $yellow: #f9d342;
-/* background anim colors */
+$darken-blue: #b9f6ca;
+$green-accent: #eeeeee;
 $anim-palette-1: #ffb426;
 $anim-palette-2: #0e152e;
 $anim-palette-3: #420d3b;
@@ -50,12 +51,17 @@ $twitter-color: #50abf1;
 .light-grey {
   background: $light-grey;
 }
-.light-red {
-  background: $light-red;
+
+.darkenBlue {
+  background-color: $darken-blue;
+  color: $black;
 }
-.text-light-grey {
-  color: $light-grey;
+
+.gree-accent {
+  background-color: $white;
+  color: $black;
 }
+
 .text-grey {
   color: $grey;
 }
