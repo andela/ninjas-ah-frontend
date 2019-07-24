@@ -19,9 +19,7 @@
 .comments-wrapper li {
   width: 100%;
   padding: 5px 10px 0 10px;
-  margin-bottom: 25px;
   position: relative;
-  /* @extend .grey; */
 
   .comment-icon {
     position: relative;
@@ -58,6 +56,10 @@
     }
     .timestamp {
       color: #989898;
+    }
+    .comment-editor {
+      margin: 15px 0 0 0;
+      @extend .border, .b-light-grey, .medium-padding, .light, .radius-2;
     }
   }
   .comment-message-wrapper::before {

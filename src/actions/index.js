@@ -12,7 +12,7 @@ import {
 } from './articles';
 import { createRate } from './rating';
 import { uploadImage } from './images';
-import { fetchComments, createComment } from './comments';
+import { fetchComments, createComment, deleteComment, editComment } from './comments';
 
 export {
   userAction,
@@ -28,5 +28,7 @@ export {
   getPublished,
   createRate,
   fetchComments,
-  createComment
+  createComment,
+  deleteComment,
+  editComment
 };
