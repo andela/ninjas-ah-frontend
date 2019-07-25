@@ -9,7 +9,8 @@ import {
   faSignOutAlt,
   faBookOpen,
   faCog,
-  faUsers
+  faUsers,
+  faBookmark
 } from '@fortawesome/free-solid-svg-icons';
 import './HeaderUserMenu.scss';
 import { logout as logoutHelper } from '../../../helpers';
@@ -64,6 +65,13 @@ class HeaderUserMenu extends Component {
             <li>
               <Link to="/profile/settings/notifications">
                 <FontAwesomeIcon icon={faCog} /> Notifications
+              </Link>
+            </li>
+          )}
+          {isAuth && (
+            <li>
+              <Link to="/profile/list/bookmarks">
+                <FontAwesomeIcon icon={faBookmark} /> Bookmarks
               </Link>
             </li>
           )}

@@ -18,6 +18,7 @@ import EditArticle from '../../components/Profile/Articles/EditArticle';
 import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
 import PublishedArticles from '../../components/Profile/Articles/MyArticles/Published';
 import SearchArticles from '../../components/SearchArticles/SearchArticles';
+import Bookmarks from '../../components/Bookmarks/Bookmarks';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {
@@ -164,5 +165,13 @@ describe('<Routes />', () => {
         </MemoryRouter>
       </Provider>);
     expect(component.find(SearchArticles).length).toBe(1);
+  });
+  test('renders <Bookmarks/> without crashing', () => {
+    const component = mount(<Provider store={store}>
+        <MemoryRouter initialEntries={['/profile/list/bookmarks']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(Bookmarks).length).toBe(1);
   });
 });
