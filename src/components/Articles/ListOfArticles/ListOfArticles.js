@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'dotenv/config';
+// import Pagination from 'rc-pagination';
+// import Select from 'rc-select';
+// import localeInfo from 'rc-pagination/lib/locale/en_US';
+// import 'rc-pagination/assets/index.css';
+// import 'rc-select/assets/index.css';
 import PropTypes from 'prop-types';
 import { getAllArticles } from '../../../actions';
 import placeholder from '../../../assets/images/placeholder.png';
 import timeStamp from '../../../helpers/timeStamp';
 import { Img } from '../../common';
 import './listOfArticles.scss';
+import Pagination from '../Pagination';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 export class ListsOfArticles extends Component {
@@ -21,9 +27,20 @@ export class ListsOfArticles extends Component {
     this.fetAllArticles();
   }
 
+  onChange = (offset, limit) => {
+    const pagination = {
+      limit,
+      offset: offset + limit
+    };
+    this.setState({ current: offset });
+    console.log('query', `limit=${limit}&?offset=${offset + limit}`);
+    this.props.getAllArticles(pagination);
+  };
+
   render() {
-    const { articles } = this.props;
-    const { imageRectangle } = this.state;
+    const { articles, articlesCount } = this.props;
+    const { imageRectangle, current } = this.state;
+    console.log(articlesCount);
     return (
       <div className="row" id="articleCard">
         {(articles || []).map((article, key) => (
@@ -46,9 +63,11 @@ export class ListsOfArticles extends Component {
               </div>
               <div className="small-screen-4 medium-screen-3 large-screen-3">
                 <h2 className="nobold">
-                  <Link to={`/articles/${article.slug}`}>{article.title}</Link>
+                  <Link to={`/articles/${article.slug}`}>
+                    {article.id} - {article.title}
+                  </Link>
                 </h2>
-                <div className="small-v-padding">{article.description}</div>
+                <div className="small-v-padding hide-on-small">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>{article.author ? article.author.username : ''}</span>{' '}
                   <span>{timeStamp(article.createdAt)}</span>
@@ -60,6 +79,21 @@ export class ListsOfArticles extends Component {
           </div>
         ))}
         <div className="clear" />
+        <div className="row pagination">
+          <Pagination />
+          {/* <Pagination
+            showQuickJumper={true}
+            defaultPageSize={2}
+            pageSize={2}
+            defaultCurrent={0}
+            current={current}
+            onShowSizeChange={this.onShowSizeChange}
+            onChange={this.onChange}
+            total={11}
+            locale={localeInfo}
+          /> */}
+        </div>
+        <div className="clear" />
       </div>
     );
   }
@@ -67,9 +101,13 @@ export class ListsOfArticles extends Component {
 
 ListsOfArticles.propTypes = {
   articles: PropTypes.array,
-  getAllArticles: PropTypes.func.isRequired
+  getAllArticles: PropTypes.func.isRequired,
+  articlesCount: PropTypes.number
 };
-const mapStateToProps = ({ articles: { articles } }) => ({ articles });
+const mapStateToProps = ({ articles: { articles, articlesCount } }) => ({
+  articles,
+  articlesCount
+});
 
 export default connect(
   mapStateToProps,

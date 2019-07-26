@@ -1,6 +1,7 @@
 module.exports = {
   articles: [],
   article: { highlights: [] },
+  articlesCount: '',
   message: {},
   errors: {},
   image: {},

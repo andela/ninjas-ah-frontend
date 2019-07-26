@@ -11,7 +11,8 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: [...state.articles, ...payload.articles]
+        articles: [...state.articles, ...payload.articles],
+        articlesCount: payload.articlesCount
       };
     case articlesType.FETCH_ARTICLE_START:
       return {

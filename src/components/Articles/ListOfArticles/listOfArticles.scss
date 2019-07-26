@@ -7,4 +7,22 @@
   .card-info span {
     padding: $xsmall ($large/2) $xsmall 0;
   }
+  .pagination {
+    padding: 20px 0;
+  }
+  .pagination ul {
+    display: inline-block;
+    li {
+      padding: 2px;
+      margin: 0 4px;
+      float: left;
+      display: inline-block;
+      background: #efefef;
+      cursor: pointer;
+      a {
+        padding: 10px;
+        float: left;
+      }
+    }
+  }
 }
