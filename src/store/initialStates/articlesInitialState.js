@@ -23,6 +23,7 @@ module.exports = {
     message: '',
     errors: {}
   },
+<<<<<<< HEAD
   getLikes: {
     loading: false,
     message: '',
@@ -34,6 +35,9 @@ module.exports = {
     errors: {}
   },
   dislike: {
+=======
+  bookmark: {
+>>>>>>> bookmark article for reading later
     loading: false,
     message: '',
     errors: {}

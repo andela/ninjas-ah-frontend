@@ -16,6 +16,7 @@ import ArticleHighlight from './ArticleHighlight';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
+import BookmarkArticle from '../BookmarkArticle/BookmarkArticle';
 
 import './Article.scss';
 import Rating from './Rating';
@@ -192,6 +193,7 @@ export class Article extends Component {
                       readOnly={false}
                     />
                   )}
+                  <BookmarkArticle />
                 </div>
                 <div className="divider light" />
                 <div>

@@ -9,6 +9,7 @@ import { getPublished } from './getPublished';
 import highlightArticle, { clearHighlightArticleStore } from './highlightArticle';
 import getArticleHighlights, { clearGetArticleHighlightsStore } from './getArticleHighlights';
 import deleteArticleHighlight, { clearDeleteArticleHighlightStore } from './deleteArticleHighlight';
+import { bookmarkArticle } from '../bookmarks/bookmarkArticle';
 
 export {
   createPost,
@@ -24,5 +25,6 @@ export {
   getArticleHighlights,
   clearGetArticleHighlightsStore,
   deleteArticleHighlight,
-  clearDeleteArticleHighlightStore
+  clearDeleteArticleHighlightStore,
+  bookmarkArticle
 };

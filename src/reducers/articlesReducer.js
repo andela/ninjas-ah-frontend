@@ -20,7 +20,7 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.FETCH_ARTICLE_START:
       return {
         ...state,
-        article: { ...state.article },
+        article: { ...state.article }
       };
     case articlesType.FETCH_ARTICLE_SUCCESS:
       return {
