@@ -1,58 +1,62 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getAllArticles } from '../../../actions';
-import { Button } from '../../common';
+import './Pagination.scss';
 
 export class Pagination extends Component {
-  state = { buttons: [] };
+  state = { buttons: [], pageNumber: 1, articlesCount: 0 };
 
   displayButtons = (articlesCount) => {
-    const maxPerPage = 2;
-    const numberOfButtons = articlesCount / maxPerPage + (articlesCount % maxPerPage);
+    const maxPerPage = 10;
+    const numberOfButtons = (articlesCount % maxPerPage) + (articlesCount / maxPerPage);
     let buttons = [];
     for (let i = 1; i <= numberOfButtons; i += 1) {
       buttons = [
         ...buttons,
         {
-          offset: i === 1 ? 0 : i * 2 - 2,
-          limit: 2,
+          offset: i === 1 ? 0 : (i * 10) - 10,
+          limit: 10,
           label: i
         }
       ];
     }
-
     this.setState(prevState => ({ ...prevState, buttons }));
     return buttons;
   };
 
   componentWillReceiveProps = (nextProps) => {
     const { articlesCount } = nextProps;
-
     return articlesCount && this.displayButtons(articlesCount);
   };
 
-  paginateArticles = ({ offset, limit }) => {
+  componentDidMount = () => {
+    const { articlesCount } = this.props;
+    return articlesCount && this.displayButtons(articlesCount);
+  }
+
+  paginateArticles = ({ offset, limit, label }) => {
     const { getAllArticles } = this.props;
+    this.setState(prevState => ({
+      ...prevState,
+      pageNumber: label
+    }));
     return getAllArticles(offset, limit);
   };
 
   render() {
-    // const { LIMIT, OFFSET, CURRENT_OFFSET } = this.state;
-    const { buttons } = this.state;
-    // console.log('done', articlesCount);
+    const { buttons, pageNumber } = this.state;
     return (
       <div className="row">
-        <ul className="list-inline">
+        <ul className="list-inline pagination">
           {buttons.map((button, key) => (
-            <li key={key} className="medium-padding light">
-              <Button
+            <li key={key}>
+              <button
+                className={`${pageNumber === button.label ? 'yellow' : 'light bold'}`}
                 onClick={() => this.paginateArticles(button)}
-                buttonClass="button small-padding small-margin light-grey"
               >
-                {button.label} offset: {button.offset} limit: {button.limit}
-              </Button>
+                {button.label}
+              </button>
             </li>
           ))}
         </ul>
@@ -62,7 +66,7 @@ export class Pagination extends Component {
 }
 
 Pagination.propTypes = {
-  articlesCount: PropTypes.number,
+  articlesCount: PropTypes.any,
   getAllArticles: PropTypes.func
 };
 export const mapStateToProps = ({ articles: { articlesCount } }) => ({ articlesCount });

@@ -11,6 +11,11 @@ const props = {
     id: 1,
     ...article
   },
+  profile: {
+    image: 'image.png',
+    lastName: 'John',
+    firstName: 'Doe'
+  },
   match: { params: { slug: 'slug-slug-slug' } },
   fetchOneArticle: jest.fn()
 };

@@ -23,29 +23,29 @@ const store = mockStore({
 describe('Notification test', () => {
   test('renders without an error', () => {
     const wrapper = mount(<Provider store={store}>
-        <MemoryRouter>
-          <Notification store={store} {...props} />
-        </MemoryRouter>
-      </Provider>);
+      <MemoryRouter>
+        <Notification store={store} {...props} />
+      </MemoryRouter>
+    </Provider>);
     expect(wrapper.find('Header').length).toBe(1);
   });
 
   it('should call save', () => {
     const wrapper = mount(<Provider store={store}>
-        <MemoryRouter>
-          <Notification store={store} {...props} />
-        </MemoryRouter>
-      </Provider>);
+      <MemoryRouter>
+        <Notification store={store} {...props} />
+      </MemoryRouter>
+    </Provider>);
     wrapper.find('button[id="save-notification-configuration"]').simulate('click');
     expect(wrapper.find('button[id="save-notification-configuration"]').length).toBe(1);
   });
   it('should create default configurations', () => {
     window.localStorage.setItem('token', 'token');
     const wrapper = mount(<Provider store={store}>
-        <MemoryRouter>
-          <Notification store={store} {...props} />
-        </MemoryRouter>
-      </Provider>);
+      <MemoryRouter>
+        <Notification store={store} {...props} />
+      </MemoryRouter>
+    </Provider>);
     wrapper.find('button[id="save-notification-configuration"]').simulate('click');
     expect(wrapper.find('button[id="save-notification-configuration"]').length).toBe(1);
   });

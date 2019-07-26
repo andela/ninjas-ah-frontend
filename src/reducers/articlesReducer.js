@@ -6,13 +6,15 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.FETCH_ARTICLES_START:
       return {
         ...state,
-        articles: []
+        articles: [],
+        loading: true
       };
     case articlesType.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
         articles: [...state.articles, ...payload.articles],
-        articlesCount: payload.articlesCount
+        articlesCount: payload.articlesCount,
+        loading: false
       };
     case articlesType.FETCH_ARTICLE_START:
       return {
@@ -94,20 +96,22 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.FETCH_MY_PUBLISHED_ARTICLES_START:
       return {
         ...state,
-        articles: []
+        articles: [],
+        loading: true
       };
     case articlesType.FETCH_MY_PUBLISHED_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: [...state.articles, ...payload.articles]
+        articles: [...state.articles, ...payload.articles],
+        loading: false
       };
     case articlesType.FETCH_MY_PUBLISHED_ARTICLES_FAILURE:
       return {
         ...state,
-        errors: payload,
-        article: {}
+        errors: payload.errors,
+        article: {},
+        loading: false
       };
-    // highlight article
     case articlesType.CLEAR_HIGHLIGHT_ARTICLE_STORE:
       return {
         ...state,

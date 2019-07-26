@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'dotenv/config';
-// import Pagination from 'rc-pagination';
-// import Select from 'rc-select';
-// import localeInfo from 'rc-pagination/lib/locale/en_US';
-// import 'rc-pagination/assets/index.css';
-// import 'rc-select/assets/index.css';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { getAllArticles } from '../../../actions';
 import placeholder from '../../../assets/images/placeholder.png';
+import imagePlaceholder from '../../../assets/images/ARTICLE_PLACEHOLER.png';
 import timeStamp from '../../../helpers/timeStamp';
 import { Img } from '../../common';
 import './listOfArticles.scss';
@@ -27,20 +25,9 @@ export class ListsOfArticles extends Component {
     this.fetAllArticles();
   }
 
-  onChange = (offset, limit) => {
-    const pagination = {
-      limit,
-      offset: offset + limit
-    };
-    this.setState({ current: offset });
-    console.log('query', `limit=${limit}&?offset=${offset + limit}`);
-    this.props.getAllArticles(pagination);
-  };
-
   render() {
-    const { articles, articlesCount } = this.props;
-    const { imageRectangle, current } = this.state;
-    console.log(articlesCount);
+    const { articles, loading } = this.props;
+    const { imageRectangle } = this.state;
     return (
       <div className="row" id="articleCard">
         {(articles || []).map((article, key) => (
@@ -63,35 +50,34 @@ export class ListsOfArticles extends Component {
               </div>
               <div className="small-screen-4 medium-screen-3 large-screen-3">
                 <h2 className="nobold">
-                  <Link to={`/articles/${article.slug}`}>
-                    {article.id} - {article.title}
-                  </Link>
+                  <Link to={`/articles/${article.slug}`}> {article.id} -- {article.title}</Link>
                 </h2>
                 <div className="small-v-padding hide-on-small">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>{article.author ? article.author.username : ''}</span>{' '}
                   <span>{timeStamp(article.createdAt)}</span>
-                  <span>{article.readTime} min read</span>
+                  <span>
+                    <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
+                    {article.readTime === 0 ? 1 : article.readTime} min read
+                  </span>
                 </div>
               </div>
             </div>
             <div className="divider light" />
           </div>
         ))}
+        {loading ? (
+          <Img
+            imgSrc={imagePlaceholder}
+            imgClass="center radius-1 loading-article"
+            alt="Loading article"
+          />
+        ) : (
+            <div />
+        )}
         <div className="clear" />
-        <div className="row pagination">
+        <div className="row pagination center-align">
           <Pagination />
-          {/* <Pagination
-            showQuickJumper={true}
-            defaultPageSize={2}
-            pageSize={2}
-            defaultCurrent={0}
-            current={current}
-            onShowSizeChange={this.onShowSizeChange}
-            onChange={this.onChange}
-            total={11}
-            locale={localeInfo}
-          /> */}
         </div>
         <div className="clear" />
       </div>
@@ -102,12 +88,9 @@ export class ListsOfArticles extends Component {
 ListsOfArticles.propTypes = {
   articles: PropTypes.array,
   getAllArticles: PropTypes.func.isRequired,
-  articlesCount: PropTypes.number
+  loading: PropTypes.bool
 };
-const mapStateToProps = ({ articles: { articles, articlesCount } }) => ({
-  articles,
-  articlesCount
-});
+const mapStateToProps = ({ articles: { articles, loading } }) => ({ articles, loading });
 
 export default connect(
   mapStateToProps,

@@ -28,6 +28,16 @@ window.document.querySelectorAll = jest.fn(() => [
   }
 ]);
 
+window.location = {
+  href: '',
+  reload: jest.fn(),
+  replace: jest.fn(location => location)
+}
+
+window.location = {
+  replace: jest.fn(location => location)
+}
+
 const event = jest.fn(e => map[e.name](e));
 export const document = { event };
 export default { ...document, document };

@@ -99,6 +99,7 @@ export class Article extends Component {
       styleMap,
       loaded
     } = this.state;
+    const { profile } = this.props;
     return (
       <Layout>
         <div id="article">
@@ -155,8 +156,8 @@ export class Article extends Component {
                   <div className="row">
                     <div className="small-screen-4 medium-screen-2 large-screen-2">
                       <span className="avatar">
-                        <img src={avatar} alt={article.title} />
-                        <span>{' John Doe'}</span>
+                        <img src={profile.image || avatar} alt={profile.lastName} />
+                        <span>{profile.lastName} {profile.firstName}</span>
                       </span>
                       <Link to="/" className="button small-button primary">
                         Follow
@@ -164,7 +165,7 @@ export class Article extends Component {
                       <span className="medium-h-padding">{timeStamp(article.createdAt)}</span>
                       <span className="medium-h-padding">
                         <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
-                        {article.readTime} min read
+                        <span>{article.readTime === 0 ? 1 : article.readTime} min read</span>
                       </span>
                     </div>
                     <div className="small-screen-4 medium-screen-2 large-screen-2">
@@ -216,10 +217,12 @@ Article.propTypes = {
   params: PropTypes.object,
   message: PropTypes.object,
   errors: PropTypes.object,
-  loaded: PropTypes.bool
+  loaded: PropTypes.bool,
+  profile: PropTypes.object,
 };
 
 const mapStateToProps = ({
+  user: { profile },
   articles: {
     getHighlights: { loading },
     article,
@@ -228,7 +231,8 @@ const mapStateToProps = ({
 }) => ({
   loading,
   article,
-  errors
+  errors,
+  profile
 });
 
 export default connect(

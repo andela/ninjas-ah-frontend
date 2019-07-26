@@ -1,7 +1,8 @@
 @import '../../../assets/css/_colors.scss';
 @import '../../../assets/css/_pixels.scss';
+@import '../../../assets/css/_shadow.scss';
 .grab-tags {
-  border-bottom: 1px solid $grey;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .tags-menu {

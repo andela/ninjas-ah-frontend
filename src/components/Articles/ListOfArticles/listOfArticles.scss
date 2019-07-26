@@ -3,7 +3,20 @@
   .card-info {
     padding: $medium 0;
   }
-
+  .loading-article {
+    animation: loading-article 2s infinite;
+  }
+  @keyframes loading-article {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
   .card-info span {
     padding: $xsmall ($large/2) $xsmall 0;
   }

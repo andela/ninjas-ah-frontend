@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Article /> should create <PaginationComponent /> snapshot  1`] = `ShallowWrapper {}`;
+
+exports[`<Pagination /> should create <PaginationComponent /> snapshot  1`] = `ShallowWrapper {}`;
