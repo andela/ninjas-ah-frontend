@@ -12,21 +12,14 @@ import { fetchOneArticle } from '../../../actions';
 import { getArticleHighlights } from '../../../actions/articles';
 import avatar from '../../../assets/images/user.png';
 import timeStamp from '../../../helpers/timeStamp';
-<<<<<<< HEAD
 import ArticleHighlight from './ArticleHighlight';
-import { NotFound } from '../../common';
-=======
 import { NotFound, ProgressBar } from '../../common';
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
 
 import './Article.scss';
 import Rating from './Rating';
-<<<<<<< HEAD
-=======
 import Comments from '../Comments/Comments';
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 
@@ -34,10 +27,7 @@ export class Article extends Component {
   state = {
     article: {},
     loaded: false,
-<<<<<<< HEAD
     styleMap: {},
-=======
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
     imageRectangle:
       'c_fill,g_auto,h_350,w_970/b_rgb:000000,e_gradient_fade,y_-0.20/c_scale,co_rgb:ffffff',
     editorState: EditorState.createEmpty(),
@@ -53,7 +43,6 @@ export class Article extends Component {
       match: { params: { slug } }
     } = this.props;
 
-<<<<<<< HEAD
     return fetchOneArticle(slug) && getArticleHighlights(slug);
   };
 
@@ -61,15 +50,6 @@ export class Article extends Component {
     const { article } = nextProps;
     return article && article.body && this.displayArticle(article);
   };
-=======
-    const { article } = this.props;
-    const editorState = article.body
-      ? EditorState.createWithContent(convertFromRaw(JSON.parse(article.body)))
-      : EditorState.createEmpty();
-    this.setState({ loaded: true });
-    return this.setState({ article, editorState });
-  }
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
 
   displayArticle = (article) => {
     let articleBody = JSON.parse(article.body);
@@ -112,7 +92,6 @@ export class Article extends Component {
   }));
 
   render() {
-<<<<<<< HEAD
     const {
       imageRectangle,
       article,
@@ -121,10 +100,7 @@ export class Article extends Component {
       styleMap,
       loaded
     } = this.state;
-=======
-    const { imageRectangle, article, editorState, loaded } = this.state;
     const { loading } = this.props;
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
     return (
       <Layout>
         <div id="article">
@@ -223,11 +199,7 @@ export class Article extends Component {
               </div>
             </div>
           ) : (
-<<<<<<< HEAD
-            <div>{loaded && !Object.keys(article).length ? <NotFound /> : <div>{''}</div>}</div>
-=======
             <div>{loaded && !Object.keys(article).length ? <NotFound /> : <div />}</div>
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
           )}
         </div>
       </Layout>
@@ -248,7 +220,6 @@ Article.propTypes = {
   params: PropTypes.object,
   message: PropTypes.object,
   errors: PropTypes.object,
-<<<<<<< HEAD
   loaded: PropTypes.bool
 };
 
@@ -262,16 +233,8 @@ const mapStateToProps = ({
   loading,
   article,
   errors
-=======
-  loaded: PropTypes.bool,
-  loading: PropTypes.bool
-};
-const mapStateToProps = ({ articles: { article, errors, loading } }) => ({
-  article,
-  errors,
-  loading
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
 });
+
 
 export default connect(
   mapStateToProps,
