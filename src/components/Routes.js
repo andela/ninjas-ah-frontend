@@ -17,6 +17,7 @@ import PreviewArticle from './Profile/Articles/PreviewArticle';
 import EditArticle from './Profile/Articles/EditArticle';
 import PublishedArticles from './Profile/Articles/MyArticles/Published';
 import SearchArticles from './SearchArticles';
+import Bookmarks from './Bookmarks/Bookmarks';
 
 const Routes = ({ isAuth }) => (
   <Switch>
@@ -48,6 +49,11 @@ const Routes = ({ isAuth }) => (
       exact
       path="/profile/article/preview/:slug"
       render={props => (isAuth ? <PreviewArticle {...props} /> : <Redirect to="/login" />)}
+    />
+    <Route
+      exact
+      path="/profile/list/bookmarks"
+      render={props => (isAuth ? <Bookmarks {...props} /> : <Redirect to="/login" />)}
     />
     <Route
       exact
