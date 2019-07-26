@@ -30,6 +30,7 @@ export class CommentForm extends Component {
     e.preventDefault();
     const { isAuth, slug, createComment } = this.props;
     const { comment } = this.state;
+    this.setState({ comment: '' });
     if (isAuth) {
       await createComment({ comment, slug });
     } else {

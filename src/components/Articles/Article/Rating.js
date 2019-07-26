@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createRate, fetchOneArticle } from '../../../actions';
-<<<<<<< HEAD
 import { clearHighlightArticleStore } from '../../../actions/articles';
-=======
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
 import './Rating.scss';
 
 export class Rating extends Component {
@@ -31,18 +28,11 @@ export class Rating extends Component {
   }
 
   submitRate = async (rating) => {
-<<<<<<< HEAD
     const { isAuth, slug, fetchOneArticle, clearHighlightArticleStore } = this.props;
     if (isAuth) {
       await this.props.createRate(slug, rating);
       await fetchOneArticle(slug);
       clearHighlightArticleStore();
-=======
-    const { isAuth, slug, fetchOneArticle } = this.props;
-    if (isAuth) {
-      await this.props.createRate(slug, rating);
-      await fetchOneArticle(slug);
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
     } else {
       this.setState({ errors: { token: 'Failed to authenticate token' } });
     }
@@ -108,10 +98,7 @@ Rating.propTypes = {
   slug: PropTypes.string,
   ratingStars: PropTypes.func,
   createRate: PropTypes.func,
-<<<<<<< HEAD
   clearHighlightArticleStore: PropTypes.func,
-=======
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
   message: PropTypes.string,
   fetchOneArticle: PropTypes.func.isRequired,
   article: PropTypes.object,
@@ -125,9 +112,5 @@ export const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-<<<<<<< HEAD
   { createRate, fetchOneArticle, clearHighlightArticleStore }
-=======
-  { createRate, fetchOneArticle }
->>>>>>> [feature #165412889 && #165412878] add article rating && article read time
 )(Rating);
