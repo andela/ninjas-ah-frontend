@@ -71,7 +71,7 @@ export class LikeArticle extends Component {
       article: { slug }
     } = this.props;
     return (
-      <div className="row">
+      <div className="wrap-article">
         <LikeDislikeButton
           className="like"
           name="like"
@@ -91,12 +91,12 @@ export class LikeArticle extends Component {
           onClick={() => this.handleLikeClick('dislike')}
         />
         {!isAuth && (likeClicked || dislikeClicked) ? (
-          <p className="text-danger">
-            <Button buttonClass="button medium-padding primary radius-3">
-              <Link to={`/login?redirect=articles/${slug}`}>Login</Link>
-            </Button>
-            To perform this action
-          </p>
+          <div className="text-danger error-message">
+            <Link className="text-danger bold" to={`/login?redirect=articles/${slug}`}>
+              Login
+            </Link>{' '}
+            <span className="text-grey">to perform this action</span>
+          </div>
         ) : (
           ''
         )}
