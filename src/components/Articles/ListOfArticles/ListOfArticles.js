@@ -8,6 +8,7 @@ import placeholder from '../../../assets/images/placeholder.png';
 import timeStamp from '../../../helpers/timeStamp';
 import { Img } from '../../common';
 import './listOfArticles.scss';
+import Pagination from '../Pagination';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 export class ListsOfArticles extends Component {
@@ -59,6 +60,10 @@ export class ListsOfArticles extends Component {
             <div className="divider light" />
           </div>
         ))}
+        <div className="clear" />
+        <div className="row pagination center-align">
+          <Pagination />
+        </div>
         <div className="clear" />
       </div>
     );
