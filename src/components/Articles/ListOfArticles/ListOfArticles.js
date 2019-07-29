@@ -64,7 +64,9 @@ export class ListsOfArticles extends Component {
         <div className="row pagination center-align">
           <Pagination />
         </div>
-        <div className="clear" />
+        <div className="row pagination center-align">
+          <Pagination />
+        </div>
       </div>
     );
   }
@@ -72,9 +74,15 @@ export class ListsOfArticles extends Component {
 
 ListsOfArticles.propTypes = {
   articles: PropTypes.array,
-  getAllArticles: PropTypes.func.isRequired
+  getAllArticles: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  errors: PropTypes.object
 };
-const mapStateToProps = ({ articles: { articles } }) => ({ articles });
+const mapStateToProps = ({ articles: { articles, loading, errors } }) => ({
+  articles,
+  loading,
+  errors
+});
 
 export default connect(
   mapStateToProps,

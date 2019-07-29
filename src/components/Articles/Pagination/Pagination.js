@@ -9,13 +9,13 @@ export class Pagination extends Component {
 
   displayButtons = (articlesCount) => {
     const maxPerPage = 10;
-    const numberOfButtons = (articlesCount % maxPerPage) + (articlesCount / maxPerPage);
+    const numberOfButtons = (articlesCount % maxPerPage) + articlesCount / maxPerPage;
     let buttons = [];
     for (let i = 1; i <= numberOfButtons; i += 1) {
       buttons = [
         ...buttons,
         {
-          offset: i === 1 ? 0 : (i * 10) - 10,
+          offset: i === 1 ? 0 : i * 10 - 10,
           limit: 10,
           label: i
         }
@@ -33,7 +33,7 @@ export class Pagination extends Component {
   componentDidMount = () => {
     const { articlesCount } = this.props;
     return articlesCount && this.displayButtons(articlesCount);
-  }
+  };
 
   paginateArticles = ({ offset, limit, label }) => {
     const { getAllArticles } = this.props;
