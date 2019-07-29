@@ -54,4 +54,10 @@ describe('Notification test', () => {
       .simulate('click');
     jest.runAllTimers();
   });
+  it('should  call  markAsSeen', () => {
+    const wrapper = mount(<Provider store={store}>
+        <Modal store={store} {...props} />
+      </Provider>);
+    wrapper.find('.border').simulate('click');
+  });
 });

@@ -68,6 +68,14 @@ export const updateUnseenNotification = unseeNotification => async dispatch => d
   onFailure: types.notificationActionTypes.UPDATE_UNSEEN_NOTIFICATION_FAILURE,
   onEnd: types.notificationActionTypes.UPDATE_UNSEEN_NOTIFICATION_END
 }));
+export const markAllAsSeen = () => async dispatch => dispatch(apiAction({
+  method: 'put',
+  url: '/notifications/seen',
+  onStart: types.notificationActionTypes.MARK_ALL_NOTIFICATIONS_AS_SEEN_START,
+  onSuccess: types.notificationActionTypes.MARK_ALL_NOTIFICATIONS_AS_SEEN_SUCCESS,
+  onFailure: types.notificationActionTypes.MARK_ALL_NOTIFICATIONS_AS_SEEN_FAILURE,
+  onEnd: types.notificationActionTypes.MARK_ALL_NOTIFICATIONS_AS_SEEN_END
+}));
 
 export const deleteNotification = deleteNotification => async (dispatch) => {
   dispatch(apiAction({

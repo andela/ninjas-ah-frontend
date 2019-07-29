@@ -38,7 +38,8 @@ describe('Notification test', () => {
   it('should not call displayModal', () => {
     const wrapper = mount(<Provider store={store}>
         <GetNotifications store={store} {...props} />
-      </Provider>);
-    wrapper.find('button').simulate('click');
+      </Provider>)
+
+    wrapper.find('.button').simulate('click');
   });
 });

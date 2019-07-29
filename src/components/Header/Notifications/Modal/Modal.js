@@ -8,7 +8,8 @@ import {
   getNotification,
   getUnseenNotification,
   updateUnseenNotification,
-  deleteNotification
+  deleteNotification,
+  markAllAsSeen
 } from '../../../../actions/notificationActions';
 
 class Modal extends Component {
@@ -31,6 +32,11 @@ class Modal extends Component {
     }, 100);
   };
 
+  markAsSeen = () => {
+    const { markAllAsSeen } = this.props;
+    markAllAsSeen();
+  };
+
   render() {
     const { notifications, showModal, closeModal } = this.props;
     return (
@@ -45,7 +51,6 @@ class Modal extends Component {
                 <h2>Notification</h2>
               </div>
               <br />
-              <div />
 
               {notifications.length === 0 ? (
                 <div>
@@ -53,55 +58,71 @@ class Modal extends Component {
                   <div className="divider" />
                 </div>
               ) : (
-                notifications.map((val, key) => (
-                  <div key={key} className={val.status === 'unseen' ? 'row light-red' : 'row'}>
-                    <div role="button" onClick={() => this.updateStatus(val)}>
-                      <div key={key} className="wrap-notification">
-                        <div className="notification-tick">
-                          {val.status === 'unseen' ? (
-                            <FontAwesomeIcon
-                              icon={faCheck}
-                              size="1x"
-                              className="text-light-grie small-padding left"
-                            />
-                          ) : (
-                            <FontAwesomeIcon
-                              icon={faCheckDouble}
-                              size="1x"
-                              className="left small-padding text-light-grey"
-                            />
-                          )}
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            size="1x"
-                            id={`deleteNotification${key}`}
-                            className="left small-padding text-danger cursor-pointer"
-                            onClick={() => this.deleteNotification(val)}
-                          />
-                        </div>
-                        <div className="left medium-text notification-message ">
-                          <div className="small-v-padding">
-                            {val.message.length > 120
-                              ? `${val.message.substring(0, 120)}...`
-                              : `${val.message}`}
-                          </div>
-                          <a className="text-info medium-v-padding" href={val.url}>
-                            Click here to read
-                          </a>
-                          <br />
-                        </div>
-
-                        <div className="right small-text text-light-grie notification-time hide-on-medium hide-on-small">
-                          {new Date(val.createdAt).toDateString()}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="divider" />
-
-                    <div className="divider light-grey" />
+                <div>
+                  <div>
+                    <span>Mark all notification as seen:</span>
+                    <span>
+                      <button
+                        className="border b-light medium-margin radius-2"
+                        onClick={this.markAsSeen}
+                      >
+                        <FontAwesomeIcon icon={faCheckDouble} size="2x" className="text-success" />
+                      </button>
+                    </span>
                   </div>
-                ))
+                  <div>
+                    {notifications.map((val, key) => (
+                      <div key={key} className={val.status === 'unseen' ? 'row light-red' : 'row'}>
+                        <div role="button" onClick={() => this.updateStatus(val)}>
+                          <div key={key} className="wrap-notification">
+                            <div className="notification-tick">
+                              {val.status === 'unseen' ? (
+                                <FontAwesomeIcon
+                                  icon={faCheck}
+                                  size="1x"
+                                  className="text-light-grie small-padding left"
+                                />
+                              ) : (
+                                <FontAwesomeIcon
+                                  icon={faCheckDouble}
+                                  size="1x"
+                                  className="left small-padding text-light-grey"
+                                />
+                              )}
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                size="1x"
+                                id={`deleteNotification${key}`}
+                                className="left small-padding text-danger cursor-pointer"
+                                onClick={() => this.deleteNotification(val)}
+                              />
+                            </div>
+                            <div className="left medium-text notification-message ">
+                              <div className="small-v-padding">
+                                {val.message.length > 120
+                                  ? `${val.message.substring(0, 120)}...`
+                                  : `${val.message}`}
+                              </div>
+                              <a className="text-info medium-v-padding" href={val.url}>
+                                Click here to read
+                              </a>
+                              <br />
+                            </div>
+
+                            <div className="right small-text text-light-grie notification-time hide-on-medium hide-on-small">
+                              {new Date(val.createdAt).toDateString()}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="divider" />
+
+                        <div className="divider light-grey" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
+              <div />
             </div>
             <br />
           </div>
@@ -117,6 +138,7 @@ Modal.propTypes = {
   message: PropTypes.string,
   showModal: PropTypes.bool,
   closeModal: PropTypes.func,
+  markAllAsSeen: PropTypes.func,
   notifications: PropTypes.array,
   deleteNotification: PropTypes.func,
   getNotification: PropTypes.func.isRequired,
@@ -141,5 +163,11 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { getNotification, getUnseenNotification, updateUnseenNotification, deleteNotification }
+  {
+    getNotification,
+    getUnseenNotification,
+    updateUnseenNotification,
+    deleteNotification,
+    markAllAsSeen
+  }
 )(Modal);
