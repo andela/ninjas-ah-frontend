@@ -55,8 +55,10 @@ export class ListsOfArticles extends Component {
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>{article.author ? article.author.username : ''}</span>{' '}
-                  <span>{timeStamp(article.createdAt)}</span>
-                  <span>{article.readTime} min read</span>
+                  <span>{timeStamp(article.createdAt)}</span><span>
+                    <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
+                    {article.readTime === 0 ? 1 : article.readTime} min read
+                  </span>
                 </div>
               </div>
             </div>
