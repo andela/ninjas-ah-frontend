@@ -25,29 +25,29 @@ describe('<SearchArticles /> component', () => {
 
   const onOpenModal = jest.fn();
   const component = mount(<Provider store={store}>
-      <MemoryRouter>
-        <SearchArticles {...props} />
-      </MemoryRouter>
-    </Provider>);
+    <MemoryRouter>
+      <SearchArticles {...props} />
+    </MemoryRouter>
+  </Provider>);
 
   it('<SearchArticles />', () => {
     expect(component).toHaveLength(1);
   });
-  it('it open advanced seach', () => {
+  it('it open advanced search', () => {
     const search = component
       .find('input[name="searchArticle"]')
       .simulate('change', { target: { value: 'prince@gmail.com' } });
     expect(search).toHaveLength(1);
   });
-  it('it open advanced seach', () => {
+  it('it open advanced search', () => {
     component.setState({ display: true });
     const search = component
       .find('input[name="searchArticle"]')
       .simulate('change', { target: { value: 'prince@gmail.com' } });
     expect(search).toHaveLength(1);
   });
-  it('it open advanced seach', () => {
-    const search = component.find('Link[testID="link-test"]').simulate('click', {});
+  it('it open advanced search', () => {
+    const search = component.find('button[id="link-test"]').simulate('click', {});
     expect(search).toHaveLength(1);
   });
   it('it open advanced search', () => {

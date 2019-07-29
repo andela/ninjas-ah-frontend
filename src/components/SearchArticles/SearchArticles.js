@@ -89,7 +89,7 @@ class SearchArticles extends Component {
             </div>
             <br />
             <div className="row center-align">
-              <button type="button" className="button primary radius-5" style={open ? { display: 'none' } : {}} onClick={this.onOpenModal}>
+              <button type="button" id="link-test" className="button primary radius-5" style={open ? { display: 'none' } : {}} onClick={this.onOpenModal}>
                 <span >Advanced Search</span>
               </button>
             </div>
