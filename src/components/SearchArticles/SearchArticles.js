@@ -87,13 +87,14 @@ class SearchArticles extends Component {
                 <div className="clear" />
               </div>
             </div>
+            <br />
             <div className="row center-align">
-              <Link testID="link-test" className="advancedSearch" onClick={this.onOpenModal}>
-                <Button style={open ? { display: 'none' } : {}}>Advanced Search</Button>
-              </Link>
+              <button type="button" className="button primary radius-5" style={open ? { display: 'none' } : {}} onClick={this.onOpenModal}>
+                <span >Advanced Search</span>
+              </button>
             </div>
           </div>
-          <div classNames="row " style={style}>
+          <div className="row " style={style}>
             <br />
             <h2 className="center-align medium-v-padding">Search articles</h2>
             <Form testID="seacrchForm" onSubmit={this.handleSubmit}>
@@ -146,7 +147,7 @@ class SearchArticles extends Component {
                 </div>
               </div>
               <div className="small-screen-4">
-                <Button type="submit" loading={''}>
+                <Button type="submit">
                   Search
                 </Button>
               </div>
@@ -165,7 +166,7 @@ class SearchArticles extends Component {
                             imgSrc={
                               article.coverUrl
                                 ? `${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${
-                                  article.coverUrl
+                                article.coverUrl
                                 }`
                                 : placeholder
                             }
@@ -204,9 +205,9 @@ export const mapStateToProps = (store) => {
 };
 SearchArticles.propTypes = {
   searchArticles: PropTypes.func,
-  articles: PropTypes.object,
+  articles: PropTypes.array,
   error: PropTypes.string,
-  loading: PropTypes.bool,
+  loading: PropTypes.any,
   location: PropTypes.object,
   pathname: PropTypes.string
 };

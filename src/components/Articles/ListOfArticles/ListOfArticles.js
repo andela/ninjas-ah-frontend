@@ -50,7 +50,7 @@ export class ListsOfArticles extends Component {
               </div>
               <div className="small-screen-4 medium-screen-3 large-screen-3">
                 <h2 className="nobold">
-                  <Link to={`/articles/${article.slug}`}> {article.id} -- {article.title}</Link>
+                  <Link to={`/articles/${article.slug}`}> {article.title}</Link>
                 </h2>
                 <div className="small-v-padding hide-on-small">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
@@ -74,7 +74,7 @@ export class ListsOfArticles extends Component {
           />
         ) : (
             <div />
-        )}
+          )}
         <div className="clear" />
         <div className="row pagination center-align">
           <Pagination />
