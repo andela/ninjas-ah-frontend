@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'dotenv/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { getAllArticles } from '../../../actions';
 import placeholder from '../../../assets/images/placeholder.png';
 import timeStamp from '../../../helpers/timeStamp';
+import imagePlaceholder from '../../../assets/images/ARTICLE_PLACEHOLER.png';
 import { Img } from '../../common';
 import './listOfArticles.scss';
 import Pagination from '../Pagination';
@@ -23,7 +26,7 @@ export class ListsOfArticles extends Component {
   }
 
   render() {
-    const { articles } = this.props;
+    const { articles, loading } = this.props;
     const { imageRectangle } = this.state;
     return (
       <div className="row" id="articleCard">
@@ -61,12 +64,19 @@ export class ListsOfArticles extends Component {
           </div>
         ))}
         <div className="clear" />
+        {loading ? (
+          <Img
+            imgSrc={imagePlaceholder}
+            imgClass="center radius-1 loading-article"
+            alt="Loading article"
+          />
+        ) : ''}
+        <div className="clear" />
+
         <div className="row pagination center-align">
           <Pagination />
         </div>
-        <div className="row pagination center-align">
-          <Pagination />
-        </div>
+        <div className="clear" />
       </div>
     );
   }

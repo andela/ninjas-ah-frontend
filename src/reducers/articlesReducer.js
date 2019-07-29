@@ -6,17 +6,20 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.FETCH_ARTICLES_START:
       return {
         ...state,
-        articles: []
+        articles: [],
+        loading: true
       };
     case articlesType.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: [...state.articles, ...payload.articles]
+        articles: [...state.articles, ...payload.articles],
+        articlesCount: payload.articlesCount,
+        loading: false
       };
     case articlesType.FETCH_ARTICLE_START:
       return {
         ...state,
-        article: { ...state.article }
+        article: { ...state.article },
       };
     case articlesType.FETCH_ARTICLE_SUCCESS:
       return {
