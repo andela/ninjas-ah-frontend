@@ -38,8 +38,7 @@ export class ProfileUserDetails extends Component {
                 <div className="modal-header left-align">
                   <Button
                     buttonClass="button medium-padding yellow radius-5 text-black"
-                    onClick={this.hideModal}
-                  >
+                    onClick={this.hideModal}>
                     <FontAwesomeIcon icon={faTimes} size="2x" />
                   </Button>
                 </div>

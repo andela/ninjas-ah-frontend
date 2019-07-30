@@ -202,7 +202,7 @@ export class Article extends Component {
               </div>
             </div>
           ) : (
-            <div>{loaded && !Object.keys(article).length ? <NotFound /> : <div>{''}</div>}</div>
+            <div>{loaded && !Object.keys(article).length ? <NotFound /> : <div />}</div>
           )}
         </div>
       </Layout>
@@ -214,6 +214,7 @@ Article.defaultProps = { match: { params: { slug: '' } } };
 
 Article.propTypes = {
   article: PropTypes.object,
+  loading: PropTypes.bool,
   fetchOneArticle: PropTypes.func.isRequired,
   getArticleHighlights: PropTypes.func,
   editorState: PropTypes.func,

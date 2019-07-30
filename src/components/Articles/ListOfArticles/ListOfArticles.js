@@ -55,7 +55,8 @@ export class ListsOfArticles extends Component {
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>{article.author ? article.author.username : ''}</span>{' '}
-                  <span>{timeStamp(article.createdAt)}</span><span>
+                  <span>{timeStamp(article.createdAt)}</span>
+                  <span>
                     <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
                     {article.readTime === 0 ? 1 : article.readTime} min read
                   </span>
@@ -72,7 +73,9 @@ export class ListsOfArticles extends Component {
             imgClass="center radius-1 loading-article"
             alt="Loading article"
           />
-        ) : ''}
+        ) : (
+          ''
+        )}
         <div className="clear" />
 
         <div className="row pagination center-align">

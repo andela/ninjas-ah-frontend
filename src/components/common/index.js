@@ -8,6 +8,7 @@ import TextArea from './TextArea/TextArea';
 import Heading from './Heading/Heading';
 import NotFound from './NotFound/NotFound';
 import LikeDislikeButton from './LikeDislikeButton/LikeDislikeButton';
+import ProgressBar from './ProgressBar';
 
 export {
   Input,
@@ -19,5 +20,6 @@ export {
   TextArea,
   Heading,
   NotFound,
-  LikeDislikeButton
+  LikeDislikeButton,
+  ProgressBar
 };

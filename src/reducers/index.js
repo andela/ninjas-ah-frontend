@@ -5,5 +5,15 @@ import images from './imagesReducer';
 import rating from './rating';
 import searchArticles from './searchArticlesReducer';
 import bookmarks from './bookmarks';
+import comments from './comments';
 
-export default { user, notification, articles, images, rating, searchArticles, bookmarks };
+export default {
+  user,
+  notification,
+  articles,
+  images,
+  rating,
+  searchArticles,
+  bookmarks,
+  comments
+};
