@@ -34,7 +34,7 @@ const state = { loading: true, comment: 'this is the comment' };
 describe('<CommentComponent />', () => {
   const component = shallow(<CommentFormComponent {...props} />);
   test('should render a <CommentFormComponent /> component ', () => {
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
   test('should set state', () => {
     component.setState({ ...state });
