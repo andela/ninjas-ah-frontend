@@ -195,7 +195,6 @@ export class Article extends Component {
                     />
                   )}
                 </div>
-                
                 <div className="divider light" />
                 <div>
                   <LikeArticle />
