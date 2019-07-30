@@ -46,52 +46,52 @@ class Bookmarks extends Component {
                 <div className="large-margin">No bookmarks</div>
               </div>
             ) : (
-              bookmarks.map((element, key) => (
-                <div key={key} className="row">
-                  <Link to={`/articles/${element.articleSlug}`}>
-                    <div className="small-screen-4 medium-screen-1 large-screen-1 ">
-                      <div className="image">
-                        <Img
-                          imgSrc={`${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${
-                            element.article.coverUrl
-                          }`}
-                          imgClass="center radius-1"
-                        />
-                        <br />
+                bookmarks.map((element, key) => (
+                  <div key={key} className="row">
+                    <Link to={`/articles/${element.articleSlug}`}>
+                      <div className="small-screen-4 medium-screen-1 large-screen-1 ">
+                        <div className="image">
+                          <Img
+                            imgSrc={`${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${
+                              element.article.coverUrl
+                              }`}
+                            imgClass="center radius-1"
+                          />
+                          <br />
+                        </div>
                       </div>
-                    </div>
-                    <div className="large-margin">
                       <div className="large-margin">
-                        <h3>{element.article.title}</h3>
+                        <div className="large-margin">
+                          <h3>{element.article.title}</h3>
+                        </div>
+                        <div className="xxlarge-h-margin">
+                          <p>{element.article.description}</p>
+                        </div>
+                        <div className="xxlarge-h-margin text-grey small-text">
+                          <span>{element.article.readTime} min</span>
+                          <span className="xlarge-margin">
+                            {new Date(element.createdAt).toDateString()}
+                          </span>
+                        </div>
                       </div>
-                      <div className="xxlarge-h-margin">
-                        <p>{element.article.description}</p>
-                      </div>
-                      <div className="xxlarge-h-margin text-grey small-text">
-                        <span>{element.article.readTime} min</span>
-                        <span className="xlarge-margin">
-                          {new Date(element.createdAt).toDateString()}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                  <button
-                    className="danger text-white "
-                    onClick={() => this.deleteBookmark(element)}
-                  >
-                    <span>
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        size="1x"
-                        className="left text-white small-h-padding"
-                      />
-                    </span>
-                    <span className="small-h-padding">Remove</span>
-                  </button>
-                  <div className="divider light-grey" />
-                </div>
-              ))
-            )}
+                    </Link>
+                    <button
+                      className="danger text-white "
+                      onClick={() => this.deleteBookmark(element)}
+                    >
+                      <span>
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          size="1x"
+                          className="left text-white small-h-padding"
+                        />
+                      </span>
+                      <span className="small-h-padding">Remove</span>
+                    </button>
+                    <div className="divider light-grey" />
+                  </div>
+                ))
+              )}
           </div>
         </div>
       </Layout>
@@ -103,7 +103,7 @@ Bookmarks.propTypes = {
   loading: PropTypes.bool,
   errors: PropTypes.object,
   message: PropTypes.string,
-  bookmarks: PropTypes.array,
+  bookmarks: PropTypes.any,
   getAllBookmarks: PropTypes.func.isRequired,
   deleteOneBookmark: PropTypes.func.isRequired
 };

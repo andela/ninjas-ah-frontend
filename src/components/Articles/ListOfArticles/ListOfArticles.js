@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'dotenv/config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { getAllArticles } from '../../../actions';
 import placeholder from '../../../assets/images/placeholder.png';
 import timeStamp from '../../../helpers/timeStamp';
+import imagePlaceholder from '../../../assets/images/ARTICLE_PLACEHOLER.png';
 import { Img } from '../../common';
 import './listOfArticles.scss';
+import Pagination from '../Pagination';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 export class ListsOfArticles extends Component {
@@ -22,7 +26,7 @@ export class ListsOfArticles extends Component {
   }
 
   render() {
-    const { articles } = this.props;
+    const { articles, loading } = this.props;
     const { imageRectangle } = this.state;
     return (
       <div className="row" id="articleCard">
@@ -51,14 +55,29 @@ export class ListsOfArticles extends Component {
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>{article.author ? article.author.username : ''}</span>{' '}
-                  <span>{timeStamp(article.createdAt)}</span>
-                  <span>{article.readTime} min read</span>
+                  <span>{timeStamp(article.createdAt)}</span><span>
+                    <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
+                    {article.readTime === 0 ? 1 : article.readTime} min read
+                  </span>
                 </div>
               </div>
             </div>
             <div className="divider light" />
           </div>
         ))}
+        <div className="clear" />
+        {loading ? (
+          <Img
+            imgSrc={imagePlaceholder}
+            imgClass="center radius-1 loading-article"
+            alt="Loading article"
+          />
+        ) : ''}
+        <div className="clear" />
+
+        <div className="row pagination center-align">
+          <Pagination />
+        </div>
         <div className="clear" />
       </div>
     );
@@ -67,9 +86,15 @@ export class ListsOfArticles extends Component {
 
 ListsOfArticles.propTypes = {
   articles: PropTypes.array,
-  getAllArticles: PropTypes.func.isRequired
+  getAllArticles: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  errors: PropTypes.object
 };
-const mapStateToProps = ({ articles: { articles } }) => ({ articles });
+const mapStateToProps = ({ articles: { articles, loading, errors } }) => ({
+  articles,
+  loading,
+  errors
+});
 
 export default connect(
   mapStateToProps,
