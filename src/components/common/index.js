@@ -9,7 +9,6 @@ import Heading from './Heading/Heading';
 import NotFound from './NotFound/NotFound';
 import LikeDislikeButton from './LikeDislikeButton/LikeDislikeButton';
 import ProgressBar from './ProgressBar';
-import Pagination from './Pagination/Pagination';
 
 export {
   Input,
@@ -22,6 +21,5 @@ export {
   Heading,
   NotFound,
   LikeDislikeButton,
-  ProgressBar,
-  Pagination
+  ProgressBar
 };

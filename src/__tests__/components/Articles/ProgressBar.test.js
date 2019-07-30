@@ -5,6 +5,6 @@ import { shallow } from '../../../../config/enzymeConfig';
 describe('<Progress />', () => {
   const component = shallow(<ProgressBarComponent />);
   it('should render progressbar', () => {
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
 });

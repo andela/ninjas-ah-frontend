@@ -5,14 +5,11 @@ import 'dotenv/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { getAllArticles } from '../../../actions';
 import placeholder from '../../../assets/images/placeholder.png';
 import timeStamp from '../../../helpers/timeStamp';
 import imagePlaceholder from '../../../assets/images/ARTICLE_PLACEHOLER.png';
 import { Img } from '../../common';
-import { Img, Pagination } from '../../common';
 import './listOfArticles.scss';
 import Pagination from '../Pagination';
 
@@ -29,12 +26,10 @@ export class ListsOfArticles extends Component {
   }
 
   render() {
-    const { articles, errors, loading } = this.props;
+    const { articles, loading } = this.props;
     const { imageRectangle } = this.state;
     return (
       <div className="row" id="articleCard">
-        <div className="card" />
-        {loading ? <h3 className="medium-padding center-align ">Loading...</h3> : ''}
         {(articles || []).map((article, key) => (
           <div key={key}>
             <div className="card">
@@ -59,27 +54,18 @@ export class ListsOfArticles extends Component {
                 </h2>
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
-                  <span>
-                    {article.author.lastName
-                      ? `${article.author.firstName} ${article.author.lastName}`
-                      : article.author.username}
-                  </span>{' '}
+                  <span>{article.author ? article.author.username : ''}</span>{' '}
                   <span>{timeStamp(article.createdAt)}</span>
-                  <span>{article.readTime} min read</span>
+                  <span>
+                    <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
+                    {article.readTime === 0 ? 1 : article.readTime} min read
+                  </span>
                 </div>
               </div>
             </div>
             <div className="divider light" />
           </div>
         ))}
-        <Pagination />
-        {errors && errors.message && !loading ? (
-          <div className="text-danger border b-light medium-padding medium-margin text-white center-align">
-            <FontAwesomeIcon icon={faQuestionCircle} /> {errors.message}
-          </div>
-        ) : (
-          ''
-        )}
         <div className="clear" />
         {loading ? (
           <Img
