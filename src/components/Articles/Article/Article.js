@@ -16,6 +16,7 @@ import ArticleHighlight from './ArticleHighlight';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
+import BookmarkArticle from '../../Bookmarks/BookmarkArticle';
 
 import './Article.scss';
 import Rating from './Rating';
@@ -196,6 +197,7 @@ export class Article extends Component {
                 <div className="divider light" />
                 <div>
                   <LikeArticle />
+                  <BookmarkArticle />
                 </div>
               </div>
             </div>

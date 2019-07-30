@@ -12,10 +12,18 @@ const icons = {
 
 const LikeButton = ({ name, type, buttonId, number, onClick, iconSize, numberSize }) => (
   <div className="LikeButton inline-block">
-    <Button onClick={onClick} buttonClass="button light inline-block" name={name} id={buttonId}>
+    <Button
+      onClick={onClick}
+      buttonClass="button radius-1 light inline-block"
+      name={name}
+      id={buttonId}
+    >
       <FontAwesomeIcon icon={icons[type]} style={{ fontSize: `${iconSize}px` }} />
     </Button>
-    <span className="button number inline-block light" style={{ fontSize: `${numberSize}px` }}>
+    <span
+      className="button radius-1 number inline-block light"
+      style={{ fontSize: `${numberSize}px` }}
+    >
       {number}
     </span>
   </div>
