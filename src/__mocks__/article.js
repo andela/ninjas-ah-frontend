@@ -61,3 +61,12 @@ export const article = {
     entityMap: {}
   })
 };
+
+export const newComment = {
+  id: 2,
+  articleSlug: 'slug',
+  userId: 5,
+  body: 'this is a comment'
+};
+
+export const Comment = { body: 'comme here' };

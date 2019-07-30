@@ -1,7 +1,7 @@
 import { commentsActionsTypes } from '../../actions-types';
 import { apiAction } from '../../helpers';
 
-export const createComment = (data = {}) => dispatch => dispatch(apiAction({
+export const createComment = data => dispatch => dispatch(apiAction({
   data: { body: data.comment },
   method: 'post',
   url: `/articles/${data.slug}/comments`,

@@ -4,7 +4,7 @@ import CommentThread from './CommentThread';
 import CommentForm from './CommentForm';
 import './Comments.scss';
 
-export default class Comments extends Component {
+export class Comments extends Component {
   state = { title: 'Comments' };
 
   render() {

@@ -26,16 +26,14 @@ export class CommentForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = async (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
     const { isAuth, slug, createComment } = this.props;
     const { comment } = this.state;
     this.setState({ comment: '' });
-    if (isAuth) {
-      await createComment({ comment, slug });
-    } else {
-      this.setState({ errors: { token: 'Failed to authenticate token' } });
-    }
+    return isAuth
+      ? createComment({ comment, slug })
+      : this.setState({ errors: { token: 'Failed to authenticate token' } });
   };
 
   render() {
@@ -48,8 +46,7 @@ export class CommentForm extends Component {
             To comment,{' '}
             <Link
               className="bold text-info"
-              to={`/login?redirect=articles/${slug}#comment-form-wrapper`}
-            >
+              to={`/login?redirect=articles/${slug}#comment-form-wrapper`}>
               Login
             </Link>{' '}
             first
@@ -62,7 +59,7 @@ export class CommentForm extends Component {
             </Link>
           </div>
         )}
-        <form onSubmit={this.onSubmit}>
+        <form id="submit-comment" onSubmit={this.onSubmit}>
           <div className="input-field">
             <TextareaAutosize
               name="comment"

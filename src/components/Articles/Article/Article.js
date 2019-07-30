@@ -13,14 +13,13 @@ import { getArticleHighlights } from '../../../actions/articles';
 import avatar from '../../../assets/images/user.png';
 import timeStamp from '../../../helpers/timeStamp';
 import ArticleHighlight from './ArticleHighlight';
-import { NotFound, ProgressBar } from '../../common';
+import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
 
 import './Article.scss';
 import Rating from './Rating';
 import LikeArticle from '../LikeArticle/LikeArticle';
-import Comments from '../Comments/Comments';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 
@@ -101,7 +100,6 @@ export class Article extends Component {
       styleMap,
       loaded
     } = this.state;
-    const { loading } = this.props;
     return (
       <Layout>
         <div id="article">
@@ -214,6 +212,7 @@ Article.defaultProps = { match: { params: { slug: '' } } };
 
 Article.propTypes = {
   article: PropTypes.object,
+  loading: PropTypes.bool,
   fetchOneArticle: PropTypes.func.isRequired,
   getArticleHighlights: PropTypes.func,
   editorState: PropTypes.func,

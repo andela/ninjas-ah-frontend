@@ -21,6 +21,18 @@ describe('Articles reducers', () => {
     });
     expect(reducer.articles).toBeInstanceOf(Array);
   });
+  it('FETCH_ARTICLES_END', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.FETCH_ARTICLES_END,
+      payload: { loading: false }
+    });
+  });
+  it('FETCH_ARTICLES_FAILURE', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.FETCH_ARTICLES_FAILURE,
+      payload: { errors }
+    });
+  });
   it('FETCH_ARTICLE_START', () => {
     const reducer = articlesReducer(initialState, {
       type: articlesType.FETCH_ARTICLE_START,

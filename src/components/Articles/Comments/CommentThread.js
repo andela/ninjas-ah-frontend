@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
-import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-autosize-textarea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,12 +11,12 @@ import {
   faTrash,
   faCommentAlt
 } from '@fortawesome/free-solid-svg-icons';
-import './Comments.scss';
 import { css } from '@emotion/core';
 import { fetchComments, deleteComment, editComment } from '../../../actions';
 import { Img } from '../../common';
 import timeStamp from '../../../helpers/timeStamp';
 import avatar from '../../../assets/images/profile_plaholder.png';
+import './Comments.scss';
 
 export class CommentThread extends Component {
   state = { comments: [], slug: '', body: '', commentEditor: {}, newComments: {} };
@@ -45,10 +44,6 @@ export class CommentThread extends Component {
     this.setState({ id, commentKey });
   };
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
   onChangeEditComment = (e) => {
     this.setState({ newComments: { [e.target.name]: { value: e.target.value } } });
   };
@@ -70,32 +65,34 @@ export class CommentThread extends Component {
     }));
   };
 
-  onSubmit = async (e, key, id, userId) => {
+  onSubmit = (e, key, id, userId) => {
     e.preventDefault();
     this.setState({ errors: {} });
     const { isAuth, slug, editComment, profile } = this.props;
     const { newComments, comments } = this.state;
-    if (isAuth) {
-      if (userId === profile.id) {
-        if (newComments && Object.keys(newComments).length) {
-          const comment = {
-            body: newComments[`comment-${key}`].value,
-            slug,
-            id,
-            userId
-          };
-          await editComment(comment);
-          comments[key].body = newComments[`comment-${key}`].value;
-          this.setState({ comments, errors: { message: 'You have edited this comment' } });
-        } else {
-          this.setState({ errors: { message: 'To submit, you need to edit first' } });
-        }
-      } else {
-        this.setState({ errors: { message: 'You can not edit a comment you did not created' } });
-      }
-    } else {
+    if (!isAuth) {
       this.setState({ errors: { token: 'Failed to authenticate token' } });
+      return false;
     }
+    if (userId !== profile.id) {
+      this.setState({ errors: { message: 'You can not edit a comment you did not created' } });
+      return false;
+    }
+
+    if (newComments && Object.keys(newComments).length) {
+      const comment = {
+        body: newComments[`comment-${key}`].value,
+        slug,
+        id,
+        userId
+      };
+      editComment(comment);
+      comments[key].body = newComments[`comment-${key}`].value;
+      this.setState({ comments, errors: { message: 'You have edited this comment' } });
+    } else {
+      this.setState({ errors: { message: 'To submit, you need to edit first' } });
+    }
+    return true;
   };
 
   render() {
@@ -139,10 +136,13 @@ export class CommentThread extends Component {
                     {/* comment body */}
                     <div className="comment-message-wrapper">
                       <div>
-                        <Link to="/" className="text-success">
-                          {`${comment.commentAuthor.firstName} ${comment.commentAuthor.lastName}`}{' '}
-                          {comment.commentAuthor.username || ''}
-                        </Link>
+                        {comment.commentAuthor && comment.commentAuthor.firstName ? (
+                          <span className="bold text-success">
+                            {comment.commentAuthor.firstName}
+                          </span>
+                        ) : (
+                          <span className="bold text-success">{profile.firstName}</span>
+                        )}
                         <br />
                         <div className="text-grey small-v-margin timestamp">
                           {timeStamp(comment.createdAt)}
@@ -164,19 +164,18 @@ export class CommentThread extends Component {
                               &nbsp; Edit History
                             </button>
                             <button
+                              id="toggle-comment"
                               onClick={() => this.toggleCommentEditor(key)}
-                              className="success text-white"
-                            >
+                              className="success text-white">
                               <FontAwesomeIcon icon={faPenAlt} />
                               &nbsp; Edit
                             </button>
                             <button
+                              id="delete-comment"
                               onClick={() => {
-                                // eslint-disable-next-line no-alert
-                                if (window.confirm('Are you sure you want to delete this comment?')) this.onDeleteComment(comment.id, key);
+                                this.onDeleteComment(comment.id, key);
                               }}
-                              className="danger text-white"
-                            >
+                              className="danger text-white">
                               <FontAwesomeIcon icon={faTrash} />
                               &nbsp; Delete
                             </button>
@@ -189,9 +188,10 @@ export class CommentThread extends Component {
                       <div
                         className={`comment-editor ${(commentEditor[key]
                           && commentEditor[key].display)
-                          || 'hide'}`}
-                      >
-                        <form onSubmit={e => this.onSubmit(e, key, comment.id, comment.userId)}>
+                          || 'hide'}`}>
+                        <form
+                          id="submit-comment"
+                          onSubmit={e => this.onSubmit(e, key, comment.id, comment.userId)}>
                           <div>Edit this comment</div>
                           <div className="input-field">
                             <TextareaAutosize
@@ -212,14 +212,13 @@ export class CommentThread extends Component {
                             <button
                               onSubmit={this.onSubmit}
                               type="submit"
-                              className="button success text-white radius-5"
-                            >
+                              className="button success text-white radius-5">
                               Update
                             </button>
                             <button
+                              id="close-comment-editor"
                               onClick={e => this.closeCommentEditor(e, key)}
-                              className="button white text-black radius-5 border b-grey"
-                            >
+                              className="button white text-black radius-5 border b-grey">
                               Cancel
                             </button>
                             {loading ? (
@@ -280,7 +279,7 @@ CommentThread.propTypes = {
   match: PropTypes.object,
   loading: PropTypes.bool,
   deleted: PropTypes.any,
-  message: PropTypes.bool
+  message: PropTypes.string
 };
 const mapStateToProps = ({
   user: { isAuth, profile },
