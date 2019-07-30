@@ -5,7 +5,6 @@ import { BeatLoader } from 'react-spinners';
 import TextareaAutosize from 'react-autosize-textarea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faThumbsUp,
   faClock,
   faPenAlt,
   faTrash,
@@ -18,6 +17,7 @@ import { Img } from '../../common';
 import timeStamp from '../../../helpers/timeStamp';
 import avatar from '../../../assets/images/profile_plaholder.png';
 import './Comments.scss';
+import LikeComment from './LikeComment';
 
 export class CommentThread extends Component {
   state = {
@@ -175,9 +175,7 @@ export class CommentThread extends Component {
             color="#f9d342"
             loading={loading}
           />
-        ) : (
-            ''
-          )}
+        ) : ('')}
         <ul className="list-block comments-wrapper">
           {!loading
             && (comments || []).map((comment, key) => (
@@ -200,9 +198,7 @@ export class CommentThread extends Component {
                           <span className="bold text-success">
                             {comment.commentAuthor.firstName}
                           </span>
-                        ) : (
-                            <span className="bold text-success">{profile.firstName}</span>
-                          )}
+                        ) : (<span className="bold text-success">{profile.firstName}</span>)}
                         <br />
                         <div className="text-grey small-v-margin timestamp">
                           {timeStamp(comment.createdAt)}
@@ -212,10 +208,7 @@ export class CommentThread extends Component {
                       {/* comment actions */}
                       <div className="row">
                         <span className="small-screen-4 medium-screen-4 large-screen-2">
-                          <button className="light text-black">
-                            <FontAwesomeIcon icon={faThumbsUp} className="text-grey" />
-                            &nbsp; likes
-                          </button>
+                          <LikeComment comment={comment} />
                         </span>
                         {isAuth && profile.id === comment.userId ? (
                           <span className="small-screen-4 medium-screen-4 large-screen-2 right-align">
@@ -247,9 +240,7 @@ export class CommentThread extends Component {
                               &nbsp; Delete
                             </button>
                           </span>
-                        ) : (
-                            ''
-                          )}
+                        ) : ('')}
                       </div>
                       <div className="divider white" />
                       <div
@@ -277,16 +268,12 @@ export class CommentThread extends Component {
                           <div className="center-align bold medium-text">
                             Loading comment history...
                           </div>
-                        ) : (
-                            ''
-                          )}
+                        ) : ('')}
                         {!loadingHistory && !commentHistory ? (
                           <div className="center-align bold medium-text">
                             You did not edit this comment yet!
                           </div>
-                        ) : (
-                            ''
-                          )}
+                        ) : ('')}
                       </div>
                       <div className="divider white" />
 
@@ -332,16 +319,12 @@ export class CommentThread extends Component {
                             </button>
                             {loading ? (
                               <span className="medium-padding radius-5">loading</span>
-                            ) : (
-                                ''
-                              )}
+                            ) : ('')}
                             {errors && errors.message ? (
                               <span className="medium-padding radius-5 text-danger">
                                 {errors.message}
                               </span>
-                            ) : (
-                                ''
-                              )}
+                            ) : ('')}
                           </div>
                         </form>
                       </div>
@@ -349,9 +332,7 @@ export class CommentThread extends Component {
                     </div>
                     <div className="divider white" />
                   </div>
-                ) : (
-                    ''
-                  )}
+                ) : ('')}
               </li>
             ))}
           <div>
@@ -363,9 +344,7 @@ export class CommentThread extends Component {
                 />
                 <h2 className="center-align large-v-padding">No comment yet</h2>
               </div>
-            ) : (
-                ''
-              )}
+            ) : ('')}
           </div>
         </ul>
         <div className="clear" />

@@ -9,6 +9,7 @@ import * as bookmarksActionTypes from './bookmarksActionTypes';
 import * as likeArticleActionsTypes from './likeArticleActionsTypes';
 import * as commentsActionsTypes from './commentsActionsTypes';
 import * as readingStatsActionTypes from './readingStatsActionTypes';
+import * as likeCommentsActionsTypes from './likeCommentsActionsTypes';
 
 export {
   articlesType,
@@ -21,5 +22,6 @@ export {
   bookmarksActionTypes,
   likeArticleActionsTypes,
   commentsActionsTypes,
-  readingStatsActionTypes
+  readingStatsActionTypes,
+  likeCommentsActionsTypes
 };
