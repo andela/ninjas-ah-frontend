@@ -17,6 +17,7 @@ import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
 import BookmarkArticle from '../../Bookmarks/BookmarkArticle';
+import { Comments } from '../Comments/Comments';
 
 import './Article.scss';
 import Rating from './Rating';
@@ -199,6 +200,7 @@ export class Article extends Component {
                   <LikeArticle />
                   <BookmarkArticle />
                 </div>
+                <Comments slug={article.slug} />
               </div>
             </div>
           ) : (
