@@ -14,6 +14,9 @@ import { createRate, clearCreateRateStore } from './rating';
 import { uploadImage } from './images';
 import searchArticles from './searchArticles';
 import { getAllBookmarks, deleteOneBookmark } from './bookmarks';
+import getArticleLikes from './getArticleLikes';
+import likeArticle from './likeArticle';
+import dislikeArticle from './dislikeArticle';
 
 export {
   userAction,
@@ -31,5 +34,8 @@ export {
   clearCreateRateStore,
   searchArticles,
   getAllBookmarks,
-  deleteOneBookmark
+  deleteOneBookmark,
+  getArticleLikes,
+  likeArticle,
+  dislikeArticle
 };

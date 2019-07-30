@@ -1,5 +1,6 @@
 import { articlesType } from '../actions-types';
 import { articles as initialState } from '../store/initialState';
+import { updateArticleLikesOrDislikes } from '../helpers';
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -226,6 +227,96 @@ export default (state = initialState, { type, payload }) => {
             message: payload.message || (Array.isArray(payload.errors) && payload.errors[0])
           }
         }
+      };
+    // get article likes
+    case articlesType.GET_ARTICLE_LIKES_START:
+      return {
+        ...state,
+        getLikes: { ...payload, loading: true, message: '', errors: {} }
+      };
+    case articlesType.GET_ARTICLE_LIKES_SUCCESS:
+      return {
+        ...state,
+        article: {
+          ...state.article,
+          likes: { number: payload.likes, whoLiked: payload.whoLiked.userId },
+          dislikes: { number: payload.dislikes, whoDisliked: payload.whoDisliked.userId }
+        },
+        getLikes: { ...payload, loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.GET_ARTICLE_LIKES_FAILURE:
+      return {
+        ...state,
+        article: { ...state.article }
+      };
+    case articlesType.GET_ARTICLE_LIKES_END:
+      return {
+        ...state,
+        getLikes: { ...payload.getLikes, loading: false }
+      };
+    // like article
+    case articlesType.LIKE_ARTICLE_START:
+      return {
+        ...state,
+        like: { ...payload, loading: true, message: '', errors: {} }
+      };
+    case articlesType.LIKE_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        article: {
+          ...state.article,
+          ...updateArticleLikesOrDislikes({
+            userId: payload.createLike.userId,
+            whoLiked: state.article.likes.whoLiked,
+            currentLikes: state.article.likes.number,
+            whoDisliked: state.article.dislikes.whoDisliked,
+            currentDislikes: state.article.dislikes.number,
+            action: 'like'
+          })
+        },
+        like: { ...payload, loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.LIKE_ARTICLE_FAILURE:
+      return {
+        ...state,
+        article: { ...state.article }
+      };
+    case articlesType.LIKE_ARTICLE_END:
+      return {
+        ...state,
+        like: { ...payload.like, loading: false }
+      };
+    // dislike article
+    case articlesType.DISLIKE_ARTICLE_START:
+      return {
+        ...state,
+        dislike: { ...payload, loading: true, message: '', errors: {} }
+      };
+    case articlesType.DISLIKE_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        article: {
+          ...state.article,
+          ...updateArticleLikesOrDislikes({
+            userId: payload.createLike.userId,
+            whoLiked: state.article.likes.whoLiked,
+            currentLikes: state.article.likes.number,
+            whoDisliked: state.article.dislikes.whoDisliked,
+            currentDislikes: state.article.dislikes.number,
+            action: 'dislike'
+          })
+        },
+        dislike: { ...payload, loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.DISLIKE_ARTICLE_FAILURE:
+      return {
+        ...state,
+        article: { ...state.article }
+      };
+    case articlesType.DISLIKE_ARTICLE_END:
+      return {
+        ...state,
+        dislike: { ...payload.dislike, loading: false }
       };
     default:
       return state;

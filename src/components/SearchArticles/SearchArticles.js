@@ -38,7 +38,7 @@ class SearchArticles extends Component {
       url = `${url}${keyword ? '&' : '?'}author=${author}`;
     }
     if (tag) {
-      url = `${url}${keyword || author ? '' : '?'}&tag=${tag}`;
+      url = `${url}${keyword || author ? '&' : '?'}tag=${tag}`;
     }
     searchArticles(url);
     style = !this.state.display ? { display: 'none' } : {};

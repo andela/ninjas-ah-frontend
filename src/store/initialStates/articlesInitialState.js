@@ -1,6 +1,10 @@
 module.exports = {
   articles: [],
-  article: { highlights: [] },
+  article: {
+    highlights: [],
+    likes: { number: 0, whoLiked: [] },
+    dislikes: { number: 0, whoDisliked: [] }
+  },
   message: {},
   errors: {},
   image: {},
@@ -15,6 +19,21 @@ module.exports = {
     errors: {}
   },
   deleteHighlight: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  getLikes: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  like: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  dislike: {
     loading: false,
     message: '',
     errors: {}
