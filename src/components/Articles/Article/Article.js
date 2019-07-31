@@ -19,6 +19,7 @@ import ShareArticle from '../Share/ShareArticle';
 import { saveReadingStats } from '../../../actions/readingStats';
 import BookmarkArticle from '../../Bookmarks/BookmarkArticle';
 import { Comments } from '../Comments/Comments';
+import Following from '../../FollowUnfollow/Following';
 
 import './Article.scss';
 import Rating from './Rating';
@@ -177,6 +178,9 @@ export class Article extends Component {
                         <span>
                           {article.author.lastName} {article.author.firstName}
                         </span>
+                      </span>
+                      <span className="inline-block">
+                        <Following />
                       </span>
                       <span className="medium-h-padding">{timeStamp(article.createdAt)}</span>
                       <span className="medium-h-padding">

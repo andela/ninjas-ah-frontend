@@ -28,6 +28,7 @@ import {
   getLikesComment,
   getCommentHistory
 } from './comments';
+import { getFollowers, getFollowing, follow, unfollow } from './followUnfollow';
 
 export {
   userAction,
@@ -56,5 +57,9 @@ export {
   getCommentHistory,
   likeComment,
   getLikesComment,
-  createTag
+  createTag,
+  getFollowers,
+  getFollowing,
+  follow,
+  unfollow
 };
