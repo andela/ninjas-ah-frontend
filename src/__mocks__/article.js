@@ -6,11 +6,18 @@ export default (Object.article = {
 
 export const newHighlight = {
   slug: 'slug',
+  userId: 1,
   anchorKey: 'cnu26',
   highlightedText: 'test',
   startIndex: 0,
   stopIndex: 4,
   comment: 'comment'
+};
+
+export const newArticleReport = {
+  title: 'title',
+  type: 'type',
+  body: 'body'
 };
 
 export const article = {

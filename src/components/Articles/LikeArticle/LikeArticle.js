@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getArticleLikes, likeArticle, dislikeArticle } from '../../../actions';
-import { Button, LikeDislikeButton } from '../../common';
+import { LikeDislikeButton } from '../../common';
 import { clearHighlightArticleStore } from '../../../actions/articles';
 import './LikeArticle.scss';
 
@@ -71,7 +71,7 @@ export class LikeArticle extends Component {
       article: { slug }
     } = this.props;
     return (
-      <div className="row inline-block">
+      <div className="inline-block">
         <LikeDislikeButton
           className="like"
           name="like"
@@ -91,12 +91,12 @@ export class LikeArticle extends Component {
           onClick={() => this.handleLikeClick('dislike')}
         />
         {!isAuth && (likeClicked || dislikeClicked) ? (
-          <p className="text-danger" style={{ position: 'absolute' }}>
-            <Button buttonClass="button medium-padding primary radius-1">
-              <Link to={`/login?redirect=articles/${slug}`}>Login</Link>
-            </Button>
-            to perform this action
-          </p>
+          <div className="error-message" style={{ position: 'absolute' }}>
+            <Link className="text-info bold" to={`/login?redirect=articles/${slug}`}>
+              Login
+            </Link>{' '}
+            <span className="text-grey">to perform this action</span>
+          </div>
         ) : (
           ''
         )}

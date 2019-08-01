@@ -14,7 +14,9 @@ describe('<ArticleComponent />', () => {
       description: 'John Doe, Mocker',
       body: 'body of the article'
     },
-    fetchOneArticle: jest.fn()
+    fetchOneArticle: jest.fn(),
+    getArticleHighlights: jest.fn(),
+    getOneArticleReports: jest.fn()
   };
 
   const component = shallow(<ArticleComponent {...props} />);

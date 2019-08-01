@@ -48,7 +48,13 @@ export class Login extends Component {
         {Object.keys(errors).length ? (
           <Alert
             alertType="danger"
-            message={errors.credentials || errors.account || errors.password || errors.email}
+            message={
+              errors.credentials
+              || errors.account
+              || errors.password
+              || errors.email
+              || errors.message
+            }
           />
         ) : (
           ''

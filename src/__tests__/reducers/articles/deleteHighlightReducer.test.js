@@ -27,13 +27,16 @@ describe('Delete highlight reducers', () => {
   });
 
   test('DELETE_ARTICLE_HIGHLIGHT_SUCCESS', () => {
-    const reducer = articlesReducer( {
-      ...initialState,
-      article: { ...initialState.article, highlights: [{ ...newHighlight, id: 1 }] }
-    }, {
-      type: articlesType.DELETE_ARTICLE_HIGHLIGHT_SUCCESS,
-      payload: { highlightId: 1 }
-    });
+    const reducer = articlesReducer(
+      {
+        ...initialState,
+        article: { ...initialState.article, highlights: [{ ...newHighlight, id: 1 }] }
+      },
+      {
+        type: articlesType.DELETE_ARTICLE_HIGHLIGHT_SUCCESS,
+        payload: { highlightId: 1 }
+      }
+    );
 
     expect(reducer).toHaveProperty('article');
     expect(reducer.article).toHaveProperty('highlights');
@@ -42,11 +45,11 @@ describe('Delete highlight reducers', () => {
   test('DELETE_ARTICLE_HIGHLIGHT_FAILURE', () => {
     const reducer = articlesReducer(initialState, {
       type: articlesType.DELETE_ARTICLE_HIGHLIGHT_FAILURE,
-      payload: { message: 'no network' }
+      payload: { message: 'network error' }
     });
 
     expect(reducer.deleteHighlight.errors).toHaveProperty('message');
-    expect(reducer.deleteHighlight.errors.message).toEqual('no network');
+    expect(reducer.deleteHighlight.errors.message).toEqual('network error');
   });
 
   test('DELETE_ARTICLE_HIGHLIGHT_END', () => {

@@ -40,11 +40,11 @@ describe('Get highlights reducers', () => {
   test('GET_ARTICLE_HIGHLIGHTS_FAILURE', () => {
     const reducer = articlesReducer(initialState, {
       type: articlesType.GET_ARTICLE_HIGHLIGHTS_FAILURE,
-      payload: { message: 'no network' }
+      payload: { message: 'network error' }
     });
 
     expect(reducer.getHighlights.errors).toHaveProperty('message');
-    expect(reducer.getHighlights.errors.message).toEqual('no network');
+    expect(reducer.getHighlights.errors.message).toEqual('network error');
   });
 
   test('GET_ARTICLE_HIGHLIGHTS_END', () => {

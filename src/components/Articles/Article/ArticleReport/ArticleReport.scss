@@ -1,0 +1,60 @@
+@import '../../../../assets/css/pixels';
+@import '../../../../assets/css/colors';
+@import '../../../../assets/css/shadow';
+@import '../../../../assets/css/padding';
+
+.ArticleReport {
+  display: inline-block;
+  .modal-content {
+    border: 0px;
+    padding-left: 15px !important;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: initial;
+  }
+
+  .modal-body {
+    background-color: initial !important;
+  }
+
+  .Form {
+    @extend .white;
+    margin-left: 5px !important;
+    margin-top: 5px !important;
+    input,
+    textarea {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      padding-left: 15px !important;
+      width: 95% !important;
+      border-bottom: solid 3px #ccc;
+      line-height: 1.5em;
+      padding-left: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 761px) {
+  .ArticleReport {
+    .Form {
+      margin-left: 10% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .ArticleReport {
+    .modal-content {
+      width: 90%;
+    }
+    .Form {
+      padding: 15px 30px;
+      input,
+      textarea {
+        margin-left: -15px;
+        width: 100% !important;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { EditorState, convertFromRaw } from 'draft-js';
-import mockWindow from '../../../__mocks__/window';
+import '../../../__mocks__/window';
 import { article, newHighlight } from '../../../__mocks__/article';
 import user from '../../../__mocks__/user';
 import store from '../../../__mocks__/store';
@@ -46,11 +46,12 @@ describe('<ArticleHighlightComponent />', () => {
   });
   it('should render without crashing', () => {
     const component = mount(<ArticleHighlightComponent {...{ ...props, article: { ...article, highlights: [] } }} />);
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
   it('should render without crashing', () => {
     const component = shallow(<ArticleHighlightComponent {...{ ...props, article: { ...article, highlights: [] } }} />);
-    expect(component).toMatchSnapshot();
+    component.instance().componentWillUnmount();
+    expect(component).toHaveLength(1);
   });
 
   it('should show a model containing a textarea to comment on a highlighted text', () => {
@@ -70,7 +71,7 @@ describe('<ArticleHighlightComponent />', () => {
     expect(component.state().highlightCommentModalStyle).toEqual('block');
     closeHighlightCommentButton.simulate('click', {});
     expect(component.state().highlightCommentModalStyle).toEqual('none');
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
 
   it('should return a highlighted text', () => {
@@ -79,7 +80,7 @@ describe('<ArticleHighlightComponent />', () => {
       .instance()
       .getHighlightedText(props.article.body, state.anchorKey, 0, 10);
     expect(highlightedText.length).toEqual(10);
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
 
   it('should return the starting index and stopping index of the highlighted text', () => {
@@ -87,7 +88,7 @@ describe('<ArticleHighlightComponent />', () => {
     const indexes = component.instance().getSelectionIndexes(props.editorState);
     expect(indexes).toHaveProperty('startIndex');
     expect(indexes).toHaveProperty('stopIndex');
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
 
   it('should return the selection range of the highlighted text', () => {
@@ -95,7 +96,7 @@ describe('<ArticleHighlightComponent />', () => {
     const selectionRange = component.instance().getSelectionRange(window.getSelection());
     expect(selectionRange).toHaveProperty('selectionRange');
     expect(selectionRange).toHaveProperty('selectionRectangle');
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
 
   it('should check and update the state when a text is highlighted', () => {
@@ -107,6 +108,6 @@ describe('<ArticleHighlightComponent />', () => {
     expect(component.state().selectionRectangle).toHaveProperty('bottom');
     expect(component.state().selectionRectangle).toHaveProperty('left');
     expect(component.state().selectionRectangle).toHaveProperty('right');
-    expect(component).toMatchSnapshot();
+    expect(component).toHaveLength(1);
   });
 });

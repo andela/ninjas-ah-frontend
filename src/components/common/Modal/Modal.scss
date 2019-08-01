@@ -1,0 +1,15 @@
+@media screen and (min-width: 761px) {
+  .Modal {
+    .modal-content {
+      width: 95%;
+    }
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .Modal {
+    .modal-content {
+      width: 90%;
+    }
+  }
+}

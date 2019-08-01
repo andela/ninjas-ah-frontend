@@ -59,16 +59,14 @@ export class ProfileEditPicture extends Component {
   render() {
     const { loading } = this.props;
     const { image, selectedImage, errors, message } = this.state;
+    const error = errors.token || errors.authentication || errors.permission || errors.message;
 
     return (
       <div className="ProfileEditPicture">
         <div className="small-screen-4">
           <div className="small-screen-4">
-            {(message || errors.token || errors.authentication || errors.message) && (
-              <Alert
-                alertType={(message && 'success') || 'danger'}
-                message={message || errors.token || errors.authentication || errors.message}
-              />
+            {(message || error) && (
+              <Alert alertType={(message && 'success') || 'danger'} message={message || error} />
             )}
           </div>
           <Form onSubmit={this.handleSubmit}>

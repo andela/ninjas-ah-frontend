@@ -13,18 +13,19 @@ import {
   faBookmark
 } from '@fortawesome/free-solid-svg-icons';
 import './HeaderUserMenu.scss';
-import { logout as logoutHelper } from '../../../helpers';
+import { logout } from '../../../actions/user';
 
 class HeaderUserMenu extends Component {
   logout = (e) => {
     e.preventDefault();
-    logoutHelper();
+    const { logout } = this.props;
+    logout();
   };
 
   render() {
-    const { isAuth, className, username, firstName, lastName } = this.props;
+    const { isAuth, username, firstName, lastName } = this.props;
     return (
-      <div className={className}>
+      <div className="HeaderUserMenu">
         <div className="username">
           {username || (firstName && lastName && `${firstName} ${lastName}`) || 'Welcome'}
         </div>
@@ -86,7 +87,13 @@ class HeaderUserMenu extends Component {
 
           {isAuth && (
             <li>
-              <Link className="logout" to="/" onClick={this.logout}>
+              <Link to="/forgot-password">Change password</Link>
+            </li>
+          )}
+
+          {isAuth && (
+            <li>
+              <Link className="logout" to="/logout" onClick={this.logout}>
                 <FontAwesomeIcon icon={faSignOutAlt} /> Log out
               </Link>
             </li>
@@ -98,24 +105,31 @@ class HeaderUserMenu extends Component {
 }
 
 HeaderUserMenu.propTypes = {
+  logout: PropTypes.func,
   isAuth: PropTypes.bool,
   className: PropTypes.string,
   username: PropTypes.string,
   firstName: PropTypes.string,
-  lastName: PropTypes.string
+  lastName: PropTypes.string,
+  role: PropTypes.string
 };
 
-HeaderUserMenu.defaultProps = { className: 'HeaderUserMenu' };
+HeaderUserMenu.defaultProps = { isAuth: false };
+
 const mapStateToProps = ({
   user: {
     isAuth,
-    profile: { username, firstName, lastName }
+    profile: { username, firstName, lastName, role }
   }
 }) => ({
   isAuth,
   username,
   firstName,
-  lastName
+  lastName,
+  role
 });
 
-export default connect(mapStateToProps)(HeaderUserMenu);
+export default connect(
+  mapStateToProps,
+  { logout }
+)(HeaderUserMenu);

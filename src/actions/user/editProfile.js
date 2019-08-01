@@ -5,8 +5,12 @@ export default (formData, id) => dispatch => dispatch(apiAction({
   method: 'put',
   url: `/users/${id || ''}`,
   data: { ...formData },
-  onStart: userActionsTypes.EDIT_PROFILE_START,
-  onEnd: userActionsTypes.EDIT_PROFILE_END,
-  onSuccess: userActionsTypes.EDIT_PROFILE_SUCCESS,
-  onFailure: userActionsTypes.EDIT_PROFILE_FAILURE
+  onStart: id ? userActionsTypes.ADMIN_EDIT_PROFILE_START : userActionsTypes.EDIT_PROFILE_START,
+  onEnd: id ? userActionsTypes.ADMIN_EDIT_PROFILE_END : userActionsTypes.EDIT_PROFILE_END,
+  onSuccess: id
+    ? userActionsTypes.ADMIN_EDIT_PROFILE_SUCCESS
+    : userActionsTypes.EDIT_PROFILE_SUCCESS,
+  onFailure: id
+    ? userActionsTypes.ADMIN_EDIT_PROFILE_FAILURE
+    : userActionsTypes.EDIT_PROFILE_FAILURE
 }));

@@ -22,14 +22,28 @@ export class ArticleHighlightsDetails extends Component {
   };
 
   componentDidMount = () => {
-    const elements = document.querySelectorAll('[style*="--highlight"]');
-    elements.forEach(element => element.removeEventListener('click', this.showHighlightDetails));
-    elements.forEach(element => element.addEventListener('click', this.showHighlightDetails));
+    this.attachClickEventToHighlightedTexts();
+  };
+
+  componentDidUpdate = () => {
+    this.attachClickEventToHighlightedTexts();
   };
 
   componentWillReceiveProps = (nextProps) => {
     const { errors, message } = nextProps;
     this.setState(prevState => ({ ...prevState, message, errors }));
+  };
+
+  componentWillUnmount = () => {
+    const { clearCreateRateStore, clearDeleteArticleHighlightStore } = this.props;
+    clearCreateRateStore();
+    clearDeleteArticleHighlightStore();
+  };
+
+  attachClickEventToHighlightedTexts = () => {
+    const elements = document.querySelectorAll('[style*="--highlight"]');
+    elements.forEach(element => element.removeEventListener('click', this.showHighlightDetails));
+    elements.forEach(element => element.addEventListener('click', this.showHighlightDetails));
   };
 
   hideModal = (modal) => {

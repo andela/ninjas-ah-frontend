@@ -7,6 +7,7 @@ import ProfileUserDetails from './ProfileUserDetails';
 import { Alert } from '../common';
 import { updateProfile } from '../../actions/user';
 import './Profile.scss';
+import AdminMenu from '../Admin/AdminMenu';
 
 export class Profile extends Component {
   state = { email: '', token: '', message: '', errors: {} };
@@ -30,6 +31,7 @@ export class Profile extends Component {
   };
 
   render() {
+    const { profile } = this.props;
     const { message, errors } = this.state;
     return (
       <Layout>
@@ -45,6 +47,7 @@ export class Profile extends Component {
         )}
         <div className="Profile">
           <div className="large-screen-4 medium-screen-4 small-screen-4">
+            {(profile.role === 'admin' && <AdminMenu />) || ''}
             <ProfileUserDetails />
           </div>
         </div>

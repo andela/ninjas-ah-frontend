@@ -38,8 +38,5 @@ export default Joi.object().keys({
     .min(2)
     .max(100)
     .optional(),
-  permissions: Joi.string()
-    .min(2)
-    .max(255)
-    .optional()
+  permissions: Joi.object().optional()
 });

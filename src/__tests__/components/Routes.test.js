@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from '../../../config/enzymeConfig';
-import store from '../../__mocks__/store';
+import store, {adminStore} from '../../__mocks__/store';
 import Routes from '../../components/Routes';
 import Home from '../../components/Home';
 import SocialMediaAuth from '../../components/SocialMediaAuth';
@@ -19,6 +19,11 @@ import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
 import PublishedArticles from '../../components/Profile/Articles/MyArticles/Published';
 import SearchArticles from '../../components/SearchArticles/SearchArticles';
 import Bookmarks from '../../components/Bookmarks/Bookmarks';
+import Users from '../../components/Users';
+import UsersNew from '../../components/Users/UsersNew';
+import UserDetails from '../../components/Users/UsersDetails';
+import EditUser from '../../components/Users/UsersEdit';
+import ArticlesReportsList from '../../components/Articles/ArticlesReportsList';
 
 describe('<Routes />', () => {
   test('renders <Home /> without crashing', () => {
@@ -82,6 +87,7 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(Profile)).toHaveLength(1);
   });
+
   test('renders <Notification/> without crashing', () => {
     const component = mount(<Provider store={store}>
         <MemoryRouter initialEntries={['/profile/settings/notifications']}>
@@ -90,6 +96,7 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(Notification).length).toBe(1);
   });
+
   it('render Login', () => {
     const component = mount(<Provider store={store}>
         <MemoryRouter initialEntries={['/login']}>
@@ -98,6 +105,7 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(Login)).toHaveLength(1);
   });
+
   test('renders <ForgotPassword /> without crashing', () => {
     const component = mount(<Provider store={store}>
         <MemoryRouter initialEntries={['/forgot-password']}>
@@ -115,6 +123,7 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(ResetPassword)).toHaveLength(1);
   });
+
   test('renders <Article/> without crashing', () => {
     const component = mount(<Provider store={store}>
         <MemoryRouter initialEntries={['/articles/hello-world-23gar4']}>
@@ -150,6 +159,7 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(PreviewArticle).length).toBe(1);
   });
+
   test('renders <PublishedArticles/> without crashing', () => {
     const component = mount(<Provider store={store}>
         <MemoryRouter initialEntries={['/profile/articles']}>
@@ -166,12 +176,67 @@ describe('<Routes />', () => {
       </Provider>);
     expect(component.find(SearchArticles).length).toBe(1);
   });
+  
   test('renders <Bookmarks/> without crashing', () => {
     const component = mount(<Provider store={store}>
-        <MemoryRouter initialEntries={['/profile/list/bookmarks']}>
+      <MemoryRouter initialEntries={['/profile/list/bookmarks']}>
+        <Routes />
+      </MemoryRouter>
+    </Provider>);
+    expect(component.find(Bookmarks).length).toBe(1);
+  });
+
+  test('renders <Users/> without crashing', () => {
+    const component = mount(<Provider store={adminStore}>
+        <MemoryRouter initialEntries={['/users']}>
           <Routes />
         </MemoryRouter>
       </Provider>);
-    expect(component.find(Bookmarks).length).toBe(1);
+    expect(component.find(Users).length).toBe(1);
+  });
+
+  test('renders <UsersNew/> without crashing', () => {
+    const component = mount(<Provider store={adminStore}>
+        <MemoryRouter initialEntries={['/users/new']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(UsersNew).length).toBe(1);
+  });
+
+  test('renders <UserDetails/> without crashing', () => {
+    const component = mount(<Provider store={adminStore}>
+        <MemoryRouter initialEntries={['/users/1']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(UserDetails).length).toBe(1);
+  });
+
+  test('renders <EditUser/> without crashing', () => {
+    const component = mount(<Provider store={adminStore}>
+        <MemoryRouter initialEntries={['/users/1/edit']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(EditUser).length).toBe(1);
+  });
+
+  test('renders <ArticlesReportsList/> without crashing', () => {
+    const component = mount(<Provider store={adminStore}>
+        <MemoryRouter initialEntries={['/articles/reports']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(ArticlesReportsList).length).toBe(1);
+  });
+
+  test('renders <ArticlesReportsList/> without crashing', () => {
+    const component = mount(<Provider store={adminStore}>
+        <MemoryRouter initialEntries={['/articles/slug/reports']}>
+          <Routes />
+        </MemoryRouter>
+      </Provider>);
+    expect(component.find(ArticlesReportsList).length).toBe(1);
   });
 });

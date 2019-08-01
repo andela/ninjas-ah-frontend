@@ -46,7 +46,7 @@ class Bookmarks extends Component {
                 <div className="large-margin">No bookmarks</div>
               </div>
             ) : (
-                bookmarks.map((element, key) => (
+              bookmarks.map((element, key) => (
                   <div key={key} className="row">
                     <Link to={`/articles/${element.articleSlug}`}>
                       <div className="small-screen-4 medium-screen-1 large-screen-1 ">
@@ -54,7 +54,7 @@ class Bookmarks extends Component {
                           <Img
                             imgSrc={`${REACT_APP_IMAGE_BASE_URL}/${imageRectangle}/${
                               element.article.coverUrl
-                              }`}
+                            }`}
                             imgClass="center radius-1"
                           />
                           <br />
@@ -90,8 +90,8 @@ class Bookmarks extends Component {
                     </button>
                     <div className="divider light-grey" />
                   </div>
-                ))
-              )}
+              ))
+            )}
           </div>
         </div>
       </Layout>

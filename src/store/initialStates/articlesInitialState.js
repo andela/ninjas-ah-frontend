@@ -2,9 +2,11 @@ module.exports = {
   articles: [],
   article: {
     highlights: [],
+    reports: [],
     likes: { number: 0, whoLiked: [] },
     dislikes: { number: 0, whoDisliked: [] }
   },
+  currentArticlesReports: [],
   message: {},
   errors: {},
   image: {},
@@ -19,6 +21,26 @@ module.exports = {
     errors: {}
   },
   deleteHighlight: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  reportArticle: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  getOneArticleReports: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  getArticlesReports: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  deleteArticleReport: {
     loading: false,
     message: '',
     errors: {}

@@ -9,42 +9,40 @@
   position: fixed;
   @extend .white, .shadow-1;
 
-  .grabSearch {
-    margin-top: 0px;
+  .header-search-button {
+    margin-right: 25px;
+    padding: 15px 15px 0 15px;
+    vertical-align: top;
   }
-  .wrap-header-user-button {
-    position: relative;
-  }
+
   .header-notification-button {
-    top: 10px;
-    right: 25px;
-    position: relative;
+    margin-right: 30px;
+    padding: 15px 15px 0 15px;
+    vertical-align: top;
+    button {
+      padding: 0;
+    }
     .number {
       @extend .radius-5, .danger, .small-text;
       color: $white;
       padding: 2px 5px;
-      top: 5px;
-      top: 0;
+      top: 10px;
       position: absolute;
     }
   }
 
-  .header-search-button {
-    margin-top: 10px !important;
-    vertical-align: top;
+  .header-user-button {
+    padding-top: 5px;
+    button {
+      padding: 0;
+    }
   }
 }
 
 @media screen and (max-width: 760px) {
   .Header {
-    .header-user-button {
-      padding-left: 0px;
-      padding-right: 15px;
-    }
-
-    .header-search-button {
-      padding-left: 0px;
-      padding-right: 10px;
+    .logo {
+      margin-top: -10px !important;
     }
   }
 }

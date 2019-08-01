@@ -15,7 +15,7 @@
     @extend .shadow-2;
     background-color: initial;
     position: absolute !important;
-    margin-top: 20px;
+    margin-top: 20px !important;
     z-index: 12345;
     .highlighter-button,
     .highlight-comment-button {

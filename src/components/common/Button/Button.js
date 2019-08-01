@@ -10,7 +10,7 @@ const Button = ({
   onClick,
   children,
   color,
-  size,
+  loadingIconSize,
   loading,
   ...props
 }) => (
@@ -25,7 +25,7 @@ const Button = ({
     {loading && (
       <FontAwesomeIcon
         style={{
-          fontSize: `${size}px`,
+          fontSize: `${loadingIconSize}px`,
           marginBottom: '-1px',
           marginLeft: '3px'
         }}
@@ -40,7 +40,7 @@ Button.propTypes = {
   buttonId: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
-  size: PropTypes.number,
+  loadingIconSize: PropTypes.number,
   loading: PropTypes.bool,
   children: PropTypes.any,
   buttonClass: PropTypes.string,
@@ -53,7 +53,7 @@ Button.defaultProps = {
   onClick: e => e,
   buttonClass: 'radius-4 button yellow bold uppercase',
   color: '#000',
-  size: 20,
+  loadingIconSize: 20,
   loading: false
 };
 
