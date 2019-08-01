@@ -23,11 +23,15 @@ export class ProfileUserDetails extends Component {
       readingStats
     } = this.props;
 <<<<<<< HEAD
+<<<<<<< HEAD
     const statCount = readingStats && readingStats.readingStats && readingStats.readingStats.count;
     console.log('this is the results =>', readingStatCount);
 =======
     const readingStatCount = readingStats && readingStats.readingStats && 
     readingStats.readingStats.count;
+>>>>>>> add reading stats
+=======
+    const statCount = readingStats && readingStats.readingStats && readingStats.readingStats.count;
 >>>>>>> add reading stats
     return (
       <div className="ProfileUserDetails container">
@@ -57,6 +61,7 @@ export class ProfileUserDetails extends Component {
               <span className="block medium-v-padding">
                 Reading stats:{' '}
                 <Button buttonClass="button radius-2 small-padding yellow">
+<<<<<<< HEAD
                   {statCount}{' '}
                   {statCount > 1
                     ? 'articles'
@@ -65,6 +70,9 @@ export class ProfileUserDetails extends Component {
                       : statCount < 1
                         ? 'article'
                         : 'Not logged in'}
+=======
+                  {statCount} {statCount > 1 ? 'articles' : 'article'}
+>>>>>>> add reading stats
                 </Button>
               </span>
             </div>
