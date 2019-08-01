@@ -22,8 +22,13 @@ export class ProfileUserDetails extends Component {
       profile: { firstName, lastName, username, email, bio, image },
       readingStats
     } = this.props;
+<<<<<<< HEAD
     const statCount = readingStats && readingStats.readingStats && readingStats.readingStats.count;
     console.log('this is the results =>', readingStatCount);
+=======
+    const readingStatCount = readingStats && readingStats.readingStats && 
+    readingStats.readingStats.count;
+>>>>>>> add reading stats
     return (
       <div className="ProfileUserDetails container">
         <div className="small-screen-4 xxlarge-v-margin border b-light-grey radius-2 shadow-1">
