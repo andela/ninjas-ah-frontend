@@ -6,6 +6,7 @@ import rating from './rating';
 import searchArticles from './searchArticlesReducer';
 import bookmarks from './bookmarks';
 import comments from './comments';
+import readingStats from './readingStats';
 
 export default {
   user,
@@ -15,5 +16,6 @@ export default {
   rating,
   searchArticles,
   bookmarks,
-  comments
+  comments,
+  readingStats
 };

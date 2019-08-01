@@ -13,7 +13,8 @@ const props = {
   match: { params: { slug: 'slug-slug-slug' } },
   fetchOneArticle: jest.fn(),
   getArticleHighlights: jest.fn(),
-  getOneArticleReports: jest.fn()
+  getOneArticleReports: jest.fn(),
+  saveReadingStats: jest.fn()
 };
 
 describe('<Article />', () => {

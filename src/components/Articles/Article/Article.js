@@ -17,6 +17,7 @@ import ArticleReport from './ArticleReport';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
+import { saveReadingStats } from '../../../actions/readingStats';
 import BookmarkArticle from '../../Bookmarks/BookmarkArticle';
 import { Comments } from '../Comments/Comments';
 
@@ -28,7 +29,9 @@ const { REACT_APP_IMAGE_BASE_URL } = process.env;
 
 export class Article extends Component {
   state = {
+    isReadingStatSaved: false,
     article: {},
+    articleSlug: '',
     loaded: false,
     styleMap: {},
     imageRectangle:
@@ -44,12 +47,18 @@ export class Article extends Component {
       fetchOneArticle,
       getArticleHighlights,
       getOneArticleReports,
+      saveReadingStats,
       match: { params: { slug } }
     } = this.props;
+    this.setState(prevState => ({
+      ...prevState,
+      articleSlug: slug
+    }));
 
     fetchOneArticle(slug);
     getArticleHighlights(slug);
     getOneArticleReports(slug);
+    saveReadingStats(slug);
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -228,6 +237,7 @@ Article.propTypes = {
   getArticleHighlights: PropTypes.func,
   getOneArticleReports: PropTypes.func,
   editorState: PropTypes.object,
+  saveReadingStats: PropTypes.func,
   match: PropTypes.object,
   slug: PropTypes.string,
   rating: PropTypes.number,
@@ -253,5 +263,6 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchOneArticle, getArticleHighlights, getOneArticleReports }
+
+  { fetchOneArticle, getArticleHighlights, getOneArticleReports, saveReadingStats }
 )(Article);

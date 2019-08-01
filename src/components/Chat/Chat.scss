@@ -108,6 +108,10 @@ $font-size-floating-chat: 25px;
     font-size: $font-size;
   }
 
+  .close-chat-modal{
+    cursor: pointer;
+  }
+
   .Modal {
     position: absolute;
     top: 50%;
@@ -115,7 +119,7 @@ $font-size-floating-chat: 25px;
     transform: translate(-50%, -50%);
     background-image: url('../../assets/images/chat-bg-3.jpg');
     width: 60%;
-    padding: 30px;
+    padding: 0 20px 0 20px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
