@@ -47,10 +47,10 @@ const Routes = ({ isAuth, role }) => (
       exact
       path="/profile/article/new"
       render={props => (isAuth ? (
-          <CreateArticle {...props} />
+        <CreateArticle {...props} />
       ) : (
           <Redirect to="/login?redirect=profile/article/new" />
-      ))
+        ))
       }
     />
     <Route
@@ -72,10 +72,10 @@ const Routes = ({ isAuth, role }) => (
       exact
       path="/profile/articles"
       render={props => (isAuth ? (
-          <PublishedArticles {...props} />
+        <PublishedArticles {...props} />
       ) : (
           <Redirect to="/login?redirect=profile/articles" />
-      ))
+        ))
       }
     />
 

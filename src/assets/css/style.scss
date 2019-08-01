@@ -57,12 +57,25 @@ header {
 .logo {
   top: 3px;
   position: relative;
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
+  float: left;
+  height: auto;
+}
+
+.logo-small {
+  top: 4px;
+  position: relative;
+  width: 100%;
   float: left;
   height: auto;
 }
 .logo img {
   width: 100%;
+  height: auto;
+}
+.logo-small img {
+  width: 40px;
   height: auto;
 }
 

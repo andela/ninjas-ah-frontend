@@ -21,5 +21,11 @@ module.exports = {
     message: '',
     errors: {},
     deleted: false
+  },
+  getCommentHistory: {
+    editCommentHistory: [],
+    historyLoading: false,
+    message: '',
+    errors: ''
   }
 };

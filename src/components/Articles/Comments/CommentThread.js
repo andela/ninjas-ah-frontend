@@ -9,17 +9,28 @@ import {
   faClock,
   faPenAlt,
   faTrash,
-  faCommentAlt
+  faCommentAlt,
+  faHistory
 } from '@fortawesome/free-solid-svg-icons';
 import { css } from '@emotion/core';
-import { fetchComments, deleteComment, editComment } from '../../../actions';
+import { fetchComments, deleteComment, editComment, getCommentHistory } from '../../../actions';
 import { Img } from '../../common';
 import timeStamp from '../../../helpers/timeStamp';
 import avatar from '../../../assets/images/profile_plaholder.png';
 import './Comments.scss';
 
 export class CommentThread extends Component {
-  state = { comments: [], slug: '', body: '', commentEditor: {}, newComments: {} };
+  state = {
+    comments: [],
+    slug: '',
+    body: '',
+    commentEditor: {},
+    commentEditorHistory: {},
+    newComments: {},
+    commentHistory: {},
+    popHistory: false,
+    editHistoryData: { currentBody: '' }
+  };
 
   componentDidMount() {
     const { fetchComments } = this.props;
@@ -36,6 +47,12 @@ export class CommentThread extends Component {
       delete comments[commentKey];
       this.setState({ comments });
     }
+    if (nextProps.editCommentHistory && nextProps.editCommentHistory.length) {
+      this.setState(prevState => ({
+        ...prevState,
+        commentHistory: nextProps.editCommentHistory
+      }));
+    }
   };
 
   onDeleteComment = (id, commentKey) => {
@@ -49,19 +66,55 @@ export class CommentThread extends Component {
   };
 
   toggleCommentEditor = (key) => {
-    const { commentEditor } = this.state;
+    const { commentEditor, commentEditorHistory } = this.state;
     this.setState(prevState => ({
       ...prevState,
-      commentEditor: { [key]: { display: commentEditor[key] && commentEditor[key].display === 'block' ? 'hide' : 'block' } }
+      commentEditor: { [key]: { display: commentEditor[key] && commentEditor[key].display === 'block' ? 'hide' : 'block' } },
+      commentHistory: '',
+      commentEditorHistory: {
+        [key]: {
+          display:
+            commentEditorHistory[key] && commentEditorHistory[key].display === 'block'
+              ? 'hide'
+              : 'block'
+        }
+      }
     }));
+  };
+
+  toggleCommentHistory = (key, commentId) => {
+    const { commentEditorHistory } = this.state;
+    const { getCommentHistory } = this.props;
+    this.setState(prevState => ({
+      ...prevState,
+      commentHistory: '',
+      commentEditorHistory: {
+        [key]: {
+          display:
+            commentEditorHistory[key] && commentEditorHistory[key].display === 'block'
+              ? 'hide'
+              : 'block'
+        }
+      }
+    }));
+    getCommentHistory(this.props.slug, commentId);
   };
 
   closeCommentEditor = (e, key) => {
     e.preventDefault();
-    const { commentEditor } = this.state;
+    const { commentEditor, commentEditorHistory } = this.state;
     this.setState(prevState => ({
       ...prevState,
-      commentEditor: { [key]: { display: commentEditor[key] && commentEditor[key].display === 'block' ? 'hide' : 'block' } }
+      commentEditor: { [key]: { display: commentEditor[key] && commentEditor[key].display === 'block' ? 'hide' : 'block' } },
+      commentHistory: '',
+      commentEditorHistory: {
+        [key]: {
+          display:
+            commentEditorHistory[key] && commentEditorHistory[key].display === 'block'
+              ? 'hide'
+              : 'block'
+        }
+      }
     }));
   };
 
@@ -96,8 +149,15 @@ export class CommentThread extends Component {
   };
 
   render() {
-    const { loading, isAuth, profile } = this.props;
-    const { comments, errors, commentEditor, newComments } = this.state;
+    const { loading, isAuth, profile, historyLoading } = this.props;
+    const {
+      comments,
+      errors,
+      commentEditor,
+      newComments,
+      commentHistory,
+      commentEditorHistory
+    } = this.state;
 
     return (
       <div id="wrap-comment-thread">
@@ -159,14 +219,20 @@ export class CommentThread extends Component {
                         </span>
                         {isAuth && profile.id === comment.userId ? (
                           <span className="small-screen-4 medium-screen-4 large-screen-2 right-align">
-                            <button className="light text-black">
+                            <button
+                              type="button"
+                              onClick={() => this.toggleCommentHistory(key, comment.id)}
+                              id="toggle-history"
+                              className="light text-black "
+                            >
                               <FontAwesomeIcon icon={faClock} className="text-grey" />
                               &nbsp; Edit History
                             </button>
                             <button
                               id="toggle-comment"
                               onClick={() => this.toggleCommentEditor(key)}
-                              className="success text-white">
+                              className="success text-white"
+                            >
                               <FontAwesomeIcon icon={faPenAlt} />
                               &nbsp; Edit
                             </button>
@@ -175,7 +241,8 @@ export class CommentThread extends Component {
                               onClick={() => {
                                 this.onDeleteComment(comment.id, key);
                               }}
-                              className="danger text-white">
+                              className="danger text-white"
+                            >
                               <FontAwesomeIcon icon={faTrash} />
                               &nbsp; Delete
                             </button>
@@ -186,12 +253,52 @@ export class CommentThread extends Component {
                       </div>
                       <div className="divider white" />
                       <div
+                        className={`wrap-comment-history ${(commentEditorHistory[key]
+                          && commentEditorHistory[key].display)
+                          || 'hide'}`}
+                      >
+                        {commentHistory
+                          && commentHistory.length
+                          && (commentHistory || []).map((history, key) => (
+                            <div className="comment-history" key={key}>
+                              <FontAwesomeIcon
+                                icon={faHistory}
+                                className="icon-history text-grey"
+                              />
+                              <div className="medium-padding border b-light-grey radius-2">
+                                {history.body}
+                              </div>
+                              <div className="text-grey medium-v-padding">
+                                Edited: <span className="bold">{timeStamp(history.createdAt)}</span>
+                              </div>
+                            </div>
+                          ))}
+                        {historyLoading ? (
+                          <div className="center-align bold medium-text">
+                            Loading comment history...
+                          </div>
+                        ) : (
+                          ''
+                        )}
+                        {!historyLoading && !commentHistory ? (
+                          <div className="center-align bold medium-text">
+                            You did not edit this comment yet!
+                          </div>
+                        ) : (
+                          ''
+                        )}
+                      </div>
+                      <div className="divider white" />
+
+                      <div
                         className={`comment-editor ${(commentEditor[key]
                           && commentEditor[key].display)
-                          || 'hide'}`}>
+                          || 'hide'}`}
+                      >
                         <form
                           id="submit-comment"
-                          onSubmit={e => this.onSubmit(e, key, comment.id, comment.userId)}>
+                          onSubmit={e => this.onSubmit(e, key, comment.id, comment.userId)}
+                        >
                           <div>Edit this comment</div>
                           <div className="input-field">
                             <TextareaAutosize
@@ -212,13 +319,15 @@ export class CommentThread extends Component {
                             <button
                               onSubmit={this.onSubmit}
                               type="submit"
-                              className="button success text-white radius-5">
+                              className="button success text-white radius-5"
+                            >
                               Update
                             </button>
                             <button
                               id="close-comment-editor"
                               onClick={e => this.closeCommentEditor(e, key)}
-                              className="button white text-black radius-5 border b-grey">
+                              className="button white text-black radius-5 border b-grey"
+                            >
                               Cancel
                             </button>
                             {loading ? (
@@ -279,17 +388,22 @@ CommentThread.propTypes = {
   match: PropTypes.object,
   loading: PropTypes.bool,
   deleted: PropTypes.any,
-  message: PropTypes.string
+  message: PropTypes.string,
+  getCommentHistory: PropTypes.func.isRequired,
+  editCommentHistory: PropTypes.array,
+  commentEditorHistory: PropTypes.bool,
+  historyLoading: PropTypes.bool,
 };
 const mapStateToProps = ({
   user: { isAuth, profile },
   comments: {
     deleteComment: { message, deleted },
-    fetchComments: { comments, errors }
+    fetchComments: { comments, errors },
+    getCommentHistory: { editCommentHistory, historyLoading }
   }
-}) => ({ isAuth, profile, comments, message, errors, deleted });
+}) => ({ isAuth, profile, comments, message, errors, deleted, editCommentHistory, historyLoading });
 
 export default connect(
   mapStateToProps,
-  { fetchComments, deleteComment, editComment }
+  { fetchComments, deleteComment, editComment, getCommentHistory }
 )(CommentThread);
