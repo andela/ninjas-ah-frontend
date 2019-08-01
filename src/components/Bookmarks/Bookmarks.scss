@@ -9,3 +9,14 @@
     @extend .radius-4;
   }
 }
+
+.wrap-bookmark {
+  position: relative;
+  .error-message {
+    position: absolute;
+    text-align: right;
+    top: 30px;
+    right: 8px;
+    min-width: 300px;
+  }
+}

@@ -46,7 +46,7 @@ export class BookmarkArticle extends Component {
     const { isAuth, bookmarkClicked, bookmarks, slug } = this.state;
 
     return (
-      <div className="row inline-block medium-padding">
+      <div className="right wrap-bookmark">
         <span className="" />
         <Button
           id="bookmarkArticle"
@@ -57,19 +57,17 @@ export class BookmarkArticle extends Component {
           <FontAwesomeIcon icon={faBookmark} />
         </Button>
         {!isAuth && bookmarkClicked ? (
-          <p className="text-danger" style={{ position: 'absolute' }}>
-            <Button buttonClass="button medium-padding primary radius-1">
-              <Link to={`/login?redirect=articles/${slug}`}>Login</Link>
-            </Button>
-            to perform this action
-          </p>
+          <div className="">
+            <Link className="text-info bold" to={`/login?redirect=articles/${slug}`}>
+              Login
+            </Link>{' '}
+            <span className="text-grey">to perform this action</span>
+          </div>
         ) : (
           ''
         )}
         {isAuth && bookmarkClicked ? (
-          <p className="text-danger" style={{ position: 'absolute' }}>
-            {bookmarks || ''}
-          </p>
+          <p className="error-message text-danger ">{bookmarks || ''}</p>
         ) : (
           ''
         )}

@@ -196,9 +196,14 @@ export class Article extends Component {
                   )}
                 </div>
                 <div className="divider light" />
-                <div>
-                  <LikeArticle />
-                  <BookmarkArticle />
+                <div className="row">
+                  <div className="small-screen-4 medium-screen-2 large-screen-2">
+                    <LikeArticle />
+                  </div>
+                  <div className="small-screen-4 medium-screen-2 large-screen-2">
+                    <BookmarkArticle />
+                  </div>
+                  <div className="divider white" />
                 </div>
                 <Comments slug={article.slug} />
               </div>
