@@ -1,9 +1,15 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+<<<<<<< HEAD
 import { faEnvelope, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../../common';
+=======
+import { faEnvelope, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Img, Button } from '../../common';
+>>>>>>> add reading stats
 import './ProfileUserDetails.scss';
 import ProfileUserPicture from '../ProfileUserPicture';
 import profileImagePlaceHolder from '../../../assets/images/profile_plaholder.png';
@@ -25,6 +31,7 @@ export class ProfileUserDetails extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
     const statCount = readingStats && readingStats.readingStats && readingStats.readingStats.count;
+<<<<<<< HEAD
     console.log('this is the results =>', readingStatCount);
 =======
     const readingStatCount = readingStats && readingStats.readingStats && 
@@ -32,6 +39,9 @@ export class ProfileUserDetails extends Component {
 >>>>>>> add reading stats
 =======
     const statCount = readingStats && readingStats.readingStats && readingStats.readingStats.count;
+>>>>>>> add reading stats
+=======
+
 >>>>>>> add reading stats
     return (
       <div className="ProfileUserDetails container">
@@ -62,6 +72,9 @@ export class ProfileUserDetails extends Component {
                 Reading stats:{' '}
                 <Button buttonClass="button radius-2 small-padding yellow">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> add reading stats
                   {statCount}{' '}
                   {statCount > 1
                     ? 'articles'
@@ -69,9 +82,13 @@ export class ProfileUserDetails extends Component {
                       ? 'article'
                       : statCount < 1
                         ? 'article'
+<<<<<<< HEAD
                         : 'Not logged in'}
 =======
                   {statCount} {statCount > 1 ? 'articles' : 'article'}
+>>>>>>> add reading stats
+=======
+                        : 'Initializing'}
 >>>>>>> add reading stats
                 </Button>
               </span>
