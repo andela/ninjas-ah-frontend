@@ -20,15 +20,34 @@ describe('<Pagination />', () => {
   it('should create <PaginationComponent /> snapshot ', () => {
     expect(component).toMatchSnapshot();
   });
-  it('should trigger submit button ', () => {
-    component.instance().displayButtons(40);
+  it('should check pagination of more than 10 articles ', () => {
+    component.instance().displayButtons(45);
   });
-  it('should trigger close message ', () => {
+  it('should paginate more than 10 articles ', () => {
     component.setProps({ limit: 1, offset: 10, label: 1 });
     component
       .find('.pagination button')
       .at(0)
       .simulate('click');
     component.instance().paginateArticles({ limit: 1, offset: 10, label: 1 });
+  });
+  it('should load other article page on click ', () => {
+    component.setProps({ limit: 1, offset: 10, label: 1 });
+    component
+      .find('.pagination button')
+      .at(0)
+      .simulate('click');
+    component.instance().paginateArticles({ limit: 1, offset: 10, label: 1 });
+  });
+  it('should load other article page on click ', () => {
+    component.setProps({ limit: 1, offset: 10, label: 1 });
+    component
+      .find('.pagination button')
+      .at(0)
+      .simulate('click');
+    component.instance().paginateArticles({ limit: 1, offset: 10, label: 1 });
+  });
+  it('should pagination ', () => {
+    component.instance().displayButtons(1);
   });
 });

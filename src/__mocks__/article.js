@@ -1,7 +1,14 @@
 export default (Object.article = {
   title: 'my title well done',
   description: 'description of the article: well',
-  body: 'body of the article: well'
+  body: 'body of the article: well',
+  author: {
+    firstName: 'John',
+    lastName: 'Doe',
+    username: 'johndoe',
+    id: 1,
+    image: 'image.png'
+  }
 });
 
 export const newHighlight = {
@@ -24,6 +31,13 @@ export const article = {
   title: 'hello',
   slug: 'slug-slug-slug',
   description: 'description of the article',
+  author: {
+    firstName: 'John',
+    lastName: 'Doe',
+    username: 'johndoe',
+    id: 1,
+    image: 'image.png'
+  },
   body: JSON.stringify({
     blocks: [
       {

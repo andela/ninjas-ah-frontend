@@ -43,7 +43,6 @@ class Bookmarks extends Component {
             </div>
           </div>
           <div>
-            {console.log(bookmarks)}
             {bookmarks.length === 0 ? (
               <div className="xxlarge-h-margin">
                 <div className="large-margin">No bookmarks</div>

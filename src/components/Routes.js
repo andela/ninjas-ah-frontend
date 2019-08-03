@@ -50,7 +50,7 @@ const Routes = ({ isAuth, role }) => (
         <CreateArticle {...props} />
       ) : (
           <Redirect to="/login?redirect=profile/article/new" />
-        ))
+      ))
       }
     />
     <Route
@@ -75,7 +75,7 @@ const Routes = ({ isAuth, role }) => (
         <PublishedArticles {...props} />
       ) : (
           <Redirect to="/login?redirect=profile/articles" />
-        ))
+      ))
       }
     />
 

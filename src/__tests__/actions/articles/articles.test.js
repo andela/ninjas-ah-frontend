@@ -12,7 +12,14 @@ describe('<ArticleComponent />', () => {
     article: {
       title: 'Hello John Doe',
       description: 'John Doe, Mocker',
-      body: 'body of the article'
+      body: 'body of the article',
+      author: {
+        firstName: 'John',
+        lastName: 'Doe',
+        username: 'johndoe',
+        id: 1,
+        image: 'image.png'
+      }
     },
     fetchOneArticle: jest.fn(),
     getArticleHighlights: jest.fn(),

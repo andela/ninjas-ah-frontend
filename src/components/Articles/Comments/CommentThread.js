@@ -176,8 +176,8 @@ export class CommentThread extends Component {
             loading={loading}
           />
         ) : (
-          ''
-        )}
+            ''
+          )}
         <ul className="list-block comments-wrapper">
           {!loading
             && (comments || []).map((comment, key) => (
@@ -201,8 +201,8 @@ export class CommentThread extends Component {
                             {comment.commentAuthor.firstName}
                           </span>
                         ) : (
-                          <span className="bold text-success">{profile.firstName}</span>
-                        )}
+                            <span className="bold text-success">{profile.firstName}</span>
+                          )}
                         <br />
                         <div className="text-grey small-v-margin timestamp">
                           {timeStamp(comment.createdAt)}
@@ -248,8 +248,8 @@ export class CommentThread extends Component {
                             </button>
                           </span>
                         ) : (
-                          ''
-                        )}
+                            ''
+                          )}
                       </div>
                       <div className="divider white" />
                       <div
@@ -278,15 +278,15 @@ export class CommentThread extends Component {
                             Loading comment history...
                           </div>
                         ) : (
-                          ''
-                        )}
+                            ''
+                          )}
                         {!historyLoading && !commentHistory ? (
                           <div className="center-align bold medium-text">
                             You did not edit this comment yet!
                           </div>
                         ) : (
-                          ''
-                        )}
+                            ''
+                          )}
                       </div>
                       <div className="divider white" />
 
@@ -333,15 +333,15 @@ export class CommentThread extends Component {
                             {loading ? (
                               <span className="medium-padding radius-5">loading</span>
                             ) : (
-                              ''
-                            )}
+                                ''
+                              )}
                             {errors && errors.message ? (
                               <span className="medium-padding radius-5 text-danger">
                                 {errors.message}
                               </span>
                             ) : (
-                              ''
-                            )}
+                                ''
+                              )}
                           </div>
                         </form>
                       </div>
@@ -350,8 +350,8 @@ export class CommentThread extends Component {
                     <div className="divider white" />
                   </div>
                 ) : (
-                  ''
-                )}
+                    ''
+                  )}
               </li>
             ))}
           <div>
@@ -364,8 +364,8 @@ export class CommentThread extends Component {
                 <h2 className="center-align large-v-padding">No comment yet</h2>
               </div>
             ) : (
-              ''
-            )}
+                ''
+              )}
           </div>
         </ul>
         <div className="clear" />
@@ -373,6 +373,8 @@ export class CommentThread extends Component {
     );
   }
 }
+
+CommentThread.defaultProps = { historyLoading: false };
 
 CommentThread.propTypes = {
   fetchComments: PropTypes.func.isRequired,
@@ -389,10 +391,10 @@ CommentThread.propTypes = {
   loading: PropTypes.bool,
   deleted: PropTypes.any,
   message: PropTypes.string,
+  historyLoading: PropTypes.bool,
   getCommentHistory: PropTypes.func.isRequired,
   editCommentHistory: PropTypes.array,
   commentEditorHistory: PropTypes.bool,
-  historyLoading: PropTypes.bool,
 };
 const mapStateToProps = ({
   user: { isAuth, profile },

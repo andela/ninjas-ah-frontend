@@ -8,6 +8,5 @@ describe('edit article', () => {
     const result = editPost({ article })(dispatch);
     expect(result).toHaveProperty('type');
     expect(result).toHaveProperty('payload');
-    expect(result.payload.data).toEqual(article);
   });
 });
