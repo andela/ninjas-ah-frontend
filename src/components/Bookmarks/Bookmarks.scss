@@ -8,6 +8,9 @@
     cursor: pointer;
     @extend .radius-4;
   }
+  .card-info span {
+    padding: $xsmall ($large/2) $xsmall 0;
+  }
 }
 
 .wrap-bookmark {
