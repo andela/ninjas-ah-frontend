@@ -55,10 +55,8 @@ export class ListsOfArticles extends Component {
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>
-                    {article.author
-                      ? article.author.username
-                      : `${article.author.firstName} ${article.author.lastName}`}
-                  </span>{' '}
+                    {article.author.firstName} {article.author.lastName}
+                  </span>
                   <span>{timeStamp(article.createdAt)}</span>
                   <span>
                     <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
@@ -73,6 +71,11 @@ export class ListsOfArticles extends Component {
         <div className="clear" />
         {loading ? (
           <div className="image">
+            <Img
+              imgSrc={imagePlaceholder}
+              imgClass="center radius-1 loading-article"
+              alt="Loading article"
+            />
             <Img
               imgSrc={imagePlaceholder}
               imgClass="center radius-1 loading-article"

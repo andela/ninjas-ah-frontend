@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import LazyLoad from 'react-lazyload';
@@ -165,12 +164,11 @@ export class Article extends Component {
                   <div className="row">
                     <div className="small-screen-4 medium-screen-2 large-screen-2">
                       <span className="avatar">
-                        <img src={avatar} alt={article.title} />
-                        <span>{' John Doe'}</span>
+                        <img src={article.author.image || avatar} alt={article.author.lastName} />
+                        <span>
+                          {article.author.lastName} {article.author.firstName}
+                        </span>
                       </span>
-                      <Link to="/" className="button small-button primary">
-                        Follow
-                      </Link>
                       <span className="medium-h-padding">{timeStamp(article.createdAt)}</span>
                       <span className="medium-h-padding">
                         <FontAwesomeIcon icon={faClock} className="text-light-grey" />{' '}
