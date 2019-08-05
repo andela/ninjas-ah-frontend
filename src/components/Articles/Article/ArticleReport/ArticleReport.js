@@ -62,6 +62,9 @@ export class ArticleReport extends Component {
 
     return (
       <div className="ArticleReport">
+        {(message || error) && (
+          <Alert alertType={(message && 'success') || 'danger'} message={message || error} />
+        )}
         <Button
           onClick={() => this.showModal()}
           buttonClass="show-report-article-modal button medium-padding small-margin light radius-1 border b-light-grey"
@@ -82,11 +85,6 @@ export class ArticleReport extends Component {
         ))
           || ''}
         <Modal modalStyle={reportArticleModalStyle} closeModal={this.hideModal}>
-          <div className="small-screen-4">
-            {(message || error) && (
-              <Alert alertType={(message && 'success') || 'danger'} message={message || error} />
-            )}
-          </div>
           <div className="">
             <Form
               formClass="Form large-padding radius-4 small-screen-3"

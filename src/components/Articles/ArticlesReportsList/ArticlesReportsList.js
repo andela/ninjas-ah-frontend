@@ -81,7 +81,7 @@ export class ArticlesReportsList extends Component {
     } = this.state;
     return (
       <Layout>
-        <AdminMenu />
+        <AdminMenu currentPage="reportsList" />
         <div className="ArticlesReportsList container">
           {(message || errors.message) && (
             <Alert

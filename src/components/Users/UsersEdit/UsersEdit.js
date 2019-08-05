@@ -40,18 +40,18 @@ export class UsersEdit extends Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    const { errors, form } = this.state;
+    const { errors } = this.state;
     const { firstName, lastName, username, email, bio, role, permissions } = nextProps.currentUser;
     this.setState(prevState => ({
       ...prevState,
       message: nextProps.message,
       form: {
-        firstName: firstName || form.firstName,
-        lastName: lastName || form.lastName,
-        username: username || form.username,
-        email: email || form.email,
-        bio: bio || form.bio,
-        role: role || form.role
+        firstName: firstName || '',
+        lastName: lastName || '',
+        username: username || '',
+        email: email || '',
+        bio: bio || '',
+        role: role || ''
       },
       currentPermissions: permissions ? JSON.parse(permissions) : prevState.currentPermissions,
       errors: { ...errors, ...nextProps.errors }

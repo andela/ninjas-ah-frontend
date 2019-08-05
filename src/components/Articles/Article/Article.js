@@ -7,6 +7,7 @@ import LazyLoad from 'react-lazyload';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import './Article.scss';
 import { fetchOneArticle } from '../../../actions';
 import { getArticleHighlights, getOneArticleReports } from '../../../actions/articles';
 import avatar from '../../../assets/images/user.png';
@@ -20,8 +21,7 @@ import { saveReadingStats } from '../../../actions/readingStats';
 import BookmarkArticle from '../../Bookmarks/BookmarkArticle';
 import { Comments } from '../Comments/Comments';
 import Following from '../../FollowUnfollow/Following';
-
-import './Article.scss';
+import ArticleDelete from './ArticleDelete';
 import Rating from './Rating';
 import LikeArticle from '../LikeArticle/LikeArticle';
 
@@ -110,6 +110,7 @@ export class Article extends Component {
   }));
 
   render() {
+    const { profile } = this.props;
     const {
       imageRectangle,
       article,
@@ -225,6 +226,7 @@ export class Article extends Component {
                   <LikeArticle />
                   <ArticleReport article={article} />
                   <BookmarkArticle />
+                  {(profile && profile.role === 'admin' ? (<ArticleDelete history={this.props.history} article={article} />) : '')}
                   <div className="divider light" />
                   <Comments slug={article.slug} />
                 </div>
@@ -239,9 +241,10 @@ export class Article extends Component {
   }
 }
 
-Article.defaultProps = { match: { params: { slug: '' } } };
+Article.defaultProps = { history: {}, match: { params: { slug: '' } } };
 
 Article.propTypes = {
+  history: PropTypes.object,
   article: PropTypes.object,
   profile: PropTypes.object,
   loading: PropTypes.bool,
@@ -275,6 +278,5 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-
   { fetchOneArticle, getArticleHighlights, getOneArticleReports, saveReadingStats }
 )(Article);

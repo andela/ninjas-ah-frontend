@@ -36,7 +36,7 @@ export class Users extends Component {
               message={message || errors.message}
             />
           )}
-          <AdminMenu />
+          <AdminMenu currentPage="usersList" />
           <div className="container">
             <h2>ALL USERS</h2>
             <div className="divider" />

@@ -16,14 +16,15 @@ export default (state, { type, payload }) => {
       return {
         ...state,
         isAuth: true,
-        currentUser: payload.user,
-        listOfUsers: [payload.user],
+        currentUser: (payload.users.length === 1 && payload.users[0]) || [],
+        listOfUsers: payload.users,
         searchUser: { loading: false, message: payload.message, errors: {} }
       };
     case userActionsTypes.SEARCH_USER_FAILURE:
       return {
         ...state,
-        searchUser: { loading: false, message: '', errors: { ...payload.errors } }
+        searchUser: { loading: false, message: '', errors: { ...payload.errors } },
+        listOfUsers: []
       };
     default:
       return null;

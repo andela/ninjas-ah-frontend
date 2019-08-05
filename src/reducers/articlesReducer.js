@@ -75,17 +75,43 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         errors: { ...state.errors, ...payload }
       };
+    // delete article
+    case articlesType.CLEAR_DELETE_ARTICLE_STORE:
+      return {
+        ...state,
+        deleteArticle: { ...payload, loading: false, message: '', errors: {} }
+      };
+    case articlesType.DELETE_ARTICLE_START:
+      return {
+        ...state,
+        deleteArticle: { loading: true, message: '', errors: {} }
+      };
     case articlesType.DELETE_ARTICLE_SUCCESS:
       return {
         ...state,
-        message: { ...state.message, ...payload }
+        message: { ...state.message, ...payload },
+        deleteArticle: { loading: false, message: payload.message, errors: {} }
       };
     case articlesType.DELETE_ARTICLE_FAILURE:
       return {
         ...state,
-        errors: { ...state.errors, ...payload }
+        errors: { ...state.errors, ...payload },
+        deleteArticle: {
+          ...state.deleteArticle,
+          loading: false,
+          message: '',
+          errors: {
+            ...payload.errors,
+            message: payload.message || payload.error
+          }
+        }
       };
-
+    case articlesType.DELETE_ARTICLE_END:
+      return {
+        ...state,
+        deleteArticle: { ...state.deleteArticle, loading: false }
+      };
+    // publish article
     case articlesType.PUBLISH_ARTICLE_SUCCESS:
       return {
         ...state,
