@@ -149,7 +149,7 @@ export class CommentThread extends Component {
   };
 
   render() {
-    const { loading, isAuth, profile, historyLoading } = this.props;
+    const { loading, isAuth, profile, loadingHistory } = this.props;
     const {
       comments,
       errors,
@@ -273,14 +273,14 @@ export class CommentThread extends Component {
                               </div>
                             </div>
                           ))}
-                        {historyLoading ? (
+                        {loadingHistory ? (
                           <div className="center-align bold medium-text">
                             Loading comment history...
                           </div>
                         ) : (
                             ''
                           )}
-                        {!historyLoading && !commentHistory ? (
+                        {!loadingHistory && !commentHistory ? (
                           <div className="center-align bold medium-text">
                             You did not edit this comment yet!
                           </div>
@@ -391,19 +391,19 @@ CommentThread.propTypes = {
   loading: PropTypes.bool,
   deleted: PropTypes.any,
   message: PropTypes.string,
-  historyLoading: PropTypes.bool,
   getCommentHistory: PropTypes.func.isRequired,
   editCommentHistory: PropTypes.array,
   commentEditorHistory: PropTypes.bool,
+  loadingHistory: PropTypes.bool
 };
 const mapStateToProps = ({
   user: { isAuth, profile },
   comments: {
     deleteComment: { message, deleted },
     fetchComments: { comments, errors },
-    getCommentHistory: { editCommentHistory, historyLoading }
+    getCommentHistory: { editCommentHistory, historyLoading: loadingHistory }
   }
-}) => ({ isAuth, profile, comments, message, errors, deleted, editCommentHistory, historyLoading });
+}) => ({ isAuth, profile, comments, message, errors, deleted, editCommentHistory, loadingHistory });
 
 export default connect(
   mapStateToProps,
