@@ -5,5 +5,15 @@ const images = require('./initialStates/imagesInitialState');
 const rating = require('./initialStates/ratingInitialState');
 const bookmarks = require('./initialStates/bookmarks');
 const comments = require('./initialStates/commentsInitialState');
+const readingStats = require('./initialStates/readingStatsInitialState.js');
 
-module.exports = { user, notification, articles, images, rating, bookmarks, comments };
+module.exports = {
+  user,
+  notification,
+  articles,
+  images,
+  rating,
+  bookmarks,
+  comments,
+  readingStats
+};

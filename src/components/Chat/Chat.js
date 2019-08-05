@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose, faComments, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import { Input, Button } from '../common';
@@ -108,9 +110,12 @@ export class Chat extends Component {
           onRequestClose={this.closeModal}
           className="Modal"
           contentLabel="Example Modal">
-          <button className="close-chat-modal" onClick={this.closeModal}>
-            close
-          </button>
+          <div className="close-chat-modal" onClick={this.closeModal}>
+            <FontAwesomeIcon
+              style={{ fontSize: '20px', position: 'relative', top: '10px', color: 'white' }}
+              icon={faWindowClose}
+            />
+          </div>
           <ToastContainer position={toast.POSITION.TOP_CENTER} />
           <div className="modal-body" id="grab-chat-modal">
             <br />
@@ -141,7 +146,10 @@ export class Chat extends Component {
                     <div
                       onClick={() => this.handleDelete(chat.id, profile.id)}
                       className="delete-icon delete-chat">
-                      <i className="fa fa-trash margin-top-delete" />
+                      <FontAwesomeIcon
+                        style={{ marginTop: '17px' }}
+                        icon={faTrash}
+                      />
                     </div>
                   ) : (
                     ''
@@ -168,7 +176,7 @@ export class Chat extends Component {
           </div>
         </Modal>
         <div onClick={this.openModal} className="float open-chat-modal">
-          <i className="fa fa-comments-o my-float" />
+          <FontAwesomeIcon style={{ fontSize: '20px', marginTop: '17px' }} icon={faComments} />
         </div>
       </div>
     );

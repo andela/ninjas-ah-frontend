@@ -23,7 +23,8 @@ describe('<ArticleComponent />', () => {
     },
     fetchOneArticle: jest.fn(),
     getArticleHighlights: jest.fn(),
-    getOneArticleReports: jest.fn()
+    getOneArticleReports: jest.fn(),
+    saveReadingStats: jest.fn()
   };
 
   const component = shallow(<ArticleComponent {...props} />);

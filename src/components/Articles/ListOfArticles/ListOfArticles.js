@@ -32,7 +32,7 @@ export class ListsOfArticles extends Component {
       <div className="row" id="articleCard">
         {(articles || []).map((article, key) => (
           <div key={key}>
-            <div className="card">
+            <div className="card" onClick={this.handleClick}>
               <div className="small-screen-4 medium-screen-1 large-screen-1">
                 <div className="image">
                   <Link to={`/articles/${article.slug}`}>
@@ -98,14 +98,22 @@ export class ListsOfArticles extends Component {
 
 ListsOfArticles.propTypes = {
   articles: PropTypes.array,
+  article: PropTypes.object,
   getAllArticles: PropTypes.func.isRequired,
   loading: PropTypes.bool,
+  saveReadingStats: PropTypes.func,
+  isAuth: PropTypes.bool.isRequired,
   errors: PropTypes.object
 };
-const mapStateToProps = ({ articles: { articles, loading, errors } }) => ({
+const mapStateToProps = ({
+  user: { isAuth },
+  articles: { articles, loading, errors, article }
+}) => ({
+  isAuth,
   articles,
   loading,
-  errors
+  errors,
+  article
 });
 
 export default connect(
