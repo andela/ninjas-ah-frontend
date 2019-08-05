@@ -20,10 +20,10 @@ describe('User reducers', () => {
       payload: { user }
     });
 
-    expect(reducer.profile).toHaveProperty('firstName');
-    expect(reducer.profile).toHaveProperty('lastName');
-    expect(reducer.profile).toHaveProperty('username');
-    expect(reducer.profile).toHaveProperty('email');
+    expect(reducer.currentUser).toHaveProperty('firstName');
+    expect(reducer.currentUser).toHaveProperty('lastName');
+    expect(reducer.currentUser).toHaveProperty('username');
+    expect(reducer.currentUser).toHaveProperty('email');
   });
 
   test('GET_USER_FAILURE', () => {

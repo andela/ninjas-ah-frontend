@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "start:build": "serve -s ./build",
+    "start": "serve -s ./build",
     "dev": "npm run lint && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
@@ -58,8 +57,8 @@
     "react-router-dom": "^5.0.1",
     "react-router-redux": "^4.0.8",
     "react-scripts": "^3.0.1",
-    "react-share": "^3.0.0",
     "react-scrollable-feed": "^1.0.4",
+    "react-share": "^3.0.0",
     "react-spinners": "^0.5.4",
     "react-stay-scrolled": "^7.0.0",
     "react-thunk": "^1.0.0",
@@ -69,6 +68,7 @@
     "redux-mock-store": "^1.5.3",
     "redux-promise-middleware": "^6.1.1",
     "redux-thunk": "^2.3.0",
+    "serve": "^11.1.0",
     "socket.io-client": "^2.2.0"
   },
   "eslintConfig": {
@@ -113,6 +113,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andela/ninjas-ah-frontend/issues"
-  },
-  "homepage": "https://github.com/andela/ninjas-ah-frontend#readme"
+  }
 }

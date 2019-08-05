@@ -14,7 +14,7 @@ describe('<Header />', () => {
         </MemoryRouter>
       </Provider>);
 
-    const headerUserButton = component.find('Header .wrap-header-user-button');
+    const headerUserButton = component.find('Header .header-user-button');
 
     headerUserButton.simulate('click', {});
     mockWindow.document.event({

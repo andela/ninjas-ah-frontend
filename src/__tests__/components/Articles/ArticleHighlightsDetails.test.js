@@ -61,6 +61,7 @@ describe('<ArticleHighlightsDetailsComponent />', () => {
   it('should display details of a highlighted text', () => {
     const component = shallow(<ArticleHighlightsDetailsComponent {...props} />);
     const highlightedText = component.instance().showHighlightDetails(clickEvent);
+    component.instance().componentWillUnmount();
     expect(component).toMatchSnapshot();
   });
 

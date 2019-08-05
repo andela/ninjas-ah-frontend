@@ -3,8 +3,10 @@
 @import '../../assets/css/_pixels';
 @import '../../assets/css/_shadow';
 @import '../../assets/css/_padding';
-#footer {
+
+.Footer {
   width: 100%;
+  clear: both;
   margin-top: 80px;
   padding: 90px 0;
   background: black;

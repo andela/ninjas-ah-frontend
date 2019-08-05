@@ -189,6 +189,7 @@ export default (state = initialState, { type, payload }) => {
     case articlesType.GET_ARTICLE_HIGHLIGHTS_FAILURE:
       return {
         ...state,
+        article: { ...state.article, highlights: [] },
         getHighlights: {
           loading: false,
           message: '',
@@ -235,6 +236,169 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         deleteHighlight: {
+          loading: false,
+          message: '',
+          errors: {
+            ...payload.errors,
+            message: payload.message || (Array.isArray(payload.errors) && payload.errors[0])
+          }
+        }
+      };
+    // report article
+    case articlesType.CLEAR_REPORT_ARTICLE_STORE:
+      return {
+        ...state,
+        reportArticle: { ...payload, loading: false, message: '', errors: {} }
+      };
+    case articlesType.REPORT_ARTICLE_START:
+      return {
+        ...state,
+        reportArticle: { ...state.reportArticle, message: '', loading: true, errors: {} }
+      };
+    case articlesType.REPORT_ARTICLE_END:
+      return {
+        ...state,
+        reportArticle: { ...state.reportArticle, loading: false }
+      };
+    case articlesType.REPORT_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        article: {
+          ...state.article,
+          reports: [...state.article.reports, payload.report]
+        },
+        currentArticlesReports: [...state.currentArticlesReports, payload.report],
+        reportArticle: { loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.REPORT_ARTICLE_FAILURE:
+      return {
+        ...state,
+        reportArticle: {
+          loading: false,
+          message: '',
+          errors: {
+            ...payload.errors,
+            message: payload.message || (Array.isArray(payload.errors) && payload.errors[0])
+          }
+        }
+      };
+    // get reports for all articles
+    case articlesType.CLEAR_GET_ARTICLES_REPORTS_STORE:
+      return {
+        ...state,
+        getArticlesReports: { ...payload, loading: false, message: '', errors: {} }
+      };
+    case articlesType.GET_ARTICLES_REPORTS_START:
+      return {
+        ...state,
+        getArticlesReports: {
+          ...state.getArticlesReports,
+          message: '',
+          loading: true,
+          errors: {}
+        }
+      };
+    case articlesType.GET_ARTICLES_REPORTS_END:
+      return {
+        ...state,
+        getArticlesReports: { ...state.getArticlesReports, loading: false }
+      };
+    case articlesType.GET_ARTICLES_REPORTS_SUCCESS:
+      return {
+        ...state,
+        currentArticlesReports: payload.reports,
+        getArticlesReports: { loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.GET_ARTICLES_REPORTS_FAILURE:
+      return {
+        ...state,
+        getArticlesReports: {
+          loading: false,
+          message: '',
+          errors: {
+            ...payload.errors,
+            message: payload.message || (Array.isArray(payload.errors) && payload.errors[0])
+          }
+        }
+      };
+    // get reports for one article
+    case articlesType.CLEAR_GET_ARTICLE_REPORTS_STORE:
+      return {
+        ...state,
+        getOneArticleReports: { ...payload, loading: false, message: '', errors: {} }
+      };
+    case articlesType.GET_ARTICLE_REPORTS_START:
+      return {
+        ...state,
+        getOneArticleReports: {
+          ...state.getOneArticleReports,
+          message: '',
+          loading: true,
+          errors: {}
+        }
+      };
+    case articlesType.GET_ARTICLE_REPORTS_END:
+      return {
+        ...state,
+        getOneArticleReports: { ...state.getOneArticleReports, loading: false }
+      };
+    case articlesType.GET_ARTICLE_REPORTS_SUCCESS:
+      return {
+        ...state,
+        article: { ...state.article, reports: payload.reports },
+        getOneArticleReports: { loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.GET_ARTICLE_REPORTS_FAILURE:
+      return {
+        ...state,
+        getOneArticleReports: {
+          loading: false,
+          message: '',
+          errors: {
+            ...payload.errors,
+            message: payload.message || (Array.isArray(payload.errors) && payload.errors[0])
+          }
+        }
+      };
+    // delete report
+    case articlesType.CLEAR_DELETE_ARTICLE_REPORT_STORE:
+      return {
+        ...state,
+        deleteArticleReport: { ...payload, loading: false, message: '', errors: {} }
+      };
+    case articlesType.DELETE_ARTICLE_REPORT_START:
+      return {
+        ...state,
+        deleteArticleReport: {
+          ...state.deleteArticleReport,
+          loading: true,
+          message: '',
+          errors: {}
+        }
+      };
+    case articlesType.DELETE_ARTICLE_REPORT_END:
+      return {
+        ...state,
+        deleteArticleReport: { ...state.deleteArticleReport, loading: false }
+      };
+    case articlesType.DELETE_ARTICLE_REPORT_SUCCESS:
+      return {
+        ...state,
+        article: {
+          ...state.article,
+          reports: [
+            ...state.article.reports.filter(({ id }) => id !== parseInt(payload.reportId, 10))
+          ]
+        },
+        currentArticlesReports: [
+          ...state.currentArticlesReports.filter(({ id }) => id !== parseInt(payload.reportId, 10))
+        ],
+        deleteArticleReport: { loading: false, message: payload.message, errors: {} }
+      };
+    case articlesType.DELETE_ARTICLE_REPORT_FAILURE:
+      return {
+        ...state,
+        deleteArticleReport: {
           loading: false,
           message: '',
           errors: {

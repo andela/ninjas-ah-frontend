@@ -7,12 +7,15 @@ import PreviewArticle from '../../components/Profile/Articles/PreviewArticle';
 import EditArticle from '../../components/Profile/Articles/EditArticle';
 import CreateArticle from '../../components/Profile/Articles/CreateArticle';
 import store from '../../__mocks__/store';
+import user from '../../__mocks__/user';
 import { article, newHighlight } from '../../__mocks__/article';
 
 const props = {
+  profile: { ...user, id: 1 },
   match: { params: { slug: 'slug' } },
   fetchOneArticle: jest.fn(),
-  getArticleHighlights: jest.fn()
+  getArticleHighlights: jest.fn(),
+  getOneArticleReports: jest.fn()
 };
 
 describe('<Article />', () => {
@@ -55,7 +58,7 @@ describe('<Article />', () => {
 
   test('Get one article', () => {
     const component = shallow(<ArticleComponent {...props} />);
-    component.setProps({ article: { ...article, highlights: [newHighlight] } });
+    component.setProps({ ...props, article: { ...article, highlights: [newHighlight] } });
     expect(component).toHaveLength(1);
   });
 

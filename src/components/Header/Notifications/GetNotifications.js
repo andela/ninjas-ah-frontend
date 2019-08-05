@@ -21,7 +21,6 @@ class GetNotifications extends Component {
   closeModal = (e) => {
     e.preventDefault();
     this.setState({ showModal: false });
-    window.location.reload();
   };
 
   componentDidMount = () => {
@@ -38,7 +37,7 @@ class GetNotifications extends Component {
     const { unseenNotifications } = this.props;
     const { showModal } = this.state;
     return (
-      <span className="header-notification-button left">
+      <span className="header-notification-button inline-block">
         <Button buttonClass="button white" onClick={this.displayNotifications} id="display">
           <FontAwesomeIcon icon={faBell} size="lg" />{' '}
           {unseenNotifications.length === 0 ? (

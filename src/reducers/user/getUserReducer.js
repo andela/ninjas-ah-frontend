@@ -13,18 +13,20 @@ export default (state, { type, payload }) => {
         getUser: { ...state.getUser, loading: false }
       };
     case userActionsTypes.GET_USER_SUCCESS:
-      localStorage.user = JSON.stringify(payload.user);
-      localStorage.token = payload.token || localStorage.token;
       return {
         ...state,
-        isAuth: true,
-        profile: { ...state.profile, ...payload.user },
-        getUser: { loading: false, message: payload.message, errors: {} }
+        currentUser: payload.user,
+        getUser: {
+          ...state.getUser,
+          loading: false,
+          message: payload.message,
+          errors: {}
+        }
       };
     case userActionsTypes.GET_USER_FAILURE:
       return {
         ...state,
-        getUser: { loading: false, message: '', errors: { ...payload.errors } }
+        getUser: { ...state.getUser, loading: false, message: '', errors: { ...payload.errors } }
       };
     default:
       return null;

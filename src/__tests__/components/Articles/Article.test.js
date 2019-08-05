@@ -1,18 +1,19 @@
 import React from 'react';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'react-thunk';
-import { Provider } from 'react-redux';
 import { article, newHighlight } from '../../../__mocks__/article';
+import user from '../../../__mocks__/user';
 import { Article } from '../../../components/Articles/Article/Article';
 import { shallow } from '../../../../config/enzymeConfig';
 
 const props = {
+  profile: { ...user, id: 1 },
   article: {
     id: 1,
     ...article
   },
   match: { params: { slug: 'slug-slug-slug' } },
-  fetchOneArticle: jest.fn()
+  fetchOneArticle: jest.fn(),
+  getArticleHighlights: jest.fn(),
+  getOneArticleReports: jest.fn()
 };
 
 describe('<Article />', () => {

@@ -28,6 +28,8 @@ window.document.querySelectorAll = jest.fn(() => [
   }
 ]);
 
+window.scrollTo = jest.fn(() => 1);
+
 const event = jest.fn(e => map[e.name](e));
 export const document = { event };
 export default { ...document, document };

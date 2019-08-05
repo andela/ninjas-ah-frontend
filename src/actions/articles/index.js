@@ -9,6 +9,10 @@ import { getPublished } from './getPublished';
 import highlightArticle, { clearHighlightArticleStore } from './highlightArticle';
 import getArticleHighlights, { clearGetArticleHighlightsStore } from './getArticleHighlights';
 import deleteArticleHighlight, { clearDeleteArticleHighlightStore } from './deleteArticleHighlight';
+import reportArticle, { clearReportArticleStore } from './reportArticle';
+import getOneArticleReports, { clearGetOneArticleReportsStore } from './getOneArticleReports';
+import getArticlesReports, { clearGetArticlesReportsStore } from './getArticlesReports';
+import deleteArticleReport, { clearDeleteArticleReportStore } from './deleteArticleReport';
 
 export {
   createPost,
@@ -26,3 +30,14 @@ export {
   deleteArticleHighlight,
   clearDeleteArticleHighlightStore
 };
+
+export {
+  reportArticle,
+  clearReportArticleStore,
+  getOneArticleReports,
+  clearGetOneArticleReportsStore,
+  getArticlesReports,
+  clearGetArticlesReportsStore,
+  deleteArticleReport,
+  clearDeleteArticleReportStore
+}; // reports

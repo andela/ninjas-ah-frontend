@@ -18,23 +18,31 @@ import EditArticle from './Profile/Articles/EditArticle';
 import PublishedArticles from './Profile/Articles/MyArticles/Published';
 import SearchArticles from './SearchArticles';
 import Bookmarks from './Bookmarks/Bookmarks';
+import Users from './Users';
+import UsersNew from './Users/UsersNew';
+import UserDetails from './Users/UsersDetails';
+import EditUser from './Users/UsersEdit';
+import ArticlesReportsList from './Articles/ArticlesReportsList';
 
-const Routes = ({ isAuth }) => (
+const Routes = ({ isAuth, role }) => (
   <Switch>
-    <Route exact path="/" render={props => <Home {...props} isAuth={isAuth} />} />
+    <Route exact path="/" render={props => <Home {...props} />} />
     <Route exact path="/auth" render={props => <SocialMediaAuth {...props} />} />
     <Route exact path="/signup" render={props => <Signup {...props} />} />
-    <Route exact path="/profile" render={props => <Profile {...props} />} />
     <Route exact path="/login" render={props => <Login {...props} />} />
     <Route exact path="/search" render={props => <SearchArticles {...props} />} />
+
+    {/* profile routes */}
+    <Route
+      exact
+      path="/profile"
+      render={props => (isAuth ? <Profile {...props} /> : <Redirect to="/login" />)}
+    />
     <Route
       exact
       path="/profile/settings/notifications"
-      render={props => <Notification {...props} />}
+      render={props => (isAuth ? <Notification {...props} /> : <Redirect to="/login" />)}
     />
-    <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
-    <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
-    <Route exact path="/articles/:slug" render={props => <Article {...props} isAuth={isAuth} />} />
     <Route
       exact
       path="/profile/article/new"
@@ -70,11 +78,83 @@ const Routes = ({ isAuth }) => (
       ))
       }
     />
+
+    {/* users routes */}
+    <Route
+      exact
+      path="/users"
+      render={props => (isAuth && role === 'admin' ? <Users {...props} /> : <Redirect to="/login?redirect=users" />)
+      }
+    />
+    <Route
+      exact
+      path="/users/new"
+      render={props => (isAuth && role === 'admin' ? (
+          <UsersNew {...props} />
+      ) : (
+          <Redirect to="/login?redirect=users/new" />
+      ))
+      }
+    />
+    <Route
+      exact
+      path="/users/:userId"
+      render={props => (isAuth && role === 'admin' ? (
+          <UserDetails {...props} />
+      ) : (
+          <Redirect to={`/login?redirect=users/${props.match.params.userId}`} />
+      ))
+      }
+    />
+    <Route
+      exact
+      path="/users/:userId/edit"
+      render={props => (isAuth && role === 'admin' ? (
+          <EditUser {...props} />
+      ) : (
+          <Redirect to={`/login?redirect=users/${props.match.params.userId}/edit`} />
+      ))
+      }
+    />
+
+    {/* reset password routes */}
+    <Route exact path="/forgot-password" render={props => <ForgotPassword {...props} />} />
+    <Route exact path="/reset-password/:token" render={props => <ResetPassword {...props} />} />
+
+    {/* article reports routes */}
+    <Route
+      exact
+      path="/articles/reports"
+      render={props => (isAuth && role === 'admin' ? (
+          <ArticlesReportsList {...props} />
+      ) : (
+          <Redirect to="/articles/reports" />
+      ))
+      }
+    />
+    <Route
+      exact
+      path="/articles/:slug/reports"
+      render={props => (isAuth && role === 'admin' ? (
+          <ArticlesReportsList {...props} />
+      ) : (
+          <Redirect to={`/login?redirect=articles/${props.match.params.slug}/reports`} />
+      ))
+      }
+    />
+
+    {/* one article routes */}
+    <Route exact path="/articles/:slug" render={props => <Article {...props} />} />
   </Switch>
 );
 
-Routes.propTypes = { isAuth: PropTypes.bool };
-Routes.defaultProps = { isAuth: false };
+Routes.propTypes = { isAuth: PropTypes.bool, role: PropTypes.string, match: PropTypes.object };
+Routes.defaultProps = { match: { params: {} }, isAuth: false, role: 'normal' };
 
-export const mapStateToProps = ({ user: { isAuth } }) => ({ isAuth });
+export const mapStateToProps = ({
+  user: {
+    isAuth,
+    profile: { role }
+  }
+}) => ({ isAuth, role });
 export default connect(mapStateToProps)(Routes);

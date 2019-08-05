@@ -1,3 +1,4 @@
+import checkUser from './checkUser';
 import axiosHelper from './axiosHelper';
 import * as urlHelper from './urlHelper';
 import logout from './logout';
@@ -8,6 +9,7 @@ import styleMap from './styleMap';
 import updateArticleLikesOrDislikes from './updateArticleLikesOrDislikes';
 
 export {
+  checkUser,
   logout,
   axiosHelper,
   urlHelper,

@@ -1,15 +1,21 @@
 import React from 'react';
-import { shallow } from '../../../config/enzymeConfig';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import { mount } from '../../../config/enzymeConfig';
 import Layout from '../../components/Layout';
 import mockWindow from '../../__mocks__/window';
+import store from '../../__mocks__/store';
 
 describe('<Layout />', () => {
   test('renders without crashing', () => {
-    const component = shallow(<Layout>
-        <div>Hello</div>
-      </Layout>);
+    const component = mount(<Provider store={store}>
+        <MemoryRouter>
+          <Layout>
+            <div>Hello</div>
+          </Layout>
+        </MemoryRouter>
+      </Provider>);
     mockWindow.event({ name: 'resize', target: {} });
     expect(component).toHaveLength(1);
-    expect(component.contains(<div>Hello</div>)).toBeTruthy();
   });
 });

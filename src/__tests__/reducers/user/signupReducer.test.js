@@ -29,11 +29,11 @@ describe('User reducers', () => {
   test('SIGNUP_USER_FAILURE', () => {
     const reducer = userReducer(initialState, {
       type: userActionsTypes.SIGNUP_USER_FAILURE,
-      payload: { errors: { user: 'user does not exist' } }
+      payload: { errors: { user: 'user already exist' } }
     });
 
     expect(reducer.signup.errors).toHaveProperty('user');
-    expect(reducer.signup.errors.user).toEqual('user does not exist');
+    expect(reducer.signup.errors.user).toEqual('user already exist');
   });
 
   test('SIGNUP_USER_END', () => {

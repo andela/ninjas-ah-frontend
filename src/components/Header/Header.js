@@ -27,6 +27,10 @@ class Header extends Component {
     });
   };
 
+  componentWillUnmount = () => {
+    window.scrollTo(0, 0);
+  };
+
   toggleUserMenu = () => {
     const { showUserMenu } = this.state;
     this.setState({ showUserMenu: !showUserMenu });
@@ -38,9 +42,9 @@ class Header extends Component {
       <header className="Header">
         <div className="container">
           <div className="small-screen-1 medium-screen-2 large-screen-2">
-            <div className="logo  hide-on-small">
+            <div className="logo hide-on-small">
               <Link to="/">
-                <Img imgSrc={siteLogo} className="border b-light" alt="Authors Haven" />
+                <Img imgSrc={siteLogo} alt="Authors Haven" />
               </Link>
             </div>
             <div className="logo hide-on-medium hide-on-large">
@@ -50,27 +54,27 @@ class Header extends Component {
             </div>
           </div>
 
-          <div className="small-screen-3 medium-screen-2 large-screen-2">
-            <span className="right">
-              {window.location.pathname !== '/search' ? (
-                <Link to="/search" className="button inline-block header-search-button white">
+          <div className="small-screen-3 medium-screen-2 large-screen-2 right-align">
+            {window.location.pathname !== '/search' ? (
+              <span className="inline-block header-search-button">
+                <Link to="/search">
                   <FontAwesomeIcon icon={faSearch} size="lg" />
                 </Link>
-              ) : (
-                ''
-              )}
-              <Notification />
-              <span className="wrap-header-user-button">
-                <Button
-                  buttonClass="button white"
-                  id="toggleUserMenuButton"
-                  onClick={this.toggleUserMenu}
-                >
-                  <HeaderUserImage />
-                </Button>
-
-                {showUserMenu ? <HeaderUserMenu /> : ''}
               </span>
+            ) : (
+              ''
+            )}
+            <Notification />
+            <span className="inline-block header-user-button">
+              <Button
+                buttonClass="button white"
+                id="toggleUserMenuButton"
+                onClick={this.toggleUserMenu}
+              >
+                <HeaderUserImage />
+              </Button>
+
+              {showUserMenu ? <HeaderUserMenu /> : ''}
             </span>
           </div>
         </div>

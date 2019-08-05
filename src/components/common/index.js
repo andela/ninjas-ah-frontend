@@ -9,6 +9,10 @@ import Heading from './Heading/Heading';
 import NotFound from './NotFound/NotFound';
 import LikeDislikeButton from './LikeDislikeButton/LikeDislikeButton';
 import ProgressBar from './ProgressBar';
+import CheckBox from './CheckBox/CheckBox';
+import RadioButton from './RadioButton/RadioButton';
+import Modal from './Modal/Modal';
+import ConfirmModal from './ConfirmModal/ConfirmModal';
 
 export {
   Input,
@@ -21,5 +25,9 @@ export {
   Heading,
   NotFound,
   LikeDislikeButton,
-  ProgressBar
+  ProgressBar,
+  CheckBox,
+  RadioButton,
+  Modal,
+  ConfirmModal
 };

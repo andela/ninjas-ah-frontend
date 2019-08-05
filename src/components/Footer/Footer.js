@@ -3,7 +3,7 @@ import './Footer.scss';
 
 const year = new Date().getFullYear();
 const Footer = () => (
-  <div id="footer" className="black">
+  <div className="Footer black">
     <div className="container">
       <div className="center-align text-white">
         Welcome to

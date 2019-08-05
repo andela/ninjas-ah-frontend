@@ -36,6 +36,12 @@ export class ArticleHighlight extends Component {
     window.addEventListener('resize', this.checkHighlightedText);
   };
 
+  componentWillUnmount = () => {
+    const { clearCreateRateStore, clearHighlightArticleStore } = this.props;
+    clearCreateRateStore();
+    clearHighlightArticleStore();
+  };
+
   hideModal = (modal) => {
     const { clearHighlightArticleStore } = this.props;
     clearHighlightArticleStore();
@@ -187,7 +193,10 @@ export class ArticleHighlight extends Component {
             {htmlHelper.tagGenerator('br', null, 10)}
           </div>
           {/* Highlight details modal */}
-          {(article.highlights.length && <ArticleHighlightsDetails article={article} />) || ''}
+          {(article.highlights && article.highlights.length && (
+            <ArticleHighlightsDetails article={article} />
+          ))
+            || ''}
         </div>
       </div>
     );

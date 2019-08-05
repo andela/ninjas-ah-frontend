@@ -9,10 +9,11 @@ import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { fetchOneArticle } from '../../../actions';
-import { getArticleHighlights } from '../../../actions/articles';
+import { getArticleHighlights, getOneArticleReports } from '../../../actions/articles';
 import avatar from '../../../assets/images/user.png';
 import timeStamp from '../../../helpers/timeStamp';
 import ArticleHighlight from './ArticleHighlight';
+import ArticleReport from './ArticleReport';
 import { NotFound } from '../../common';
 import Layout from '../../Layout';
 import ShareArticle from '../Share/ShareArticle';
@@ -38,14 +39,17 @@ export class Article extends Component {
     highlightCommentModalStyle: 'none'
   };
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     const {
       fetchOneArticle,
       getArticleHighlights,
+      getOneArticleReports,
       match: { params: { slug } }
     } = this.props;
 
-    return fetchOneArticle(slug) && getArticleHighlights(slug);
+    fetchOneArticle(slug);
+    getArticleHighlights(slug);
+    getOneArticleReports(slug);
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -63,27 +67,30 @@ export class Article extends Component {
   };
 
   showHighlights = (highlights, articleBody) => {
+    const { profile } = this.props;
     const articleBodyWithHighlights = articleBody;
-    (highlights || []).forEach(({ id, anchorKey, startIndex, highlightedText }, key) => {
-      this.setState(prevState => ({
-        ...prevState,
-        styleMap: {
-          ...prevState.styleMap,
-          [`HIGHLIGHT${key}`]: { '--highlight-id': id }
-        }
-      }));
-      articleBody.blocks.forEach((block, index) => {
-        if (block.key === anchorKey) {
-          articleBodyWithHighlights.blocks[index].inlineStyleRanges = [
-            ...articleBodyWithHighlights.blocks[index].inlineStyleRanges,
-            {
-              offset: startIndex,
-              length: highlightedText.length,
-              style: `HIGHLIGHT${key}`
-            }
-          ];
-        }
-      });
+    (highlights || []).forEach(({ id, userId, anchorKey, startIndex, highlightedText }, key) => {
+      if (userId === profile.id) {
+        this.setState(prevState => ({
+          ...prevState,
+          styleMap: {
+            ...prevState.styleMap,
+            [`HIGHLIGHT${key}`]: { '--highlight-id': id }
+          }
+        }));
+        articleBody.blocks.forEach((block, index) => {
+          if (block.key === anchorKey) {
+            articleBodyWithHighlights.blocks[index].inlineStyleRanges = [
+              ...articleBodyWithHighlights.blocks[index].inlineStyleRanges,
+              {
+                offset: startIndex,
+                length: highlightedText.length,
+                style: `HIGHLIGHT${key}`
+              }
+            ];
+          }
+        });
+      }
     });
     return articleBodyWithHighlights;
   };
@@ -179,12 +186,9 @@ export class Article extends Component {
                 <div>
                   <ShareArticle />
                 </div>
-
                 <br />
                 <div className="large-text">{article.description}</div>
-
                 <div className="divider light" />
-                <div className="left" />
                 <div className="articleBody">
                   {article && (
                     <Editor
@@ -197,15 +201,12 @@ export class Article extends Component {
                 </div>
                 <div className="divider light" />
                 <div className="row">
-                  <div className="small-screen-4 medium-screen-2 large-screen-2">
-                    <LikeArticle />
-                  </div>
-                  <div className="small-screen-4 medium-screen-2 large-screen-2">
-                    <BookmarkArticle />
-                  </div>
-                  <div className="divider white" />
+                  <LikeArticle />
+                  <ArticleReport article={article} />
+                  <BookmarkArticle />
+                  <div className="divider light" />
+                  <Comments slug={article.slug} />
                 </div>
-                <Comments slug={article.slug} />
               </div>
             </div>
           ) : (
@@ -221,10 +222,12 @@ Article.defaultProps = { match: { params: { slug: '' } } };
 
 Article.propTypes = {
   article: PropTypes.object,
+  profile: PropTypes.object,
   loading: PropTypes.bool,
   fetchOneArticle: PropTypes.func.isRequired,
   getArticleHighlights: PropTypes.func,
-  editorState: PropTypes.func,
+  getOneArticleReports: PropTypes.func,
+  editorState: PropTypes.object,
   match: PropTypes.object,
   slug: PropTypes.string,
   rating: PropTypes.number,
@@ -235,12 +238,14 @@ Article.propTypes = {
 };
 
 const mapStateToProps = ({
+  user: { profile },
   articles: {
     getHighlights: { loading },
     article,
     errors
   }
 }) => ({
+  profile,
   loading,
   article,
   errors
@@ -248,5 +253,5 @@ const mapStateToProps = ({
 
 export default connect(
   mapStateToProps,
-  { fetchOneArticle, getArticleHighlights }
+  { fetchOneArticle, getArticleHighlights, getOneArticleReports }
 )(Article);
