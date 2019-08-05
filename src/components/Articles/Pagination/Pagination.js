@@ -9,7 +9,15 @@ export class Pagination extends Component {
 
   displayButtons = (articlesCount) => {
     const maxPerPage = 10;
-    const numberOfButtons = (articlesCount % maxPerPage) + (articlesCount / maxPerPage);
+    let numberOfButtons = '';
+    if (articlesCount / maxPerPage < 1) {
+      numberOfButtons = '';
+    }
+    if (articlesCount / maxPerPage > 1) {
+      numberOfButtons = articlesCount % maxPerPage
+        ? (articlesCount / maxPerPage) + 1
+        : articlesCount / maxPerPage;
+    }
     let buttons = [];
     for (let i = 1; i <= numberOfButtons; i += 1) {
       buttons = [

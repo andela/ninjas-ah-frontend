@@ -4,6 +4,7 @@ import Layout from '../Layout';
 import Tags from '../Articles/Tags/Tags';
 import ListOfArticles from '../Articles/ListOfArticles/ListOfArticles';
 import './Home.scss';
+import SignupBanner from './SignupBanner/SignupBanner';
 
 class Home extends Component {
   state = { welcome: 'Welcome to Authors Haven' };
@@ -22,6 +23,7 @@ class Home extends Component {
             <meta property="og:image" content="path/to/image.jpg" />
           </MetaTags>
           <Tags />
+          <SignupBanner />
           <div className="container">
             <div className="contentColumn">
               <ListOfArticles />

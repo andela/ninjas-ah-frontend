@@ -2,7 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import store from '../../../__mocks__/store';
-import CommentThread, { CommentThread as ComponentThreadComponent } from '../../../components/Articles/Comments/CommentThread';
+import CommentThread, {
+  CommentThread as ComponentThreadComponent
+} from '../../../components/Articles/Comments/CommentThread';
 import { shallow, mount } from '../../../../config/enzymeConfig';
 import user from '../../../__mocks__/user';
 
@@ -30,9 +32,16 @@ const state = {
       commentAuthor: user
     }
   ],
+  commentHistory: [
+    {
+      id: 1,
+      body: 'comment edited'
+    }
+  ],
   errors: {},
   commentEditor: { 0: { display: 'block' } },
-  newComments: { 'comment-0': { value: 'we are here' } }
+  newComments: { 'comment-0': { value: 'we are here' } },
+  commentEditorHistory: ''
 };
 
 const props = {
@@ -47,9 +56,17 @@ const props = {
   fetchComments: jest.fn(),
   toggleCommentEditor: jest.fn(key => key),
   closeCommentEditor: jest.fn(),
+  getCommentHistory: jest.fn(),
+  editCommentHistory: [
+    {
+      id: 1,
+      body: 'comment edited'
+    }
+  ],
+  toggleCommentHistory: jest.fn(),
   editComment: jest.fn(),
   onSubmit: jest.fn(),
-  comments: ['this is the first comment', 'this is the onother comment'],
+  comments: ['this is the first comment', 'this is the another comment'],
   deleted: true
 };
 
@@ -62,6 +79,7 @@ describe('COMMENT THREAD', () => {
     form = component.find('#submit-comment');
     form.map(f => f.simulate('submit', { preventDefault: jest.fn() }));
     component.instance().onDeleteComment(1, 1);
+    component.instance().toggleCommentHistory();
     component.instance().componentWillReceiveProps(props);
     component.instance().onChangeEditComment({ target: { value: 'hello world' } });
     component.instance().toggleCommentEditor(2);
@@ -70,7 +88,9 @@ describe('COMMENT THREAD', () => {
   });
 
   test('Should not comment when the user is not authenticated', () => {
-    component = shallow(<ComponentThreadComponent state={state} {...{ ...props, isAuth: false }} />);
+    component = shallow(
+      <ComponentThreadComponent state={state} {...{ ...props, isAuth: false }} />
+    );
     component.setState(state);
 
     submitButton = component.find('#submit-comment').exists();
@@ -79,7 +99,9 @@ describe('COMMENT THREAD', () => {
   });
 
   test('Should comment when the user is logged in', () => {
-    component = shallow(<ComponentThreadComponent state={{ ...state, newComments: {} }} {...props} />);
+    component = shallow(
+      <ComponentThreadComponent state={{ ...state, newComments: {} }} {...props} />
+    );
     component.setState({ ...state, newComments: {} });
 
     submitButton = component.find('#submit-comment').exists();
@@ -92,6 +114,22 @@ describe('COMMENT THREAD', () => {
     component.setState({ ...state });
 
     toggleComment = component.find('#toggle-comment');
+    toggleComment.simulate('click');
+  });
+
+  test('Should toggle history', () => {
+    component = shallow(<ComponentThreadComponent state={{ ...state }} {...props} />);
+    component.setState({ ...state });
+
+    toggleComment = component.find('#toggle-history');
+    toggleComment.simulate('click');
+  });
+
+  test('Should toggle comment history', () => {
+    component = shallow(<ComponentThreadComponent state={{ ...state }} {...props} />);
+    component.setState({ ...state });
+
+    toggleComment = component.find('#toggle-history');
     toggleComment.simulate('click');
   });
 
@@ -113,11 +151,13 @@ describe('COMMENT THREAD', () => {
   });
 
   test('render the props', () => {
-    const component = mount(<Provider store={store}>
+    const component = mount(
+      <Provider store={store}>
         <MemoryRouter>
           <CommentThread {...props} />
         </MemoryRouter>
-      </Provider>);
+      </Provider>
+    );
 
     expect(component).toHaveLength(1);
   });

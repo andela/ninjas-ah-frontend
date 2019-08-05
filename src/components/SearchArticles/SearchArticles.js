@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 import { Input, Img, Form, Button } from '../common';
 import { searchArticles } from '../../actions';
 import './SearchArticles.scss';
@@ -21,14 +22,19 @@ class SearchArticles extends Component {
     imageRectangle: 'w_400,ar_16:9,c_fill,g_auto,e_sharpen'
   };
 
+  componentDidMount = () => {
+    const { location } = this.props;
+    const { tag, author, keyword } = queryString.parse(location.search);
+    return (tag || author || keyword) && this.searchArticle({ author, keyword, tag });
+  };
+
   onOpenModal = () => {
     style = !this.state.display ? { display: 'block' } : {};
     this.setState({ open: true, searchArticle: '' });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { author, keyword, tag } = this.state;
+  searchArticle = (params = {}) => {
+    const { author, keyword, tag } = params;
     const { searchArticles } = this.props;
     let url = '/articles';
     if (keyword) {
@@ -43,6 +49,12 @@ class SearchArticles extends Component {
     searchArticles(url);
     style = !this.state.display ? { display: 'none' } : {};
     this.setState({ open: false, keyword: '', author: '', tag: '' });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { author, keyword, tag } = this.state;
+    return this.searchArticle({ author, keyword, tag });
   };
 
   handleChange = (e) => {
@@ -198,10 +210,9 @@ class SearchArticles extends Component {
     );
   }
 }
-export const mapStateToProps = (store) => {
-  const { searchArticles } = store;
-  return searchArticles;
-};
+
+SearchArticles.defaultProps = { location: { search: '' } };
+
 SearchArticles.propTypes = {
   searchArticles: PropTypes.func,
   articles: PropTypes.object,
@@ -209,6 +220,11 @@ SearchArticles.propTypes = {
   loading: PropTypes.bool,
   location: PropTypes.object,
   pathname: PropTypes.string
+};
+
+export const mapStateToProps = (store) => {
+  const { searchArticles } = store;
+  return searchArticles;
 };
 
 export default connect(

@@ -47,7 +47,7 @@ class Header extends Component {
                 <Img imgSrc={siteLogo} alt="Authors Haven" />
               </Link>
             </div>
-            <div className="logo hide-on-medium hide-on-large">
+            <div className="logo-small hide-on-medium hide-on-large">
               <Link to="/">
                 <Img imgSrc={siteLogoSmall} alt="Authors Haven" width="60px" />
               </Link>

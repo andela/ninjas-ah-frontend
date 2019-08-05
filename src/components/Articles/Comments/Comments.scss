@@ -3,6 +3,7 @@
 @import '../../../assets/css/_padding';
 @import '../../../assets/css/_margin';
 @import '../../../assets/css/_border';
+@import '../../../assets/css/_shadow';
 
 #wrap-comment-thread {
   margin: 0;
@@ -47,7 +48,11 @@
     color: #585858;
     line-height: 30px;
     border-left: 2px solid #cdcdcd;
-    button {
+    a {
+      margin-top: 4px;
+    }
+    button,
+    a {
       padding: 8px 20px;
       border: none;
       margin-right: 5px;
@@ -78,5 +83,29 @@
 #comment-form-wrapper {
   textarea {
     font-size: 16px;
+  }
+}
+
+.wrap-comment-history {
+  width: 96%;
+  padding: 0.5% 1%;
+  background: rgba(255, 255, 255, 0.9);
+  .comment-history {
+    margin: 0 0 10px 0;
+    position: relative;
+    padding-left: 60px;
+    @extend .border,
+      .b-light-grey,
+      .medium-padding,
+      .white,
+      .radius-2,
+      .shadow-1;
+    .icon-history {
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      color: #989898;
+      font-size: 35px;
+    }
   }
 }

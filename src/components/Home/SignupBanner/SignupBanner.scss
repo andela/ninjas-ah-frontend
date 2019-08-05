@@ -1,0 +1,30 @@
+@import '../../../assets/css/_colors.scss';
+.signup-banner {
+  margin: 0 !important;
+  padding: 0 0 0 0 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  .container {
+    padding: 0 0 -5px 0 !important;
+    margin: 0 auto !important;
+    .image {
+      position: relative;
+    }
+    .image::before {
+      content: 'Photo by thecreativepenn.com';
+      width: auto;
+      height: 10px;
+      padding: 5px;
+      margin: 0;
+      bottom: 3px;
+      right: 2px;
+      font-size: 10px;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.3);
+      position: absolute;
+      opacity: 0.6;
+    }
+  }
+  .light-grey {
+    background: rgb(238, 238, 238) !important;
+  }
+}
