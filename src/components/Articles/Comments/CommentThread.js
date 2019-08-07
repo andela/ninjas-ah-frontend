@@ -175,7 +175,9 @@ export class CommentThread extends Component {
             color="#f9d342"
             loading={loading}
           />
-        ) : ('')}
+        ) : (
+          ''
+        )}
         <ul className="list-block comments-wrapper">
           {!loading
             && (comments || []).map((comment, key) => (
@@ -198,7 +200,9 @@ export class CommentThread extends Component {
                           <span className="bold text-success">
                             {comment.commentAuthor.firstName}
                           </span>
-                        ) : (<span className="bold text-success">{profile.firstName}</span>)}
+                        ) : (
+                          <span className="bold text-success">{profile.firstName}</span>
+                        )}
                         <br />
                         <div className="text-grey small-v-margin timestamp">
                           {timeStamp(comment.createdAt)}
@@ -216,16 +220,14 @@ export class CommentThread extends Component {
                               type="button"
                               onClick={() => this.toggleCommentHistory(key, comment.id)}
                               id="toggle-history"
-                              className="light text-black "
-                            >
+                              className="light text-black ">
                               <FontAwesomeIcon icon={faClock} className="text-grey" />
                               &nbsp; Edit History
                             </button>
                             <button
                               id="toggle-comment"
                               onClick={() => this.toggleCommentEditor(key)}
-                              className="success text-white"
-                            >
+                              className="success text-white">
                               <FontAwesomeIcon icon={faPenAlt} />
                               &nbsp; Edit
                             </button>
@@ -234,20 +236,20 @@ export class CommentThread extends Component {
                               onClick={() => {
                                 this.onDeleteComment(comment.id, key);
                               }}
-                              className="danger text-white"
-                            >
+                              className="danger text-white">
                               <FontAwesomeIcon icon={faTrash} />
                               &nbsp; Delete
                             </button>
                           </span>
-                        ) : ('')}
+                        ) : (
+                          ''
+                        )}
                       </div>
                       <div className="divider white" />
                       <div
                         className={`wrap-comment-history ${(commentEditorHistory[key]
                           && commentEditorHistory[key].display)
-                          || 'hide'}`}
-                      >
+                          || 'hide'}`}>
                         {commentHistory
                           && commentHistory.length
                           && (commentHistory || []).map((history, key) => (
@@ -268,24 +270,26 @@ export class CommentThread extends Component {
                           <div className="center-align bold medium-text">
                             Loading comment history...
                           </div>
-                        ) : ('')}
+                        ) : (
+                          ''
+                        )}
                         {!loadingHistory && !commentHistory ? (
                           <div className="center-align bold medium-text">
                             You did not edit this comment yet!
                           </div>
-                        ) : ('')}
+                        ) : (
+                          ''
+                        )}
                       </div>
                       <div className="divider white" />
 
                       <div
                         className={`comment-editor ${(commentEditor[key]
                           && commentEditor[key].display)
-                          || 'hide'}`}
-                      >
+                          || 'hide'}`}>
                         <form
                           id="submit-comment"
-                          onSubmit={e => this.onSubmit(e, key, comment.id, comment.userId)}
-                        >
+                          onSubmit={e => this.onSubmit(e, key, comment.id, comment.userId)}>
                           <div>Edit this comment</div>
                           <div className="input-field">
                             <TextareaAutosize
@@ -306,25 +310,27 @@ export class CommentThread extends Component {
                             <button
                               onSubmit={this.onSubmit}
                               type="submit"
-                              className="button success text-white radius-5"
-                            >
+                              className="button success text-white radius-5">
                               Update
                             </button>
                             <button
                               id="close-comment-editor"
                               onClick={e => this.closeCommentEditor(e, key)}
-                              className="button white text-black radius-5 border b-grey"
-                            >
+                              className="button white text-black radius-5 border b-grey">
                               Cancel
                             </button>
                             {loading ? (
                               <span className="medium-padding radius-5">loading</span>
-                            ) : ('')}
+                            ) : (
+                              ''
+                            )}
                             {errors && errors.message ? (
                               <span className="medium-padding radius-5 text-danger">
                                 {errors.message}
                               </span>
-                            ) : ('')}
+                            ) : (
+                              ''
+                            )}
                           </div>
                         </form>
                       </div>
@@ -332,7 +338,9 @@ export class CommentThread extends Component {
                     </div>
                     <div className="divider white" />
                   </div>
-                ) : ('')}
+                ) : (
+                  ''
+                )}
               </li>
             ))}
           <div>
@@ -344,7 +352,9 @@ export class CommentThread extends Component {
                 />
                 <h2 className="center-align large-v-padding">No comment yet</h2>
               </div>
-            ) : ('')}
+            ) : (
+              ''
+            )}
           </div>
         </ul>
         <div className="clear" />

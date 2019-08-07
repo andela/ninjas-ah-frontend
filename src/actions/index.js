@@ -8,7 +8,8 @@ import {
   deleteArticle,
   publishArticle,
   unpublishArticle,
-  getPublished
+  getPublished,
+  createTag
 } from './articles';
 import { createRate, clearCreateRateStore } from './rating';
 import { uploadImage } from './images';
@@ -54,5 +55,6 @@ export {
   editComment,
   getCommentHistory,
   likeComment,
-  getLikesComment
+  getLikesComment,
+  createTag
 };
