@@ -214,7 +214,7 @@ export class Article extends Component {
                           <span className="value-tag">{value}</span>
                         </p>
                     ))
-                    : 'No tags added'}
+                    : ''}
                 </div>
                 <div className="divider" />
                 <div className="row">
