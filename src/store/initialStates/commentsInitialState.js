@@ -27,5 +27,17 @@ module.exports = {
     historyLoading: false,
     message: '',
     errors: ''
-  }
+  },
+  comment: { likes: { number: 0, whoLiked: [] } },
+  getLikes: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  like: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  commentLikes: []
 };

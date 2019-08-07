@@ -7,6 +7,7 @@ import * as htmlHelper from './html';
 import socketIOClient from './socketIOClient';
 import styleMap from './styleMap';
 import updateArticleLikesOrDislikes from './updateArticleLikesOrDislikes';
+import updateCommentLikes from './updateCommentLikes';
 
 export {
   checkUser,
@@ -17,5 +18,6 @@ export {
   htmlHelper,
   styleMap,
   socketIOClient,
-  updateArticleLikesOrDislikes
+  updateArticleLikesOrDislikes,
+  updateCommentLikes
 };
