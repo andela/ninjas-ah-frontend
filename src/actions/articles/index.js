@@ -13,6 +13,7 @@ import reportArticle, { clearReportArticleStore } from './reportArticle';
 import getOneArticleReports, { clearGetOneArticleReportsStore } from './getOneArticleReports';
 import getArticlesReports, { clearGetArticlesReportsStore } from './getArticlesReports';
 import deleteArticleReport, { clearDeleteArticleReportStore } from './deleteArticleReport';
+import createTag from './createTag';
 
 export {
   createPost,
@@ -28,7 +29,8 @@ export {
   getArticleHighlights,
   clearGetArticleHighlightsStore,
   deleteArticleHighlight,
-  clearDeleteArticleHighlightStore
+  clearDeleteArticleHighlightStore,
+  createTag
 };
 
 export {

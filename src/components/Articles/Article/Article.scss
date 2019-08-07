@@ -85,4 +85,20 @@
       float: right;
     }
   }
+
+  .tags-values {
+    float: left;
+    margin: 15px 15px 15px 0;
+  }
+
+  .value-tag {
+    color: $black;
+    background: $lighten-grey;
+    padding: 9px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+  }
 }

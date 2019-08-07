@@ -4,6 +4,9 @@ import URL from '../../../__mocks__/URL';
 import { PreviewArticle as PreviewArticleComponent } from '../../../components/Profile/Articles/PreviewArticle/PreviewArticle';
 import { shallow } from '../../../../config/enzymeConfig';
 
+const submitButton = '';
+const form = '';
+
 const props = {
   errors: {},
   article: {
@@ -12,6 +15,8 @@ const props = {
     body: 'body of the article',
     slug: 'slug-slug-slug'
   },
+  addTags: { response: 'okkkkk' },
+  createTag: jest.fn(),
   message: { message: 'Published' },
   fetchOneArticle: jest.fn(),
   history: {},
@@ -20,6 +25,8 @@ const props = {
   unpublishArticle: jest.fn(),
   deleteArticle: jest.fn(),
   fileSelectedHandler: jest.fn(),
+  handleSubmitTag: jest.fn(),
+  handleChange: jest.fn({ preventDefault: jest.fn() }),
   createObjectURL: jest.fn(),
   uploadImage: jest.fn()
 };
@@ -27,6 +34,7 @@ const state = {
   article: {
     title: 'Hello John Doe',
     description: 'John Doe, Mocker',
+    tagList: 'tag',
     body: JSON.stringify({
       blocks: [
         {
@@ -74,7 +82,7 @@ const state = {
   },
   message: { message: 'Published' }
 };
-const component = shallow(<PreviewArticleComponent {...props} />);
+const component = shallow(<PreviewArticleComponent {...props} state={{ ...state }} />);
 describe('<PreviewArticle />', () => {
   it('should render a <PreviewArticleComponent /> component ', () => {
     expect(component).toMatchSnapshot();
@@ -91,5 +99,14 @@ describe('<PreviewArticle />', () => {
   it('should trigger handleDelete ', () => {
     component.setProps({ article: state.article, message: state.message });
     component.instance().handleDelete();
+  });
+
+  it('should trigger handleChange ', () => {
+    component.instance().handleChange({ target: { value: 'hello world' } });
+  });
+
+  test('Should add tag when the user is logged in', () => {
+    component.setState({ ...state });
+    component.instance().handleSubmitTag({ preventDefault: jest.fn() });
   });
 });

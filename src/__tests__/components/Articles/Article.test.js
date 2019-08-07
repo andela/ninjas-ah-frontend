@@ -8,6 +8,7 @@ const props = {
   profile: { ...user, id: 1 },
   article: {
     id: 1,
+    tagList: ['one', 'two'],
     ...article
   },
   match: { params: { slug: 'slug-slug-slug' } },
@@ -17,7 +18,14 @@ const props = {
   saveReadingStats: jest.fn()
 };
 
+const state = { article: { tagList: ['tag1', 'tag2'] } };
+
 describe('<Article />', () => {
+  it('Render state and props', () => {
+    const component = shallow(<Article state={state} {...props} />);
+    component.setState(state);
+  });
+
   it('should render a <Article /> component', () => {
     const component = shallow(<Article {...props} />);
     component.instance().onChange();

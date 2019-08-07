@@ -207,6 +207,16 @@ export class Article extends Component {
                   )}
                 </div>
                 <div className="divider light" />
+                <div>
+                  {article.tagList
+                    ? article.tagList.map(value => (
+                        <p className="tags-values" key={value}>
+                          <span className="value-tag">{value}</span>
+                        </p>
+                    ))
+                    : 'No tags added'}
+                </div>
+                <div className="divider" />
                 <div className="row">
                   <LikeArticle />
                   <ArticleReport article={article} />

@@ -6,6 +6,7 @@ const rating = require('./initialStates/ratingInitialState');
 const bookmarks = require('./initialStates/bookmarks');
 const comments = require('./initialStates/commentsInitialState');
 const readingStats = require('./initialStates/readingStatsInitialState.js');
+const tags = require('./initialStates/tagsInitialState');
 
 module.exports = {
   user,
@@ -15,5 +16,6 @@ module.exports = {
   rating,
   bookmarks,
   comments,
-  readingStats
+  readingStats,
+  tags
 };

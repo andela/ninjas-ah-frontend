@@ -7,6 +7,7 @@ import searchArticles from './searchArticlesReducer';
 import bookmarks from './bookmarks';
 import comments from './comments';
 import readingStats from './readingStats';
+import tags from './tags';
 
 export default {
   user,
@@ -17,5 +18,6 @@ export default {
   searchArticles,
   bookmarks,
   comments,
-  readingStats
+  readingStats,
+  tags
 };

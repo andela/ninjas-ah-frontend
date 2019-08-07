@@ -91,3 +91,5 @@ export const newComment = {
 };
 
 export const Comment = { body: 'comme here' };
+
+export const Tags = { tagList: ['here', 'joi'] };
