@@ -17,7 +17,7 @@ describe('User reducers', () => {
   test('SEARCH_USER_SUCCESS', () => {
     const reducer = userReducer(initialState, {
       type: userActionsTypes.SEARCH_USER_SUCCESS,
-      payload: { user }
+      payload: { users: [user] }
     });
 
     expect(reducer.currentUser).toEqual(user);

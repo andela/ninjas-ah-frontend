@@ -17,11 +17,15 @@
   .list-inline a {
     &:hover {
       background-color: #fff;
-      border-bottom: solid 5px $yellow;
-      margin-bottom: -5px;
     }
     font-size: 1em;
     padding: 15px 10px;
+  }
+
+  .active {
+    background-color: #fff;
+    border-bottom: solid 5px $yellow;
+    margin-bottom: -5px;
   }
 
   .list-inline {

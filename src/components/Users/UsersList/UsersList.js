@@ -101,9 +101,14 @@ export class UsersList extends Component {
                   />
                 </div>
                 <div className="small-screen-3">
-                  <p>
+                  <div>
+                    <br />
                     {user.firstName} {user.lastName}
-                  </p>
+                    <br />
+                    <i className="bold block medium-v-padding">
+                      {(user.username && `@${user.username}`) || ''}
+                    </i>
+                  </div>
                   <span className="inline-block small-padding">
                     <Link
                       to={`/users/${user.id}`}

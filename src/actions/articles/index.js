@@ -2,7 +2,7 @@ import { createPost } from './createPost';
 import { editPost } from './editPost';
 import { fetchOneArticle } from './fetchOneArticle';
 import { getAllArticles } from './getAllArticles';
-import { deleteArticle } from './deleteArticle';
+import { deleteArticle, clearDeleteArticleStore } from './deleteArticle';
 import { publishArticle } from './publishArticle';
 import { unpublishArticle } from './unpublishArticle';
 import { getPublished } from './getPublished';
@@ -19,19 +19,23 @@ export {
   createPost,
   editPost,
   deleteArticle,
+  clearDeleteArticleStore,
   publishArticle,
   unpublishArticle,
   getAllArticles,
   fetchOneArticle,
   getPublished,
+  createTag
+};
+
+export {
   highlightArticle,
   clearHighlightArticleStore,
   getArticleHighlights,
   clearGetArticleHighlightsStore,
   deleteArticleHighlight,
-  clearDeleteArticleHighlightStore,
-  createTag
-};
+  clearDeleteArticleHighlightStore
+}; // highlight
 
 export {
   reportArticle,

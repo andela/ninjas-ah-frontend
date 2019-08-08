@@ -59,5 +59,10 @@ module.exports = {
     loading: false,
     message: '',
     errors: {}
+  },
+  deleteArticle: {
+    loading: false,
+    message: '',
+    errors: {}
   }
 };

@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Article /> should display an article 1`] = `ShallowWrapper {}`;
+exports[`<Article /> should render without crashing 1`] = `ShallowWrapper {}`;
 
-exports[`<Article /> should render a <Article /> component 1`] = `ShallowWrapper {}`;
+exports[`<Article /> should render without crashing 2`] = `ShallowWrapper {}`;

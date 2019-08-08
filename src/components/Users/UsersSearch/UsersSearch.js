@@ -44,7 +44,7 @@ export class UsersSearch extends Component {
             value={userId}
             autoComplete="off"
             inputClass="medium-text radius-5"
-            placeholder="Enter a user ID"
+            placeholder="Enter a username"
             onChange={this.handleChange}
           />
         </Form>

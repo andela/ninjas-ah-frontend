@@ -100,6 +100,26 @@ describe('Articles reducers', () => {
     });
     expect(reducer.errors).toBeInstanceOf(Object);
   });
+  test('CLEAR_DELETE_ARTICLE_STORE', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.CLEAR_DELETE_ARTICLE_STORE,
+      payload: {}
+    });
+
+    expect(reducer.deleteArticle).toHaveProperty('loading');
+    expect(reducer.deleteArticle.loading).toBeFalsy();
+    expect(reducer.deleteArticle.errors).toEqual({});
+    expect(reducer.deleteArticle.message).toEqual('');
+  });
+  test('DELETE_ARTICLE_START', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.DELETE_ARTICLE_START,
+      payload: { loading: true }
+    });
+
+    expect(reducer.deleteArticle).toHaveProperty('loading');
+    expect(reducer.deleteArticle.loading).toBeTruthy();
+  });
   it('DELETE_ARTICLE_SUCCESS', () => {
     const reducer = articlesReducer(initialState, {
       type: articlesType.DELETE_ARTICLE_SUCCESS,
@@ -113,6 +133,15 @@ describe('Articles reducers', () => {
       payload: { errors }
     });
     expect(reducer.errors).toBeInstanceOf(Object);
+  });
+  test('DELETE_ARTICLE_END', () => {
+    const reducer = articlesReducer(initialState, {
+      type: articlesType.DELETE_ARTICLE_END,
+      payload: { loading: false }
+    });
+
+    expect(reducer.deleteArticle).toHaveProperty('loading');
+    expect(reducer.deleteArticle.loading).toBeFalsy();
   });
   it('PUBLISH_ARTICLE_SUCCESS', () => {
     const reducer = articlesReducer(initialState, {

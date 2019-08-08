@@ -9,3 +9,8 @@ export const deleteArticle = ({ slug }) => dispatch => dispatch(apiAction({
   onSuccess: articlesType.DELETE_ARTICLE_SUCCESS,
   onFailure: articlesType.DELETE_ARTICLE_FAILURE
 }));
+
+export const clearDeleteArticleStore = payload => dispatch => dispatch({
+  type: articlesType.CLEAR_DELETE_ARTICLE_STORE,
+  payload
+});

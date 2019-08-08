@@ -4,16 +4,16 @@ const dispatch = jest.fn(action => action);
 
 describe('Search user', () => {
   test('should return user information', async () => {
-    const result = searchUser(1)(dispatch);
+    const result = searchUser('josmi')(dispatch);
     expect(result).toHaveProperty('type');
     expect(result).toHaveProperty('payload');
-    expect(result.payload.url).toEqual('/users/1');
+    expect(result.payload.url).toEqual('/users/username/josmi');
   });
 
   test('should return user information', async () => {
     const result = searchUser()(dispatch);
     expect(result).toHaveProperty('type');
     expect(result).toHaveProperty('payload');
-    expect(result.payload.url).toEqual('/users/0');
+    expect(result.payload.url).toEqual('/users/username/');
   });
 });

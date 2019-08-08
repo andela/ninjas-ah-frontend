@@ -122,7 +122,7 @@ export class UsersNew extends Component {
               message={message || errors.message}
             />
           )}
-          <AdminMenu />
+          <AdminMenu currentPage="newUser" />
           <div className="divider" />
           <div className="container">
             <h2>REGISTER USER</h2>

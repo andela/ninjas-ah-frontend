@@ -66,7 +66,9 @@ export class BookmarkArticle extends Component {
           ''
         )}
         {isAuth && bookmarkClicked ? (
-          <p className="error-message text-danger ">{bookmarks || ''}</p>
+          <p className="error-message text-danger" style={{ position: 'absolute' }}>
+            {bookmarks || ''}
+          </p>
         ) : (
           ''
         )}
