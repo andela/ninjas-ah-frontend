@@ -41,7 +41,7 @@ export class CommentThread extends Component {
     const { comments, deleted } = nextProps;
     const { commentKey } = this.state;
     if (comments) {
-      this.setState({ comments, commentEditor: {} });
+      this.setState({ comments, commentEditor: {}, newComments: {} });
     }
     if (deleted && commentKey !== undefined) {
       delete comments[commentKey];
@@ -297,9 +297,9 @@ export class CommentThread extends Component {
                               placeholder="Edit your comment here..."
                               onChange={this.onChangeEditComment}
                               value={
-                                (newComments[`comment-${key}`]
-                                  && newComments[`comment-${key}`].value)
-                                || comment.body
+                                newComments[`comment-${key}`]
+                                  ? newComments[`comment-${key}`].value
+                                  : comment.body
                               }
                               id={`edit-comment-${key}`}
                               style={{ minHeight: 12, fontSize: 14 }}
