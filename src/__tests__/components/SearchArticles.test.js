@@ -35,16 +35,16 @@ describe('<SearchArticles /> component', () => {
   });
   it('it open advanced seach', () => {
     const search = component
-      .find('input[name="searchArticle"]')
-      .simulate('change', { target: { value: 'prince@gmail.com' } });
-    expect(search).toHaveLength(1);
+      .find('input[name="keyword"]')
+      .map(input => input.simulate('change', { target: { value: 'prince@gmail.com' } }));
+    expect(search).toHaveLength(2);
   });
   it('it open advanced seach', () => {
     component.setState({ display: true });
     const search = component
-      .find('input[name="searchArticle"]')
-      .simulate('change', { target: { value: 'prince@gmail.com' } });
-    expect(search).toHaveLength(1);
+      .find('input[name="keyword"]')
+      .map(input => input.simulate('change', { target: { name: 'keyword', value: 'prince@gmail.com' } }));
+    expect(search).toHaveLength(2);
   });
   it('it open advanced seach', () => {
     const search = component.find('Link[testID="link-test"]').simulate('click', {});
@@ -53,7 +53,7 @@ describe('<SearchArticles /> component', () => {
   it('it open advanced search', () => {
     component
       .find('input[name="keyword"]')
-      .simulate('change', { target: { name: 'keyword', value: 'prince@gmail.com' } });
+      .map(input => input.simulate('change', { target: { name: 'keyword', value: 'prince@gmail.com' } }));
 
     component
       .find('input[name="author"]')
@@ -70,7 +70,7 @@ describe('<SearchArticles /> component', () => {
   it('it open advanced search', () => {
     component
       .find('input[name="keyword"]')
-      .simulate('change', { target: { name: 'keyword', value: '' } });
+      .map(input => input.simulate('change', { target: { name: 'keyword', value: '' } }));
 
     component
       .find('input[name="author"]')

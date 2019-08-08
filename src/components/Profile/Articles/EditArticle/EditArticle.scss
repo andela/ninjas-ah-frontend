@@ -21,7 +21,6 @@
   .input-field input:focus,
   .input-field textarea:focus {
     outline-width: 0;
-    border: none !important;
     outline: none !important;
     box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -32,5 +31,10 @@
     border: 1px solid $light;
     padding: $small/2;
     @extend .shadow-1;
+  }
+  .tags-response {
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 15px;
   }
 }

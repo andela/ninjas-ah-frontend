@@ -15,21 +15,25 @@ const ShareArticle = () => {
   return (
     <div>
       <div>
-        <FacebookShareButton className="small-h-margin left" url={shareArticle}>
+        <FacebookShareButton className="small-h-margin left cursor-pointer" url={shareArticle}>
           <FacebookIcon size={32} round black />
         </FacebookShareButton>
-        <TwitterShareButton className="small-h-margin left" url={shareArticle}>
+        <TwitterShareButton className="small-h-margin left cursor-pointer" url={shareArticle}>
           <TwitterIcon size={32} round />
         </TwitterShareButton>
         <LinkedinShareButton
-          className="small-h-margin left"
+          className="small-h-margin left cursor-pointer"
           url={shareArticle}
           windowWidth={750}
           windowHeight={600}
         >
           <LinkedinIcon size={32} round />
         </LinkedinShareButton>
-        <EmailShareButton className="small-h-margin left" url={shareArticle} body="body">
+        <EmailShareButton
+          className="small-h-margin left cursor-pointer"
+          url={shareArticle}
+          body="body"
+        >
           <EmailIcon size={32} round />
         </EmailShareButton>
       </div>

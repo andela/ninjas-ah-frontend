@@ -57,10 +57,10 @@ class SearchArticles extends Component {
     return this.searchArticle({ author, keyword, tag });
   };
 
-  handleChange = (e) => {
+  handleChange = (e, inputName) => {
     e.preventDefault();
     const { filter, searchArticle } = this.state;
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [inputName || e.target.name]: e.target.value });
     const { searchArticles } = this.props;
     if (searchArticle !== '') {
       const payload = this.state.value;
@@ -86,11 +86,11 @@ class SearchArticles extends Component {
                     <br />
                     <div className="input-field">
                       <Input
-                        name="searchArticle"
+                        name="keyword"
                         type="text"
                         inputClass="radius-5 medium-text"
                         placeholder="Search"
-                        onChange={this.handleChange}
+                        onChange={e => this.handleChange(e, 'searchArticle')}
                         value={searchArticle}
                       />
                     </div>

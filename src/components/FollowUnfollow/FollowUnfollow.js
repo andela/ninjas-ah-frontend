@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Button, Alert } from '../common';
+import { Button } from '../common';
 import '../Profile/ProfileUserDetails/ProfileUserDetails.scss';
 import { follow, getFollowers, getFollowing, unfollow } from '../../actions';
 import { htmlHelper } from '../../helpers';
@@ -60,17 +60,9 @@ export class FollowUnfollow extends Component {
       followers: { followers },
       following
     } = this.props;
-    const { followersNumber, followingNumber, modalStyle, clicked, errors, message } = this.state;
+    const { followersNumber, followingNumber, modalStyle, clicked } = this.state;
     return (
       <div>
-        <div className="small-screen-4">
-          {(message || errors) && (
-            <Alert
-              alertType={(message && 'success') || 'danger'}
-              message={message || errors.follow}
-            />
-          )}
-        </div>
         <span className="followers">
           <Link
             className="getFollowers text-info"

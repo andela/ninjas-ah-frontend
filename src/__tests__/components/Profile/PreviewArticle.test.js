@@ -100,13 +100,4 @@ describe('<PreviewArticle />', () => {
     component.setProps({ article: state.article, message: state.message });
     component.instance().handleDelete();
   });
-
-  it('should trigger handleChange ', () => {
-    component.instance().handleChange({ target: { value: 'hello world' } });
-  });
-
-  test('Should add tag when the user is logged in', () => {
-    component.setState({ ...state });
-    component.instance().handleSubmitTag({ preventDefault: jest.fn() });
-  });
 });

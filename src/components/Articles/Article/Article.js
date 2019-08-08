@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import LazyLoad from 'react-lazyload';
@@ -174,12 +175,15 @@ export class Article extends Component {
                 <div className="articleInfo">
                   <div className="row">
                     <div className="small-screen-4 medium-screen-2 large-screen-2">
-                      <span className="avatar">
+                      <Link
+                        to={`/search?author=${article.author.username}`}
+                        className="avatar text-info bold"
+                      >
                         <img src={article.author.image || avatar} alt={article.author.lastName} />
                         <span>
                           {article.author.lastName} {article.author.firstName}
                         </span>
-                      </span>
+                      </Link>
                       <span className="inline-block">
                         <Following />
                       </span>
@@ -216,7 +220,9 @@ export class Article extends Component {
                   {article.tagList
                     ? article.tagList.map(value => (
                         <p className="tags-values" key={value}>
-                          <span className="value-tag">{value}</span>
+                          <Link to={`/search?tag=${value}`} className="value-tag">
+                            {value}
+                          </Link>
                         </p>
                     ))
                     : ''}
@@ -226,7 +232,11 @@ export class Article extends Component {
                   <LikeArticle />
                   <ArticleReport article={article} />
                   <BookmarkArticle />
-                  {(profile && profile.role === 'admin' ? (<ArticleDelete history={this.props.history} article={article} />) : '')}
+                  {profile && profile.role === 'admin' ? (
+                    <ArticleDelete history={this.props.history} article={article} />
+                  ) : (
+                    ''
+                  )}
                   <div className="divider light" />
                   <Comments slug={article.slug} />
                 </div>

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import 'dotenv/config';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import {
   faTrash,
   faPen,
@@ -14,15 +13,14 @@ import {
   faGlobeAfrica
 } from '@fortawesome/free-solid-svg-icons';
 import { MetaTags } from 'react-meta-tags';
-import { NotFound, Input } from '../../../common';
+import { NotFound } from '../../../common';
 import Heading from '../../../common/Heading/Heading';
 import ArticleMenu from '../MyArticles/ArticleMenu';
 import {
   fetchOneArticle,
   deleteArticle,
   publishArticle,
-  unpublishArticle,
-  createTag
+  unpublishArticle
 } from '../../../../actions';
 import timeStamp from '../../../../helpers/timeStamp';
 import './PreviewArticle.scss';
@@ -34,17 +32,12 @@ export class PreviewArticle extends Component {
     imageRectangle:
       'c_fill,g_auto,h_350,w_970/b_rgb:000000,e_gradient_fade,y_-0.20/c_scale,co_rgb:ffffff',
     message: '',
-    tagList: [],
     loaded: false,
     articleId: '',
     errors: {},
     status: '',
     image: '',
     displayUploadButton: false
-  };
-
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
   };
 
   componentDidMount() {
@@ -93,28 +86,13 @@ export class PreviewArticle extends Component {
     this.setState({ status: 'published' });
   };
 
-  handleSubmitTag = (e) => {
-    e.preventDefault();
-    const { tagList } = this.state;
-    const {
-      createTag,
-      match: { params: { slug } }
-    } = this.props;
-    if (tagList) {
-      createTag([tagList], slug);
-      this.setState({ tagList: '' });
-    }
-
-    return false;
-  };
 
   render() {
     const {
       message,
       loading,
-      addTags: { response }
     } = this.props;
-    const { imageRectangle, article, errors, status, loaded, editorState, tagList } = this.state;
+    const { imageRectangle, article, errors, status, loaded, editorState } = this.state;
     return (
       <Layout>
         <div id="preview">
@@ -208,29 +186,6 @@ export class PreviewArticle extends Component {
                     </div>
                   </div>
                   <div className="card">
-                    <Heading type={1} text={'Tags'} />
-
-                    <div className="box article-actions">
-                      <div className="divider light" />
-                      <Input
-                        name="tagList"
-                        type="text"
-                        value={tagList}
-                        onChange={this.handleChange}
-                        inputClass="radius-5 resize"
-                        id="tagBody"
-                        placeholder=" Tags (e.g., albert einsten)"
-                      />
-                      <h5 className="tags-response">{response}</h5>
-                      <button
-                        onClick={this.handleSubmitTag}
-                        id="btn-tag"
-                        className="button  yellow text-black  center-align radius-4">
-                        Add
-                      </button>
-                    </div>
-                  </div>
-                  <div className="card">
                     <Heading type={1} text={'Details'} />
                     <div className="box">
                       <div className="medium-padding">
@@ -291,16 +246,14 @@ PreviewArticle.propTypes = {
 export const mapStateToProps = ({
   user: { isAuth },
   articles: { article, message, errors },
-  tags: { addTags }
 }) => ({
   article,
   message,
   errors,
   isAuth,
-  addTags
 });
 
 export default connect(
   mapStateToProps,
-  { fetchOneArticle, deleteArticle, publishArticle, unpublishArticle, createTag }
+  { fetchOneArticle, deleteArticle, publishArticle, unpublishArticle }
 )(PreviewArticle);

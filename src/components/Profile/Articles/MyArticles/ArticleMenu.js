@@ -14,22 +14,13 @@ const ArticleMenu = () => (
           </Link>
         </li>
         <li>
+          <Link to="/profile/articles?status=drafts">Drafts</Link>
+        </li>
+        <li>
           <Link to="/profile/articles">Published</Link>
         </li>
         <li>
-          <Link to="/profile/articles/drafts">Drafts</Link>
-        </li>
-        <li>
-          <Link to="/profile/articles/comments">Comments</Link>
-        </li>
-        <li>
-          <Link to="/profile/articles/highlights">Highlights</Link>
-        </li>
-        <li>
-          <Link to="/profile/articles/bookmarks">Bookmarks</Link>
-        </li>
-        <li>
-          <Link to="/profile/articles/favorites">favorites</Link>
+          <Link to="/profile/list/bookmarks">Bookmarks</Link>
         </li>
       </ul>
     </div>
