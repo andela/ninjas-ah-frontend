@@ -27,13 +27,11 @@ export class Alert extends Component {
     };
 
     return showAlert ? (
-      <div className="large-screen-4">
-        <div className={`${className} ${alertType}`}>
-          <p>{message}</p>
-          <Button buttonClass={`radius-4 bold button ${alertType}`} onClick={this.handleClick}>
-            <FontAwesomeIcon style={iconStyle} icon={faTimes} />
-          </Button>
-        </div>
+      <div className={`${className} ${alertType}`}>
+        <p>{message}</p>
+        <Button buttonClass={`radius-4 bold button ${alertType}`} onClick={this.handleClick}>
+          <FontAwesomeIcon style={iconStyle} icon={faTimes} />
+        </Button>
       </div>
     ) : (
       ''

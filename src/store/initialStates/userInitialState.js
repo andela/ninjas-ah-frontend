@@ -78,5 +78,17 @@ module.exports = {
     tags: ['read', 'create', 'edit', 'delete'],
     users: ['read', 'create', 'edit', 'delete'],
     permissions: ['read', 'create', 'edit', 'delete']
+  },
+  followers: [],
+  following: [],
+  followUser: {
+    loading: false,
+    message: '',
+    errors: {}
+  },
+  unfollowUser: {
+    loading: false,
+    message: '',
+    errors: {}
   }
 };

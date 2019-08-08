@@ -9,6 +9,7 @@ import './ProfileUserDetails.scss';
 import ProfileUserPicture from '../ProfileUserPicture';
 import { getReadingStats } from '../../../actions/readingStats';
 import ProfileEdit from '../ProfileEdit';
+import FollowUnfollow from '../../FollowUnfollow/FollowUnfollow';
 
 export class ProfileUserDetails extends Component {
   componentDidMount = () => {
@@ -42,13 +43,6 @@ export class ProfileUserDetails extends Component {
             <div className="small-padding bio">{bio}</div>
             <div className="divider" />
             <div>
-              <span className="followers">
-                <span className="number">{12}</span> Followers
-              </span>
-              <span className="following">
-                <span className="number">{120}</span> Following
-              </span>
-              <div className="divider" />
               <span className="block medium-v-padding">
                 Reading stats:{' '}
                 <Button buttonClass="button radius-2 small-padding yellow">
@@ -62,6 +56,9 @@ export class ProfileUserDetails extends Component {
                         : 'Not logged in'}
                 </Button>
               </span>
+            </div>
+            <div className="small-padding">
+              <FollowUnfollow />
             </div>
             <div className="divider" />
             <span className="inline-block medium-v-padding">

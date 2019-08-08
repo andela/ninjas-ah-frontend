@@ -14,6 +14,10 @@ import getUsersReducer from './getUsersReducer';
 import adminGetPermissionsReducer from './adminGetPermissionsReducer';
 import deleteUserReducer from './deleteUserReducer';
 import searchUserReducer from './searchUserReducer';
+import getFollowersReducer from './getFollowersReducer';
+import getFollowingReducer from './getFollowingReducer';
+import followReducer from './followReducer';
+import unfollowReducer from './unfollowReducer';
 
 export default (state = initialState, action) => {
   const clearUserStore = clearUserStoreReducer(state, action);
@@ -31,6 +35,10 @@ export default (state = initialState, action) => {
   const getUsers = getUsersReducer(state, action);
   const deleteUser = deleteUserReducer(state, action);
   const searchUser = searchUserReducer(state, action);
+  const followers = getFollowersReducer(state, action);
+  const following = getFollowingReducer(state, action);
+  const follow = followReducer(state, action);
+  const unfollow = unfollowReducer(state, action);
   return (
     clearUserStore
     || getUser
@@ -47,6 +55,10 @@ export default (state = initialState, action) => {
     || adminGetPermissions
     || deleteUser
     || searchUser
+    || followers
+    || following
+    || follow
+    || unfollow
     || state
   );
 };
