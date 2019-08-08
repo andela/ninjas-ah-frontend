@@ -1,0 +1,26 @@
+@import '../../../assets/css/_pixels';
+#articleCard {
+  .card-info {
+    padding: $medium 0;
+  }
+
+  .card-info span {
+    padding: $xsmall ($large/2) $xsmall 0;
+  }
+  .loading-article {
+    margin: 20px 0;
+    opacity: 0.2;
+    animation: loading-article 2s infinite;
+  }
+  @keyframes loading-article {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+}

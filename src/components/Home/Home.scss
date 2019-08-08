@@ -1,0 +1,26 @@
+.contentColumn {
+  margin: 0;
+  float: left;
+}
+.sidebarColumn {
+  margin: 0 0 0 1%;
+  float: left;
+}
+
+@media only screen and (max-width: 700px) {
+  .contentColumn {
+    width: 100%;
+  }
+  .sidebarColumn {
+    width: 65%;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .contentColumn {
+    width: 65%;
+  }
+  .sidebarColumn {
+    width: 34%;
+  }
+}

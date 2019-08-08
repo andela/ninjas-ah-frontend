@@ -1,0 +1,34 @@
+@import '../../../assets/css/_colors';
+
+.wrap-progress-bar {
+  position: fixed;
+  height: 6px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99000000000;
+  @extend .primary;
+}
+.wrap-progress-bar::before {
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 6px;
+  top: 0;
+  background: $success;
+  animation: progress-bar 4s infinite;
+}
+@keyframes progress-bar {
+  0% {
+    left: -30%;
+    background: $success;
+  }
+  50% {
+    left: 100%;
+    background: $danger;
+  }
+  100% {
+    left: -30%;
+    background: $black;
+  }
+}

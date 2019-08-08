@@ -1,0 +1,29 @@
+@import '../../../assets/css/colors';
+@import '../../../assets/css/padding';
+
+.Form {
+  .form-title {
+    background: $yellow;
+    padding: 20px;
+    margin-top: -55px !important;
+    margin-left: -($xlarge-padding);
+    margin-right: -($xlarge-padding);
+    margin-bottom: 30px !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .Form {
+    margin-left: 5% !important;
+  }
+}
+
+@media screen and (min-width: 761px) {
+  .Form {
+    margin-left: 24% !important;
+  }
+}

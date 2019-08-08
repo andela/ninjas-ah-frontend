@@ -1,0 +1,39 @@
+@import '../../assets/css/_colors';
+.border {
+  border: 1px solid;
+}
+.b-light {
+  border-color: $light;
+}
+.b-light-grey {
+  border-color: $light-grey;
+}
+
+.b-light-grey {
+  border-color: $light-grey;
+}
+
+.b-black {
+  border-color: $black;
+}
+
+.b-grey {
+  border-color: $grey;
+}
+
+.b-white {
+  border-color: $white;
+}
+
+.b-primary {
+  border-color: $primary;
+}
+.b-danger {
+  border-color: $danger;
+}
+.b-light-grey {
+  border-color: $light-grey;
+}
+.b-bottom-light-grey {
+  border-bottom: 1px solid $light-grey;
+}

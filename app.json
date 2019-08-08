@@ -1,0 +1,21 @@
+{
+  "name": "ninjas-ah-frontend",
+  "scripts": {},
+  "env": {
+    "REACT_APP_URL_BACKEND": "https://ninjas-ah-backend-staging.herokuapp.com",
+    "REACT_APP_URL_FRONTEND": "https://ninjas-ah-staging.herokuapp.com",
+    "REACT_APP_IMAGE_BASE_URL": "http://res.cloudinary.com/ninjas/image/upload"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-18"
+}

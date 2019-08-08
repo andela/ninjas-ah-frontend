@@ -1,0 +1,255 @@
+@import 'pixels';
+@import 'heading';
+@import 'grid';
+@import 'colors';
+@import 'margin';
+@import 'padding';
+@import 'shadow';
+@import 'radius';
+@import 'loginpage';
+@import 'form';
+@import 'button';
+@import 'table';
+@import 'opacity';
+@import 'alert';
+@import 'border';
+@import 'modal';
+// Font family
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+$font: 'Ubuntu', sans-serif;
+
+// Styles
+body {
+  margin: 78px 0 0 0;
+  font-family: $font;
+  font-style: normal;
+  font-weight: normal;
+}
+a {
+  color: $black;
+  text-decoration: none !important;
+}
+button:hover,
+a:hover {
+  opacity: 0.7;
+}
+
+// html5 tags
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+  padding: 0.001em 0;
+}
+
+// fixed header
+header {
+  padding: $xsmall 0;
+  width: 100%;
+  z-index: 150;
+  border-bottom: 1px solid $light;
+}
+
+// logo brand
+.logo {
+  top: 3px;
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  float: left;
+  height: auto;
+}
+
+.logo-small {
+  top: 4px;
+  position: relative;
+  width: 100%;
+  float: left;
+  height: auto;
+}
+.logo img {
+  width: 100%;
+  height: auto;
+}
+.logo-small img {
+  width: 40px;
+  height: auto;
+}
+
+// float
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.center {
+  margin: 0 auto;
+  display: block;
+}
+
+// align
+.left-align {
+  text-align: left;
+}
+.center-align {
+  text-align: center;
+}
+.right-align {
+  text-align: right;
+}
+
+// helpers
+
+/* more style options */
+/* no padding */
+.no-padding {
+  padding: 0 !important;
+}
+/* no margin */
+.no-margin {
+  margin: 0 !important;
+}
+/* no border */
+.no-border {
+  border: none !important;
+}
+/* no radius */
+.no-radius {
+  border-radius: none !important;
+}
+/* overflow hidden */
+.no-overflow {
+  overflow: hidden;
+}
+/* bold */
+.bold {
+  font-weight: bold;
+}
+.nobold {
+  font-weight: normal;
+}
+/* text transform */
+.capitalize {
+  text-transform: capitalize;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.no-hover {
+  background: none !important;
+}
+// divider
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: ($large / 2) 0;
+  clear: both;
+}
+
+// wrap images
+.image {
+  width: $full-width;
+  height: auto;
+}
+.image img {
+  width: $full-width;
+  height: auto;
+}
+
+// card
+.card {
+  margin: ($xsmall * 3) auto;
+  padding: 1%;
+  width: 98%;
+  display: block;
+}
+.card-info span {
+  padding: $xsmall;
+}
+
+// lists
+.list-inline li {
+  display: inline-block;
+  float: none;
+}
+.list-block li {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.card {
+  margin: ($xsmall * 3) auto;
+  padding: 1%;
+  width: 98%;
+  display: block;
+}
+
+.card-chat {
+  margin: ($xsmall * 3) auto;
+  word-break: break-all;
+  padding: 1%;
+  width: 50%;
+  color: #fff;
+  float: right;
+  border-radius: 80px;
+  display: block;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+}
+
+.card-chat-left {
+  margin: ($xsmall * 3) auto;
+  word-break: break-all;
+  padding: 1%;
+  width: 50%;
+  color: #fff;
+  float: left;
+  border-radius: 80px;
+  display: block;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+}
+
+.card-info span {
+  padding: $xsmall;
+}
+
+// lists
+.list-inline li {
+  display: inline-block;
+  float: none;
+}
+.list-block li {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

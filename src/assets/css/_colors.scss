@@ -1,0 +1,109 @@
+$black: #101010;
+$light: #f4f4f4;
+$grey: #42413e;
+$white: #ffffff;
+$primary: #f9d342;
+$secondary: #1843b8;
+$danger: #d64c4c;
+$success: #1c8a4a;
+$info: #1cbdee;
+$light-grey: #cbcbcb;
+$lighten-grey: #e0e0e0;
+$light-red: #f5eeee;
+$yellow: #f9d342;
+$darken-blue: #b9f6ca;
+$green-accent: #eeeeee;
+$anim-palette-1: #ffb426;
+$anim-palette-2: #0e152e;
+$anim-palette-3: #420d3b;
+$anim-palette-4: #1a1549;
+$anim-palette-5: #bd243e;
+$twitter-color: #50abf1;
+
+/* colors */
+.black {
+  background: $black;
+}
+.text-black {
+  color: $black;
+}
+.yellow {
+  background: $yellow;
+}
+.twitter-color {
+  background: $twitter-color;
+}
+.text-yellow {
+  color: $yellow;
+}
+.light {
+  background: $light;
+}
+.light-red {
+  background: $light-red;
+}
+.text-light {
+  color: $light;
+}
+.text-light-red {
+  color: $light-red;
+}
+.grey {
+  background: $grey;
+}
+
+.light-grey {
+  background: $light-grey;
+}
+
+.darkenBlue {
+  background-color: $darken-blue;
+  color: $black;
+}
+
+.gree-accent {
+  background-color: $white;
+  color: $black;
+}
+.text-light-grey {
+  color: $light-grey;
+}
+.text-grey {
+  color: $grey;
+}
+.white {
+  background: $white;
+}
+.text-white {
+  color: $white;
+}
+.primary {
+  background: $primary;
+}
+.text-primary {
+  color: $primary;
+}
+.secondary {
+  background: $secondary;
+}
+.text-secondary {
+  color: $secondary;
+}
+.danger {
+  background: $danger;
+}
+.text-danger {
+  color: $danger;
+}
+.success {
+  background: $success;
+}
+.text-success {
+  color: $success;
+}
+.info {
+  background: $info;
+}
+.text-info {
+  color: $info;
+}

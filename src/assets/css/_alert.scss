@@ -1,0 +1,32 @@
+@import './_pixels.scss';
+@import './_colors.scss';
+@import './_shadow.scss';
+@import './_radius.scss';
+
+.alert {
+  position: fixed;
+  top: 90px;
+  right: 30px;
+  width: 100%;
+  max-width: 400px;
+  @extend .shadow-2, .text-white, .large-padding, .radius-1;
+  animation: swipein 0.5s;
+}
+.alert.danger {
+  background: $danger;
+}
+.alert.sucess {
+  background: $success;
+}
+.alert.info {
+  background: $info;
+}
+
+@keyframes swipein {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 30px;
+  }
+}

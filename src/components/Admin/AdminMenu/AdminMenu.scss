@@ -1,0 +1,34 @@
+@import '../../../assets/css/colors';
+@import '../../../assets/css/pixels';
+@import '../../../assets/css/radius';
+
+.AdminMenu {
+  border-bottom: 1px solid $light;
+
+  .list-inline {
+    padding: 5px;
+    @extend .light, .radius-2;
+  }
+
+  .list-inline li:nth-child(1) {
+    padding-left: 0 !important;
+  }
+
+  .list-inline a {
+    &:hover {
+      background-color: #fff;
+    }
+    font-size: 1em;
+    padding: 15px 10px;
+  }
+
+  .active {
+    background-color: #fff;
+    border-bottom: solid 5px $yellow;
+    margin-bottom: -5px;
+  }
+
+  .list-inline {
+    padding: 0;
+  }
+}

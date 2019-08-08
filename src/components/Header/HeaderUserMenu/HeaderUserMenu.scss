@@ -1,0 +1,39 @@
+@import '../../../assets/css/pixels.scss';
+@import '../../../assets/css/colors.scss';
+@import '../../../assets/css/shadow.scss';
+@import '../../../assets/css/radius.scss';
+@import '../../../assets/css/padding.scss';
+
+.HeaderUserMenu {
+  position: absolute;
+  top: 55px;
+  width: 200px;
+  padding-top: 0px !important;
+  @extend .shadow-2, .text-black, .white, .radius-1;
+
+  .username {
+    text-align: center;
+    border-bottom: solid 1px $light-grey;
+    font-weight: bold;
+    padding: 15px 5px;
+    margin-bottom: 0px;
+    background: $yellow;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    li {
+      a {
+        &:hover {
+          background-color: $light-grey;
+        }
+        display: block;
+        margin: 0 !important;
+        padding: 18px 15px;
+      }
+    }
+  }
+}

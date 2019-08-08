@@ -1,0 +1,40 @@
+@import '../../../../assets/css/_padding';
+@import '../../../../assets/css/_colors';
+@import '../../../../assets/css/_shadow';
+#editArticle,
+#createArticle {
+  textarea[name='title'] {
+    border: 0 !important;
+    font-size: 40px;
+    padding: 0 !important;
+  }
+  textarea[name='description'] {
+    border: 0 !important;
+    font-size: 30px;
+    padding: 0 !important;
+  }
+  textarea[name='body'] {
+    border: 0 !important;
+    font-size: 20px;
+    padding: 0 !important;
+  }
+  .input-field input:focus,
+  .input-field textarea:focus {
+    outline-width: 0;
+    outline: none !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+  }
+  .box {
+    margin-bottom: $medium;
+    border: 1px solid $light;
+    padding: $small/2;
+    @extend .shadow-1;
+  }
+  .tags-response {
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 15px;
+  }
+}

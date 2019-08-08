@@ -1,0 +1,69 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": ["airbnb-base"],
+  "parser": "babel-eslint",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": false,
+      "experimentalObjectRestSpread": true,
+      "modules": false
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "object-curly-newline": [
+      "error",
+      {
+        "multiline": true
+      }
+    ],
+    "function-paren-newline": ["error", "multiline"],
+    "import/no-named-as-default": 0,
+    "import/prefer-default-export": 0,
+    "react/prop-types": 1,
+    "react/jsx-uses-react": "error",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/jsx-uses-vars": 1,
+    "eol-last": ["error", "always"],
+    "no-console": 1,
+    "comma-dangle": 0,
+    "no-underscore-dangle": 0,
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": true,
+        "requireReturnType": true,
+        "requireParamDescription": false,
+        "requireReturnDescription": true
+      }
+    ],
+    "quotes": ["error", "single"],
+    "no-shadow": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/setupTests.js"]
+      }
+    ]
+  }
+}

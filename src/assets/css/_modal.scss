@@ -1,0 +1,79 @@
+@import './colors';
+@import './padding';
+@import './radius';
+
+$to-top: 0px;
+$to-opacity: 1;
+$from-top: -300px;
+$from-opacity: 0;
+$animation-duration: 0.4s;
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 12345;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+  clear: both;
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 5px;
+}
+
+.modal-body {
+  clear: both;
+  width: 100%;
+}
+
+.modal-footer {
+  clear: both;
+  width: 100%;
+  border-top: solid 1px #ccc;
+}
+
+.modal-content {
+  @extend .large-padding, .radius-2;
+  position: relative;
+  background-color: $white;
+  margin: auto;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 1100px;
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: $animation-duration;
+  animation-name: animatetop;
+  animation-duration: $animation-duration;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: $from-top;
+    opacity: $from-opacity;
+  }
+
+  to {
+    top: $to-top;
+    opacity: $to-opacity;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: $from-top;
+    opacity: $from-opacity;
+  }
+
+  to {
+    top: $to-top;
+    opacity: $to-opacity;
+  }
+}

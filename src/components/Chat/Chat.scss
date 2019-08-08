@@ -1,0 +1,141 @@
+@import '../../assets/css/colors';
+$border: 1px solid #f9d342;
+$box-shadow: 2px 2px 3px #999;
+$border-radius: 50px;
+$position: fixed;
+$margin-top: 18px;
+$margin-top-delete: 17px;
+$width: 60px;
+$height: 60px;
+$bottom: 40px;
+$right: 40px;
+$bottom-btn: 16px;
+$right-btn: 33px;
+$font-size: 13px;
+$font-size-floating-chat: 25px;
+
+.Chat {
+  .my-float {
+    margin-top: $margin-top;
+    font-size: $font-size-floating-chat;
+  }
+  .float {
+    position: $position;
+    width: $width;
+    height: $height;
+    bottom: $bottom;
+    right: $right;
+    background-color: $yellow;
+    color: $white;
+    cursor: pointer;
+    border-radius: $border-radius;
+    text-align: center;
+    box-shadow: $box-shadow;
+    -webkit-border-radius: $border-radius;
+    -moz-border-radius: $border-radius;
+    -ms-border-radius: $border-radius;
+    -o-border-radius: $border-radius;
+  }
+}
+
+.ReactModalPortal {
+  .borderResult {
+    border: $border;
+  }
+
+  .delete-trash-icon {
+    color: red;
+    cursor: pointer;
+  }
+
+  .delete-icon {
+    width: 20px;
+    margin-top: 5px;
+    float: right;
+    color: red;
+    cursor: pointer;
+  }
+  .modal-dialog {
+    position: relative;
+    overflow-y: initial !important;
+    z-index: 200;
+  }
+  .modal-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 500px;
+    margin-bottom: 80px;
+  }
+
+  .date-right {
+    float: right;
+  }
+  .fixed-input {
+    position: fixed;
+    bottom: 0;
+    width: 95%;
+  }
+
+  .parent {
+    display: table;
+  }
+
+  .center {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .float-btn {
+    position: $position !important;
+    bottom: $bottom-btn !important;
+    right: $right-btn !important;
+    color: $white !important;
+    cursor: pointer !important;
+    border-radius: $border-radius !important;
+    text-align: center !important;
+    -webkit-border-radius: $border-radius !important;
+    -moz-border-radius: $border-radius !important;
+    -ms-border-radius: $border-radius !important;
+    -o-border-radius: $border-radius !important;
+  }
+
+  .margin-top-delete {
+    margin-top: $margin-top-delete;
+  }
+
+  .user-name-style {
+    font-size: $font-size;
+  }
+
+  .close-chat-modal{
+    cursor: pointer;
+  }
+
+  .Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../../assets/images/chat-bg-3.jpg');
+    width: 60%;
+    padding: 0 20px 0 20px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .Modal {
+      width: 100% !important;
+    }
+  }
+}
