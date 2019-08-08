@@ -35,15 +35,19 @@ export class SignupBanner extends Component {
               <br />
               {isAuth ? (
                 <div>
-                  <Link to="/profile" className="button bold radius-5 yellow">
-                    <FontAwesomeIcon icon={faUserAlt} /> {''} Go to Profile
-                  </Link>{' '}
-                  <Link
-                    to="/profile/article/new"
-                    className="button bold text-black radius-5 light-grey"
-                  >
-                    <FontAwesomeIcon icon={faPen} /> Write article
-                  </Link>
+                  <div className="inline-block large-v-margin">
+                    <Link to="/profile" className="button bold radius-5 yellow">
+                      <FontAwesomeIcon icon={faUserAlt} /> {''} Go to Profile
+                    </Link>{' '}
+                  </div>
+                  <div className="inline-block large-v-margin">
+                    <Link
+                      to="/profile/article/new"
+                      className="button bold text-black radius-5 light-grey"
+                    >
+                      <FontAwesomeIcon icon={faPen} /> Write article
+                    </Link>
+                  </div>
                 </div>
               ) : (
                 <div>

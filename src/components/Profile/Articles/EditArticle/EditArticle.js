@@ -9,8 +9,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle, faPen } from '@fortawesome/free-solid-svg-icons';
-import { Alert, NotFound } from '../../../common';
-import { editPost, fetchOneArticle } from '../../../../actions';
+import { Alert, NotFound, Input } from '../../../common';
+import { editPost, fetchOneArticle, createTag } from '../../../../actions';
 import Layout from '../../../Layout';
 import './EditArticle.scss';
 import Heading from '../../../common/Heading/Heading';
@@ -31,7 +31,8 @@ export class EditArticle extends Component {
     loaded: false,
     displayUploadButton: false,
     editorState: EditorState.createEmpty(),
-    location: ''
+    location: '',
+    tagList: []
   };
 
   async componentDidMount() {
@@ -88,7 +89,28 @@ export class EditArticle extends Component {
     this.setState({ article: this.props.article });
   };
 
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmitTag = (e) => {
+    e.preventDefault();
+    const { tagList } = this.state;
+    const {
+      createTag,
+      match: { params: { slug } }
+    } = this.props;
+    if (tagList) {
+      createTag([tagList], slug);
+      this.setState({ tagList: '' });
+    }
+
+    return false;
+  };
+
   render() {
+    const { addTags: { response } } = this.props;
+
     const {
       pageTitle,
       title,
@@ -98,7 +120,8 @@ export class EditArticle extends Component {
       editorState,
       status,
       loaded,
-      errors
+      errors,
+      tagList
     } = this.state;
     return (
       <Layout>
@@ -214,6 +237,29 @@ export class EditArticle extends Component {
                       </div>
                     </div>
                   </div>
+                  <div className="card">
+                    <Heading type={1} text="Tags" />
+                    <div className="box article-actions">
+                      <div className="divider light" />
+                      <Input
+                        name="tagList"
+                        type="text"
+                        value={tagList}
+                        onChange={this.handleChange}
+                        inputClass="radius-5 resize"
+                        id="tagBody"
+                        placeholder=" Tags (e.g., albert einsten)"
+                      />
+                      <h5 className="tags-response">{response}</h5>
+                      <button
+                        onClick={this.handleSubmitTag}
+                        id="btn-tag"
+                        className="button  yellow text-black  center-align radius-4"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -239,22 +285,30 @@ EditArticle.propTypes = {
   editPost: PropTypes.func.isRequired,
   article: PropTypes.object,
   fetchOneArticle: PropTypes.func.isRequired,
+  createTag: PropTypes.func.isRequired,
+  addTags: PropTypes.func.isRequired,
   slug: PropTypes.string,
   match: PropTypes.object,
+  response: PropTypes.object,
   params: PropTypes.object,
   message: PropTypes.object,
   errors: PropTypes.object,
   content: PropTypes.string,
   isAuth: PropTypes.bool
 };
-export const mapStateToProps = ({ user: { isAuth }, articles: { article, message, errors } }) => ({
+export const mapStateToProps = ({
+  user: { isAuth },
+  articles: { article, message, errors },
+  tags: { addTags }
+}) => ({
   article,
   message,
   errors,
-  isAuth
+  isAuth,
+  addTags
 });
 
 export default connect(
   mapStateToProps,
-  { editPost, fetchOneArticle }
+  { editPost, fetchOneArticle, createTag }
 )(EditArticle);

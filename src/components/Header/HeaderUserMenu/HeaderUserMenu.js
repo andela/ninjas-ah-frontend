@@ -9,7 +9,6 @@ import {
   faSignOutAlt,
   faBookOpen,
   faCog,
-  faUsers,
   faBookmark
 } from '@fortawesome/free-solid-svg-icons';
 import './HeaderUserMenu.scss';
@@ -23,9 +22,13 @@ class HeaderUserMenu extends Component {
   };
 
   render() {
+    const selector = document.querySelector('.HeaderUserImage');
     const { isAuth, username, firstName, lastName } = this.props;
     return (
-      <div className="HeaderUserMenu">
+      <div
+        className="HeaderUserMenu"
+        style={{ left: (selector && selector.offsetLeft - 140) || 0 }}
+      >
         <div className="username">
           {username || (firstName && lastName && `${firstName} ${lastName}`) || 'Welcome'}
         </div>

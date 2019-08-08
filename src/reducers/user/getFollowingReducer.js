@@ -10,7 +10,7 @@ export default (state, { type, payload }) => {
     case followActionsTypes.GET_FOLLOWING_SUCCESS:
       return {
         ...state,
-        following: [...state.following, ...payload.following]
+        following: payload.following
       };
     case followActionsTypes.GET_FOLLOWING_FAILURE:
       return {

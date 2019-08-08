@@ -7,7 +7,6 @@ import MetaTags from 'react-meta-tags';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faClock } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../Layout';
-import Tags from '../Articles/Tags/Tags';
 import ListOfArticles from '../Articles/ListOfArticles/ListOfArticles';
 import './Home.scss';
 import { Img } from '../common';
@@ -42,7 +41,6 @@ export class Home extends Component {
             <meta property="og:title" content="Authors Haven" />
             <meta property="og:image" content="path/to/image.jpg" />
           </MetaTags>
-          <Tags />
           <SignupBanner />
           <div className="container">
             <div className={`${bookmarks.length ? 'contentColumn' : ''}`}>

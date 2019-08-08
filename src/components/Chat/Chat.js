@@ -99,7 +99,7 @@ export class Chat extends Component {
   };
 
   render() {
-    const { profile } = this.props;
+    const { profile, isAuth } = this.props;
     const { inputMessage, chats } = this.state;
     return (
       <div className="Chat modal-dialog">
@@ -109,10 +109,16 @@ export class Chat extends Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           className="Modal"
-          contentLabel="Example Modal">
+          contentLabel="Example Modal"
+        >
           <div className="close-chat-modal" onClick={this.closeModal}>
             <FontAwesomeIcon
-              style={{ fontSize: '20px', position: 'relative', top: '10px', color: 'white' }}
+              style={{
+                fontSize: '20px',
+                position: 'relative',
+                top: '10px',
+                color: 'red'
+              }}
               icon={faWindowClose}
             />
           </div>
@@ -128,7 +134,8 @@ export class Chat extends Component {
                       chat.userId === profile.id
                         ? 'darkenBlue card-chat radius-2'
                         : 'gree-accent card-chat-left'
-                    } radius-2`}>
+                    } radius-2`}
+                  >
                     <span className="user-name-style">
                       {chat.userId === profile.id
                         ? 'Me'
@@ -145,11 +152,9 @@ export class Chat extends Component {
                   {chat.userId === profile.id ? (
                     <div
                       onClick={() => this.handleDelete(chat.id, profile.id)}
-                      className="delete-icon delete-chat">
-                      <FontAwesomeIcon
-                        style={{ marginTop: '17px' }}
-                        icon={faTrash}
-                      />
+                      className="delete-icon delete-chat"
+                    >
+                      <FontAwesomeIcon style={{ marginTop: '17px' }} icon={faTrash} />
                     </div>
                   ) : (
                     ''
@@ -175,7 +180,7 @@ export class Chat extends Component {
             </Button>
           </div>
         </Modal>
-        <div onClick={this.openModal} className="float open-chat-modal">
+        <div onClick={() => isAuth && this.openModal()} className="float open-chat-modal">
           <FontAwesomeIcon style={{ fontSize: '20px', marginTop: '17px' }} icon={faComments} />
         </div>
       </div>
@@ -183,7 +188,7 @@ export class Chat extends Component {
   }
 }
 
-Chat.propTypes = { profile: PropTypes.object, token: PropTypes.string };
+Chat.propTypes = { isAuth: PropTypes.bool, profile: PropTypes.object, token: PropTypes.string };
 
 const mapStateToProps = ({ user: { isAuth, profile, token } }) => ({
   isAuth,

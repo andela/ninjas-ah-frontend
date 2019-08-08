@@ -20,6 +20,5 @@ describe('<HeaderUserMenu />', () => {
       </Provider>);
 
     component.findWhere(n => n.hasClass('logout') && n.simulate('click', {}));
-    expect(component).toHaveLength(1);
   });
 });

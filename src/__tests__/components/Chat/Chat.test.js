@@ -40,7 +40,8 @@ const props = {
   profile: {
     id: 1,
     ...user
-  }
+  },
+  isAuth: true
 };
 
 let component = '';
@@ -54,7 +55,6 @@ describe('CHAT', () => {
   beforeEach(() => {
     component = shallow(<ChatComponent state={state} {...props} />);
     component.setState(state);
-    component.setProps(state);
     input = component.find('[name="inputMessage"]');
     submitButton = component.find('#submit-chat');
     deleteButton = component.find('.delete-chat');

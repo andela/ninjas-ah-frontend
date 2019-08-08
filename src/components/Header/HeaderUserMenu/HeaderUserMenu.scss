@@ -6,7 +6,6 @@
 
 .HeaderUserMenu {
   position: absolute;
-  right: 15px;
   top: 55px;
   width: 200px;
   padding-top: 0px !important;
@@ -36,11 +35,5 @@
         padding: 18px 15px;
       }
     }
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .HeaderUserMenu {
-    right: 30px;
   }
 }

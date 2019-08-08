@@ -15,7 +15,9 @@ const props = {
   message: { message: 'article edited successfully' },
   match: { params: { slug: 'slug-slug-slug' } },
   editPost: jest.fn(),
-  onEditorStateChange: jest.fn()
+  onEditorStateChange: jest.fn(),
+  addTags: { response: 'okkkkk' },
+  createTag: jest.fn()
 };
 const state = {
   article: { title: 'hello', description: 'hello' },
@@ -99,5 +101,14 @@ describe('<EditArticleComponent />', () => {
     const instance = component.instance();
     const fakeEvent = { preventDefault: () => {} };
     instance.onSubmit(fakeEvent);
+  });
+
+  it('should trigger handleChange ', () => {
+    component.instance().handleChange({ target: { value: 'hello world' } });
+  });
+
+  test('Should add tag when the user is logged in', () => {
+    component.setState({ ...state });
+    component.instance().handleSubmitTag({ preventDefault: jest.fn() });
   });
 });

@@ -55,7 +55,7 @@ export class ListsOfArticles extends Component {
                 <div className="small-v-padding">{article.description}</div>
                 <div className="text-grey small-text medium-v-padding card-info">
                   <span>
-                    {article.author.firstName} {article.author.lastName}
+                    {article.author && `${article.author.firstName} ${article.author.lastName}`}
                   </span>
                   <span>{timeStamp(article.createdAt)}</span>
                   <span>

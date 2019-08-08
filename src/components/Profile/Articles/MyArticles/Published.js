@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'dotenv/config';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faGlobeAfrica } from '@fortawesome/free-solid-svg-icons';
 import { getPublished } from '../../../../actions';
@@ -14,24 +15,38 @@ import ArticleMenu from './ArticleMenu';
 
 const { REACT_APP_IMAGE_BASE_URL } = process.env;
 export class PublishedArticles extends Component {
-  state = { imageRectangle: 'w_400,ar_16:9,c_fill,g_auto,e_sharpen', articles: [], errors: {} };
+  state = {
+    fetched: false,
+    fetching: false,
+    status: '',
+    imageRectangle: 'w_400,ar_16:9,c_fill,g_auto,e_sharpen',
+    articles: [],
+    errors: {}
+  };
 
-  componentDidMount() {
-    const { isAuth } = this.props;
-    this.props.getPublished(isAuth);
+  componentWillMount() {
+    this.fetchArticles();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.articles) {
-      this.setState({ articles: nextProps.articles });
-    }
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
+  componentDidUpdate() {
+    const { location } = this.props;
+    const { status } = queryString.parse(location.search);
+    return this.state.status !== status && this.fetchArticles();
   }
+
+  fetchArticles = () => {
+    const { location } = this.props;
+    const { status } = queryString.parse(location.search);
+    this.setState(prevState => ({
+      ...prevState,
+      status
+    }));
+    this.props.getPublished(status);
+  };
 
   render() {
-    const { articles, imageRectangle } = this.state;
+    const { imageRectangle } = this.state;
+    const { articles } = this.props;
     return (
       <Layout>
         <div className="row">
@@ -91,7 +106,10 @@ export class PublishedArticles extends Component {
   }
 }
 
+PublishedArticles.defaultProps = { location: { search: '' } };
+
 PublishedArticles.propTypes = {
+  location: PropTypes.any,
   articles: PropTypes.array,
   getPublished: PropTypes.func.isRequired,
   isAuth: PropTypes.bool,
