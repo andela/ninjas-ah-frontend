@@ -41,7 +41,7 @@ export class CommentThread extends Component {
     const { comments, deleted } = nextProps;
     const { commentKey } = this.state;
     if (comments) {
-      this.setState({ comments });
+      this.setState({ comments, commentEditor: {}, newComments: {} });
     }
     if (deleted && commentKey !== undefined) {
       delete comments[commentKey];
@@ -141,7 +141,7 @@ export class CommentThread extends Component {
       };
       editComment(comment);
       comments[key].body = newComments[`comment-${key}`].value;
-      this.setState({ comments, errors: { message: 'You have edited this comment' } });
+      this.setState({ comments, errors: { info: 'You have edited this comment' } });
     } else {
       this.setState({ errors: { message: 'To submit, you need to edit first' } });
     }
@@ -297,9 +297,9 @@ export class CommentThread extends Component {
                               placeholder="Edit your comment here..."
                               onChange={this.onChangeEditComment}
                               value={
-                                (newComments[`comment-${key}`]
-                                  && newComments[`comment-${key}`].value)
-                                || comment.body
+                                newComments[`comment-${key}`]
+                                  ? newComments[`comment-${key}`].value
+                                  : comment.body
                               }
                               id={`edit-comment-${key}`}
                               style={{ minHeight: 12, fontSize: 14 }}
@@ -325,6 +325,13 @@ export class CommentThread extends Component {
                               ''
                             )}
                             {errors && errors.message ? (
+                              <span className="medium-padding radius-5 text-danger">
+                                {errors.message}
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                            {errors && errors.info ? (
                               <span className="medium-padding radius-5 text-danger">
                                 {errors.message}
                               </span>

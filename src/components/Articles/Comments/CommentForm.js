@@ -30,7 +30,7 @@ export class CommentForm extends Component {
     e.preventDefault();
     const { isAuth, slug, createComment } = this.props;
     const { comment } = this.state;
-    this.setState({ comment: '' });
+    this.setState({ errors: {}, comment: '' });
     return isAuth
       ? createComment({ comment, slug })
       : this.setState({ errors: { token: 'Failed to authenticate token' } });
