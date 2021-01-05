@@ -20,7 +20,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.9.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "check-prop-types": "^1.1.2",
     "dotenv": "^8.0.0",
     "draft-convert": "^2.1.5",
